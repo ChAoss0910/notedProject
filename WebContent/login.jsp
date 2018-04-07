@@ -57,8 +57,12 @@
 				    		<input type="password" class="form-control" id="loginPassword" placeholder="Password">
 				  	</div>
 			  	 </div>
-			  	 <button type="submit" id="submit-button" class="btn btn-primary">submit</button>
-			</form>
+				<div class="form-row">
+				  	<div class="form-group col-md-12">
+				  		<button type="submit" id="submit-button" class="btn btn-primary">Log In</button>
+			  		</div>
+		  		</div>
+	  		</form>
 		</div>
 	</div>
 	<!-- LOGIN -->

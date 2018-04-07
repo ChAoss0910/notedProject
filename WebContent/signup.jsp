@@ -48,33 +48,35 @@
 			<h1>Sign Up</h1>
 			<form name="signup" method="POST" action="ValidateSignup">
 				<div class="form-row">
-				    	<div class="col">
+				    	<div class="form-group col-md-6">
 				    		<label for="fname">First name</label>
 				      	<input type="text" class="form-control" id="fname" placeholder="First name">
 				    </div>
-				    <div class="col">
+				    <div class="form-group col-md-6">
 				    		<label for="lname">Last name</label>
 				      	<input type="text" class="form-control" id="lname" placeholder="Last name">
 				    </div>
 			  	</div>
 				<div class="form-row">
-			    		<div class="form-group col-md-6">
+			    		<div class="form-group col-md-4">
 				      	<label for="signupEmail">Email</label>
 				      	<input type="email" class="form-control" id="signupEmail" placeholder="Email">
 				    </div>
-			  	</div>
-			  	<div class="form-row" >
-				  	<div class="form-group col-md-6">
+				  	<div class="form-group col-md-4">
 					    <label for="signupUsername">Username</label>
 					    <input type="text" class="form-control" id="signupUsername" aria-describedby="usernameHelp" placeholder="Username">
 					    <small id="usernameHelp" class="form-text text-muted">This will be public to other players.</small>
 				  	</div>
-				  	<div class="form-group col-md-6">
-				      	<label for="signupPassword">Password</label>
-				      <input type="password" class="form-control" id="signupPassword" placeholder="Password">
+				  	<div class="form-group col-md-4">
+				    		<label for="signupPassword">Password</label>
+				      	<input type="password" class="form-control" id="signupPassword" placeholder="Password">
 				    </div>
 			  	</div>
-			  	<button type="submit" id="submit-button" class="btn btn-primary">submit</button>
+			  	<div class="form-row">
+				  	<div class="form-group col-md-12">
+				  		<button type="submit" id="submit-button" class="btn btn-primary">Sign Up</button>
+			  		</div>
+		  		</div>
 			</form>
 		</div>
 	</div>
