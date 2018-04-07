@@ -3,69 +3,109 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-<title>Noted</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
 </head>
 <body>
-	<!-- NAVBAR -->
-		<nav class="navbar navbar-dark bg-dark">
-			  <a class="navbar-brand" href="#">Home</a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			    <ul class="navbar-nav">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Features</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Pricing</a>
-			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          Dropdown link
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">Action</a>
-			          <a class="dropdown-item" href="#">Another action</a>
-			          <a class="dropdown-item" href="#">Something else here</a>
-			        </div>
-			      </li>
-			    </ul>
-			  </div>
-			</nav>
-		<!-- NAVBAR -->
-		
-		<!-- JUMBOTRON -->
-		<div class="jumbotron">
-		  <h1 class="display-4">Noted</h1>
-		  <p class="lead">Join a quiz session and learn by competing!</p>
-		  <hr class="my-4">
-		  <p class="lead">
-		    <a class="btn btn-primary btn-lg" href="#" role="button">Start Game</a>
-		  </p>
+
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="#">Noted</a>
 	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="login.jsp">Login</a></li>
+	        <li><a href="signup.jsp">Signup</a></li>
+	        <li><a href="#">About</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 	
-	<div id="signupOrLogin" style="text-align:center;">
-			<button onclick="openSignupPage();" type="button" class="btn btn-default">Sign Up</button>
-			<button onclick="openLoginPage();" type="button" class="btn btn-default">Login</button>
-		</div>
+	<div class="jumbotron">
+	  <div class="container text-center">
+	    <h1>Noted</h1>      
+	    <p>Learn through friendly competition</p>
+	    <p class="lead">
+    	<a class="btn btn-primary btn-lg" href="#" role="button">Join a Game</a>
+  </p>
+	  </div>
+	</div>
+	  
+	<div class="container-fluid bg-3 text-center">    
+	  <h3>Featured Notes</h3><br>
+	  <div class="row">
+	    <div class="col-sm-3">
+	      <p>Note #1</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3"> 
+	      <p>Note #2</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3"> 
+	      <p>Note #3</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3">
+	      <p>Note #4</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	  </div>
+	</div><br>
+	
+	<div class="container-fluid bg-3 text-center">    
+	  <div class="row">
+	    <div class="col-sm-3">
+	      <p>Note #5</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3"> 
+	      <p>Note #6</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3"> 
+	      <p>Note #7</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	    <div class="col-sm-3">
+	      <p>Note #8</p>
+	      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+	    </div>
+	  </div>
+	</div><br><br>
+	
+	<footer class="container-fluid text-center">
+	  <p>Footer Text</p>
+	</footer>
 </body>
-<script>
-	function openSignupPage(){
-		 window.open("signup.jsp","_self");
-	}
-	
-	function openLoginPage(){
-		window.open("login.jsp","_self");
-	}
-</script>
-</html>
