@@ -12,9 +12,20 @@
 <title>Noted</title>
 </head>
 <body>
-	<h1>If you see this it works</h1>
-	<!-- Burt -->
-	<!-- Chen -->
-	<!-- Emily -->
+	<h1>Noted Quiz Game</h1>
+	
+	<div id="signupOrLogin">
+			<button onclick="openSignupPage();" type="button" class="btn btn-default">Sign Up</button>
+			<button onclick="openLoginPage();" type="button" class="btn btn-default">Login</button>
+		</div>
 </body>
+<script>
+	function openSignupPage(){
+		 window.open("signupPage.jsp","_self");
+	}
+	
+	function openLoginPage(){
+		window.open("loginPage.jsp","_self");
+	}
+</script>
 </html>
