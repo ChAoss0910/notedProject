@@ -2,9 +2,7 @@ package notedProject;
 
 import java.util.Date;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import com.sun.org.apache.bcel.internal.generic.StackInstruction;
+//Serializable needed
 
 public class Note {
 	private String title;

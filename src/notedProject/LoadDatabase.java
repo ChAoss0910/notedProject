@@ -31,7 +31,12 @@ public class LoadDatabase {
 		return true;
 	}
 	
+	/**
+	 * @param username
+	 * @return User by username; null if user not exist
+	 */
 	private User GetUser(String uName) {
+		
 		User temp = null;
 		for (User u: users) {
 			if (u.getUsername().equals(uName)) {
@@ -40,8 +45,15 @@ public class LoadDatabase {
 		}
 		return temp;
 	}
+
 	
+	/**
+	 * @param uName
+	 * @param password
+	 * @return True only if combination works; False otherwise
+	 */
 	public boolean CheckLogin(String uName, String password) {
+		
 		if (CheckUserExist(uName)) {
 			if (GetUser(uName).CheckPassword(password)) {
 				return true;
@@ -52,5 +64,4 @@ public class LoadDatabase {
 			return false;
 		}
 	}
-	
 }

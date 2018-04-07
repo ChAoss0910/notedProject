@@ -2,6 +2,8 @@ package notedProject;
 
 import java.util.ArrayList;
 
+//Serializable needed
+
 public class Question {
 	private String title;
 	

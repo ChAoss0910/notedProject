@@ -2,6 +2,8 @@ package notedProject;
 
 import java.io.Serializable;
 
+//Serializable needed
+
 public class User implements Serializable {
 	
 	private Name name;

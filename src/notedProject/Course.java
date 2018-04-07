@@ -1,10 +1,11 @@
 package notedProject;
 
-import java.rmi.Remote;
 import java.util.List;
 
 
 // By Burt
+
+// Serializable needed
 
 public class Course {
 	
