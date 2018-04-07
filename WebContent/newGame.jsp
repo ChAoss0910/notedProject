@@ -7,9 +7,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<title>noted | sign up</title>
+	<title>noted | Start Game</title>
+	<style>
+		.outer-game {
+			margin-top: 100px;
+		}
+		#title {
+			padding: 5px 0px;
+		}
+		#classOption {
+			background-color: #ffa31a;
+		}
+	</style>
 </head>
-<body>
+<body>	
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-dark bg-dark">
 		  <a class="navbar-brand" href="homepage.jsp">noted</a>
@@ -41,42 +52,43 @@
 		  </div>
 		</nav>
 	<!-- NAVBAR -->
-	<!-- SIGNUP -->
-	<div class="outer-user">
+	<!-- START GAME -->
+	<div class="outer-game">
 		<div class="container"> 
-			<h1>Sign Up</h1>
-			<form name="signup" method="POST" action="ValidateSignup">
+			<div id="title">
+				<h1>Start a Game</h1>
+			</div>
+			<form name="newGame" method="POST" action="ValidateNewGame">
 				<div class="form-row">
-				    	<div class="col">
-				    		<label for="fname">First name</label>
-				      	<input type="text" class="form-control" id="fname" placeholder="First name">
+				    	<div class="form-group col-md-6"">
+				    		<label for="gameName">Game Name</label>
+				      	<input type="text" class="form-control" id="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
+				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
 				    </div>
-				    <div class="col">
-				    		<label for="lname">Last name</label>
-				      	<input type="text" class="form-control" id="lname" placeholder="Last name">
-				    </div>
+				    <div class="form-group col-md-3">
+				    		<label for="numPlayers">Number of Players</label>
+				    		<select class="form-control" id="numPlayers">
+					      	<option>2</option>
+					      	<option>3</option>
+					      	<option>4</option>
+			    			</select>
+			  		</div>
+			  		<div class="form-group col-md-3">
+			  		
+			  			<div class="dropdown">
+					  		<button class="btn btn-secondary dropdown-toggle" type="button" id="numPlayers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    		Number of Players
+					  		</button>
+						  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    		<a class="dropdown-item">2</a>
+						    		<a class="dropdown-item">3</a>
+						    		<a class="dropdown-item">4</a>
+						  	</div>
+						</div>
+			  		</div>
 			  	</div>
-				<div class="form-row">
-			    		<div class="form-group col-md-6">
-				      	<label for="signupEmail">Email</label>
-				      	<input type="email" class="form-control" id="signupEmail" placeholder="Email">
-				    </div>
-			  	</div>
-			  	<div class="form-row" >
-				  	<div class="form-group col-md-6">
-					    <label for="signupUsername">Username</label>
-					    <input type="text" class="form-control" id="signupUsername" aria-describedby="usernameHelp" placeholder="Username">
-					    <small id="usernameHelp" class="form-text text-muted">This will be public to other players.</small>
-				  	</div>
-				  	<div class="form-group col-md-6">
-				      	<label for="signupPassword">Password</label>
-				      <input type="password" class="form-control" id="signupPassword" placeholder="Password">
-				    </div>
-			  	</div>
-			  	<button type="submit" id="submit-button" class="btn btn-primary">submit</button>
-			</form>
+		  	</form>
 		</div>
 	</div>
-	<!-- SIGNUP -->
 </body>
 </html>
