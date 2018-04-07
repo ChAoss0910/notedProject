@@ -2,12 +2,29 @@ package notedProject;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable {
+	
 	private Name name;
+	private String username;
+	private String email;
+	private String password;
+	
+	public User(String username, String lName, String fName, String password, String email) {
+		this.username = username;
+		this.email = email;
+		this.name = new Name(fName, lName);
+		this.password = password;
+	}
+	
 	public class Name implements Serializable{
 		private String firstname;
 		private String lastname;
 	
+		public Name (String fname, String lname) {
+			this.firstname = fname;
+			this.lastname = lname;
+		}
+		
 		public String getFirst() {
 			return this.firstname;
 		}
@@ -15,9 +32,7 @@ public class User implements Serializable{
 			return this.lastname;
 		}
 	}
-	private String username;
-	private String email;
-	private String password;
+	
 	
 	public String getFirstName() {
 		return this.name.getFirst();
