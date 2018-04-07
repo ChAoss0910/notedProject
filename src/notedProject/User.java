@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 	
+	public static final long serialVersionUID = 1;
+	
 	private Name name;
 	private String username;
 	private String email;
@@ -27,6 +29,9 @@ public class User implements Serializable {
 	}
 	
 	public class Name implements Serializable{
+		
+		public static final long serialVersionUID = 2;
+		
 		private String firstname;
 		private String lastname;
 	

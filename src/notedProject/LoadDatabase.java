@@ -1,11 +1,27 @@
 package notedProject;
 
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 
 public class LoadDatabase {
 	private List<Course> courses;
 	private List<User> users;
+	
+	private static String filename = "database.json";
+	
+	private DummyDatabase database;
 	
 	public LoadDatabase() {
 		courses = new ArrayList<Course>();
@@ -13,6 +29,20 @@ public class LoadDatabase {
 	}
 	
 	public boolean loadData() {
+		InputStream inputStream;
+		try {
+			inputStream = new FileInputStream(filename);
+			Reader reader = new InputStreamReader(inputStream);
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			database = gson.fromJson(reader, DummyDatabase.class);
+			users = database.users;
+			courses = database.courses;
+			
+		} catch (FileNotFoundException f) {
+			System.out.println("That file could not be found.");
+		} catch (JsonParseException j) {
+			System.out.println("That file is not a well-formed JSON file. ");
+		}
 		return true;
 	}
 	
