@@ -61,35 +61,39 @@
 		    	<ul class="list-group">
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				    CSCI-201 Midterm
-				    <span class="badge badge-primary badge-pill">Players: 1</span>
+				    <span class="badge badge-primary badge-pill">slots: 1</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				    CSCI-104 Quiz 2
-				    <span class="badge badge-primary badge-pill">Players: 3</span>
+				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				   PYSC-442 Quiz 8
-				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				   CSCI-104 Quiz 2
-				    <span class="badge badge-primary badge-pill">Players: 3</span>
+				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				   MATH-224 Quiz 1
-				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				   CSCI-102 Quiz 3
-				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
 				  <li class="list-group-item d-flex justify-content-between align-items-center">
 				   PYSC-442 Quiz 5
-				    <span class="badge badge-primary badge-pill">Players: 1</span>
+				    <span class="badge badge-primary badge-pill">slots: 1</span>
 				  </li>
 				</ul>
-	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Join Game</a>
-	  </p>
+			</p>
+			
+			<div>
+				<a style="margin: 10px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Join Game</a>
+	    		<a style="margin: 10px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Start Game</a>
+			</div>
 		  </div>
 		</div>
 		  
