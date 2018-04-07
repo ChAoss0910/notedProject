@@ -6,12 +6,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<title>Noted | Login</title>
 </head>
 <body>
-	<div id="outer">
+	<div class="outer-user">
 		<div class="container"> <!-- login -->
-			<h1>Login</h1>
+			<h1>login</h1>
 			<form name="login" method="POST" action="ValidateLogin">
 				<div class="form-group">
 			    		<label for="loginEmail">Email address</label>
