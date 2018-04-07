@@ -48,8 +48,8 @@
 			<form name="login" method="POST" action="ValidateLogin">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-				    		<label for="loginEmail">Email</label>
-				    		<input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Email">
+				    		<label for="loginUsername">Username</label>
+				    		<input type="text" class="form-control" id="loginEmail" placeholder="Username">
 				  	</div>
 				  	<div class="form-group col-md-6">
 				    		<label for="loginPassword">Password</label>
