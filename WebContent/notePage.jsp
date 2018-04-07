@@ -53,20 +53,9 @@
 		    </div>
 		  </div>
 		</nav>
-		
-		<div class="jumbotron">
-		  <div class="container text-center">
-		    <h1>noted</h1>      
-		    <p>Learn through friendly competition</p>
-		    <p class="lead">
-	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Join a Game</a>
-	  </p>
-		  </div>
-		</div>
 		  
 		<div class="container-fluid bg-3 text-center">    
-		  <h3>Featured Notes</h3><br>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Explore</a>
+		  <h3>Note Bank</h3><br>
 		  <div class="row">
 		    <div class="col-sm-3">
 		      <p>Note #1</p>
