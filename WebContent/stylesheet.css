@@ -6,3 +6,13 @@ body {
 .outer-user {
 	margin-top: 100px;
 }
+.form-row {
+	margin-top: 10px;
+}
+#submit-button {
+	background-color: #ffa31a;
+	border: none;
+}
+#submit-button:hover {
+	background-color: #ff9900;
+}

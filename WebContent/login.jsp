@@ -12,7 +12,7 @@
 <body>
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">noted</a>
+		  <a class="navbar-brand" href="homepage.jsp">noted</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -46,15 +46,17 @@
 		<div class="container">
 			<h1>Login</h1>
 			<form name="login" method="POST" action="ValidateLogin">
-				<div class="form-group">
-			    		<label for="loginEmail">Email</label>
-			    		<input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Email">
-			  	</div>
-			  	<div class="form-group">
-			    		<label for="loginPassword">Password</label>
-			    		<input type="password" class="form-control" id="loginPassword" placeholder="Password">
-			  	</div>
-			  	<button type="submit" class="btn btn-primary">Submit</button>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+				    		<label for="loginEmail">Email</label>
+				    		<input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Email">
+				  	</div>
+				  	<div class="form-group col-md-6">
+				    		<label for="loginPassword">Password</label>
+				    		<input type="password" class="form-control" id="loginPassword" placeholder="Password">
+				  	</div>
+			  	 </div>
+			  	 <button type="submit" id="submit-button" class="btn btn-primary">submit</button>
 			</form>
 		</div>
 	</div>
