@@ -16,6 +16,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
+	public boolean CheckPassword(String password) {
+		if (this.password.equals(password)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public class Name implements Serializable{
 		private String firstname;
 		private String lastname;
