@@ -15,11 +15,6 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>noted | sign up</title>
-	<style>
-		h1 {
-			padding: 10px 5px;
-		}
-	</style>
 </head>
 <body>
 	<!-- NAVBAR -->

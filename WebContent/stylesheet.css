@@ -3,6 +3,9 @@
 body {
 	font-family: "Raleway";
 }
+h1 {
+	padding: 10px 5px;
+}
 .outer-user {
 	margin-top: 100px;
 }
