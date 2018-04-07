@@ -9,6 +9,11 @@ body {
 .form-row {
 	margin-top: 10px;
 }
+.form-control:focus {
+	outline: none;
+    border-color: #ffa31a;
+    box-shadow: 0 0 10px #ffa31a;
+}
 #submit-button {
 	background-color: #ffa31a;
 	border: none;
