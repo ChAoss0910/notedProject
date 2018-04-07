@@ -24,3 +24,20 @@ body {
 #submit-button:hover {
 	background-color: #ff9900;
 }
+.new-game {
+	margin-top: 100px;
+}
+#title {
+	padding: 5px 0px;
+}
+.new-game select {
+	height: 40px;
+	width: 100%;
+    background: white;
+    color:black;
+}
+.new-game select:focus {
+	outline: none;
+    border-color: #ffa31a;
+    box-shadow: 0 0 10px #ffa31a;
+}
