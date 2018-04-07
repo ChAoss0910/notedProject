@@ -55,7 +55,6 @@
 				      	<label for="signupEmail">Email</label>
 				      	<input type="email" class="form-control" id="signupEmail" placeholder="Email">
 				    </div>
-				    
 			  	</div>
 			  	<div class="form-row" >
 				  	<div class="form-group col-md-6">

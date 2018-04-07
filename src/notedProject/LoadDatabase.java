@@ -16,13 +16,41 @@ public class LoadDatabase {
 		return true;
 	}
 	
-	public boolean CheckUserExist(String userID) {
-		return true;
+	public boolean CheckUserExist(String uName) {
+		boolean check = false;
+		for (User u: users) {
+			if (u.getUsername().equals(uName)) {
+				check = true;
+			}
+		}
+		return check;
 	}
 	
 	public boolean AddUser(String username, String fname, String lname, String password, String email) {
 		User temp = new User(username, lname, fname, password, email);
 		return true;
+	}
+	
+	private User GetUser(String uName) {
+		User temp = null;
+		for (User u: users) {
+			if (u.getUsername().equals(uName)) {
+				temp = u;
+			}
+		}
+		return temp;
+	}
+	
+	public boolean CheckLogin(String uName, String password) {
+		if (CheckUserExist(uName)) {
+			if (GetUser(uName).CheckPassword(password)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 }
