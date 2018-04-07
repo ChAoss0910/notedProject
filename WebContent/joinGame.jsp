@@ -56,10 +56,39 @@
 		
 		<div class="jumbotron">
 		  <div class="container text-center">
-		    <h1>noted</h1>      
-		    <p>Learn through friendly competition</p>
+		    <h1>Select a Game</h1>      
 		    <p class="lead">
-	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Join a Game</a>
+		    	<ul class="list-group">
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    CSCI-201 Midterm
+				    <span class="badge badge-primary badge-pill">Players: 1</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    CSCI-104 Quiz 2
+				    <span class="badge badge-primary badge-pill">Players: 3</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				   PYSC-442 Quiz 8
+				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				   CSCI-104 Quiz 2
+				    <span class="badge badge-primary badge-pill">Players: 3</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				   MATH-224 Quiz 1
+				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				   CSCI-102 Quiz 3
+				    <span class="badge badge-primary badge-pill">Players: 2</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				   PYSC-442 Quiz 5
+				    <span class="badge badge-primary badge-pill">Players: 1</span>
+				  </li>
+				</ul>
+	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Join Game</a>
 	  </p>
 		  </div>
 		</div>
@@ -86,26 +115,6 @@
 		  </div>
 		</div><br>
 		
-		<div class="container-fluid bg-3 text-center">    
-		  <div class="row">
-		    <div class="col-sm-3">
-		      <p>Note #5</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #6</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #7</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3">
-		      <p>Note #8</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		  </div>
-		</div><br><br>
 		
 		<footer class="container-fluid text-center">
 		  <p>Footer Text</p>
