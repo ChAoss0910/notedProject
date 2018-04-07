@@ -38,14 +38,14 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="#">noted</a>
+		      <a class="navbar-brand" href="homepage.jsp">noted</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="#">Home</a></li>
 		        <li><a href="login.jsp">Login</a></li>
 		        <li><a href="signup.jsp">Signup</a></li>
-		        <li><a href="#">About</a></li>
+		        <li><a href="about.jsp">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>

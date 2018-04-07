@@ -26,7 +26,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="#">noted</a>
+		      <a class="navbar-brand" href="homepage.jsp">noted</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
@@ -44,6 +44,7 @@
 	<!-- NAVBAR -->
 	<div class="outer-user">
 		<div class="container">
+			<h1>About Us</h1>
 		</div>
 	</div>
 </body>
