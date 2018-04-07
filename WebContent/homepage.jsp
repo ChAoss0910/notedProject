@@ -56,7 +56,7 @@
 	
 	<div class="jumbotron">
 	  <div class="container text-center">
-	    <h1>Noted</h1>      
+	    <h1>noted</h1>      
 	    <p>Learn through friendly competition</p>
 	    <p class="lead">
     	<a class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Join a Game</a>
