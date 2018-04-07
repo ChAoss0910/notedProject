@@ -14,7 +14,7 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-	<title>noted | login</title>
+	<title>noted | about</title>
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -42,25 +42,9 @@
 		  </div>
 		</nav>
 	<!-- NAVBAR -->
-	<!-- LOGIN -->
 	<div class="outer-user">
 		<div class="container">
-			<h1>Login</h1>
-			<form name="login" method="POST" action="ValidateLogin">
-				<div class="form-row">
-					<div class="form-group col-md-6">
-				    		<label for="loginUsername">Username</label>
-				    		<input type="text" class="form-control" id="loginEmail" placeholder="Username">
-				  	</div>
-				  	<div class="form-group col-md-6">
-				    		<label for="loginPassword">Password</label>
-				    		<input type="password" class="form-control" id="loginPassword" placeholder="Password">
-				  	</div>
-			  	 </div>
-			  	 <button type="submit" id="submit-button" class="btn btn-primary">submit</button>
-			</form>
 		</div>
 	</div>
-	<!-- LOGIN -->
 </body>
 </html>

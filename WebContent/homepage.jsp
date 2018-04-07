@@ -108,7 +108,7 @@
 		</div><br><br>
 		
 		<footer class="container-fluid text-center">
-		  <p>Footer Text</p>
+		  <p>&#0169; 2018 Noted All Rights Reserved</p>
 		</footer>
 	</body>
 </html>

@@ -45,7 +45,7 @@
 		        <li class="active"><a href="#">Home</a></li>
 		        <li><a href="login.jsp">Login</a></li>
 		        <li><a href="signup.jsp">Signup</a></li>
-		        <li><a href="#">About</a></li>
+		        <li><a href="about.jsp">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
