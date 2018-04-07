@@ -1,5 +1,6 @@
 package notedProject;
 
+import java.rmi.Remote;
 import java.util.List;
 
 
@@ -8,6 +9,8 @@ import java.util.List;
 public class Course {
 	
 	private String title;
+	
+	private List<Question> questions;
 	
 	private List<Note> notes;
 	
@@ -36,4 +39,29 @@ public class Course {
 			notes.remove(dNote);
 		}
 	}
+	
+	public boolean AddQuestion(Question q) {
+		// returns false if Question already exists; true if add successfully
+		if (questions.contains(q)) {
+			return false;
+		}
+		else {
+			questions.add(q);
+			return true;
+		}
+	}
+	
+	public List<Question> GetQuestions() {
+		return questions;
+	}
+	
+	public boolean RemoveQuestion(Question q) {
+		if (questions.contains(q)) {
+			questions.remove(q);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
+

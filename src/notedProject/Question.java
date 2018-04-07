@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 public class Question {
 	private String title;
+	
 	private ArrayList<String> options = new ArrayList<String>();
+	
 	private int correctAnwser;
+	
 	public Question(String title) {
 		 this.title = title;
 	 }
