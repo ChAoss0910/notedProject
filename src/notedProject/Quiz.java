@@ -35,28 +35,13 @@ public class Quiz {
 			}
 		}
 	}
-	
-	public Question GetCurrentQuestion() {
-		Question temp = null;
-		if (qPointer < qList.size()) {
-			temp = qList.get(qPointer);
-		}
-		return temp;
-	}
-	
-	public boolean CheckAnswerCurrent(int questionID, int choice) {
-		Question temp = qList.get(questionID);
-		if (temp!=null) {
-			if (choice == temp.getAnswer()) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-	
+
+	/**
+	 * For Server use, to get score for each player
+	 * @param choices: List of choices 
+	 * @param multiplier: List of multiplier determined by answer time; for single player, use 1
+	 * @return
+	 */
 	public int GetScore(List<Integer> choices, List<Integer> multiplier) {
 		int score = 0;
 		if (choices.size() != qList.size() || multiplier.size() != qList.size()) {
@@ -64,7 +49,9 @@ public class Quiz {
 			return -1;
 		}
 		for (int i = 0; i < choices.size() ; i++) {
+			// System.out.println("Choice " + choices.get(i) + ", Answer " + qList.get(i).getAnswer());
 			if (choices.get(i) == qList.get(i).getAnswer()) {
+				
 				score += multiplier.get(i);
 			}
 		}
@@ -75,6 +62,9 @@ public class Quiz {
 		return (qPointer < qList.size());
 	}
 	
+	/**
+	 * USE HasNextQuestion before calling GetNextQuestion, otherwise might get NULL	
+	 */
 	public Question GetNextQuestion() {
 		if (HasNextQuestion()) {
 			qPointer ++;
@@ -84,7 +74,9 @@ public class Quiz {
 		}
 	}
 	
-	
+	public int GetQuizSize() {
+		return qList.size();
+	}
 	
 	public void SetTitle(String t) {
 		title = t;

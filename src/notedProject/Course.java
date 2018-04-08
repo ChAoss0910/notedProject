@@ -56,6 +56,10 @@ public class Course {
 		return questions;
 	}
 	
+	public int GetQuestionSize() {
+		return questions.size();
+	}
+	
 	public boolean RemoveQuestion(Question q) {
 		if (questions.contains(q)) {
 			questions.remove(q);

@@ -9,7 +9,7 @@ public class Question {
 	
 	private ArrayList<String> options = new ArrayList<String>();
 	
-	private int correctAnwser;
+	private int answer;
 	
 	public Question(String title) {
 		 this.title = title;
@@ -21,7 +21,7 @@ public class Question {
 		return this.options;
 	}
 	public int getAnswer() {
-		return this.correctAnwser;
+		return this.answer;
 	}
 	public void addOption(String m) {
 		options.add(m);
