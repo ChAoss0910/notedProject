@@ -9,7 +9,9 @@ public class Test {
 		LoadDatabase database = new LoadDatabase();
 		database.loadData();
 		System.out.println("Read");
-		
+		if (database.CheckUserExist("user1")) {
+			System.out.println("Exist");
+		}
 		return;
 	}
 }

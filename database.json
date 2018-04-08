@@ -1,0 +1,22 @@
+{
+  "users" : [
+    {
+      "email" : "email@usc.edu",
+      "name" : {
+        "firstname" : "dummyFirst",
+        "lastname" : "dummyLast"
+      },
+      "password" : 111111,
+      "username" : "user1"
+    },
+    {
+      "email" : "email@usc.edu",
+      "name" : {
+        "firstname" : "dummyFirst2",
+        "lastname" : "dummyLast2"
+      },
+      "password" : 111111,
+      "username" : "user2"
+    }
+  ]
+}
