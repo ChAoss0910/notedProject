@@ -36,7 +36,6 @@ public class LoadDatabase {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			database = gson.fromJson(reader, DummyDatabase.class);
 			users = database.users;
-			courses = database.courses;
 			
 		} catch (FileNotFoundException f) {
 			System.out.println("That file could not be found.");
