@@ -35,8 +35,8 @@ public class ValidateLogin extends HttpServlet {
 		String username = request.getParameter("loginUsername");
 		String password =request.getParameter("loginPassword") ;
 		String forward = "";
-		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/db.json");
-		String path = getServletContext().getRealPath("/db.json");
+		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
+		String path = getServletContext().getRealPath("/database.json");
 		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
 		loadDatabase.writeData();
 		HttpSession session = request.getSession();
