@@ -56,6 +56,18 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Note Bank</h3><br>
+		  <a class="btn btn-primary btn-lg"  id="submit-button" href="notePage.jsp" role="button">Upload a Note:</a>
+		  <div class="container-fluid" style="text-align: left;">
+		  	<h4>Filter Notes:</h4>
+		  	<form class="navbar-form navbar-left" role="search">
+			 <div class="form-group">
+			   <input type="text" class="form-control" placeholder="Search">
+			 </div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		  </form>
+		  </div>
+		  
+		  <br>
 		  <div class="row">
 		    <div class="col-sm-3">
 		      <p>Note #1</p>

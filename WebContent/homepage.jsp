@@ -68,7 +68,7 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Featured Notes</h3><br>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Explore</a>
+		  <a class="btn btn-primary btn-lg"  id="submit-button" href="notePage.jsp" role="button">Explore</a>
 		  <div class="row">
 		    <div class="col-sm-3">
 		      <p>Note #1</p>
