@@ -9,7 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Burt1/Spring201/butingxu_CSCI201L_Homework3/WebContent/WEB-INF/lib/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="/Users/chenchaoyang/Desktop/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="gson-2.8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
