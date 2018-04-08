@@ -18,5 +18,33 @@
       "password" : 111111,
       "username" : "user2"
     }
+  ],
+ 
+  "courses" : [
+  	{
+  		"title" : "csci201",
+  		"questions" : [
+  		  {
+  			"title": "How many player are there in the game?",
+  			"options":[
+  				"One",
+  				"Two",
+  				"Three",
+  				"Four"
+  			],
+  			"answer": 4
+  		  },
+  		  {
+  		  	"title": "Which one is used on Condition to notify all other threads?",
+  			"options":[
+  				"notify()",
+  				"notifyall()",
+  				"signal()",
+  				"signalAll()"
+  			],
+  			"answer": 2
+  		  }
+  		 ]
+  	}
   ]
 }
