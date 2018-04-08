@@ -1,6 +1,7 @@
 package notedProject;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.portable.InputStream;
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
+import java.lang.System.*;
 
 /**
  * Servlet implementation class ValidateLogin
@@ -32,8 +35,8 @@ public class ValidateLogin extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("loginUsername");
-		String password =request.getParameter("loginPassword") ;
+		String username = request.getParameter("username");
+		String password =request.getParameter("password") ;
 		String forward = "";
 		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
 		String path = getServletContext().getRealPath("/database.json");
@@ -44,18 +47,24 @@ public class ValidateLogin extends HttpServlet {
 		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		boolean check = true;
-		
+		System.out.println(username);
+		System.out.println(password);
 		boolean logincheck = database.CheckLogin(username, password);
+		if(logincheck)
+			System.out.println("true");
+		else
+			System.out.println("false");
 		if (username == "") {
-    		request.setAttribute("name_err", "Please enter Username");
-    		forward = "/login.jsp";
-    		check = false;
-    	}
+    			request.setAttribute("name_err", "Please enter Username");
+    			forward = "/login.jsp";
+    			check = false;
+    			
+		}
 		if (password == "") {
-    		request.setAttribute("password_err", "Please enter Password");
-    		forward = "/login.jsp";
-    		check = false;
-    	}
+    			request.setAttribute("password_err", "Please enter Password");
+    			forward = "/login.jsp";
+    			check = false;
+		}
 		if (username != "" && password != "" && !logincheck) {
 			forward = "/login.jsp";
 			request.setAttribute("name_err", "Login failed");

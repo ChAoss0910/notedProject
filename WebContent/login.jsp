@@ -50,11 +50,11 @@
 				<div class="form-row">
 					<div class="form-group col-md-6">
 				    		<label for="loginUsername">Username</label>
-				    		<input type="text" class="form-control" id="loginEmail" placeholder="Username">
+				    		<input type="text" class="form-control" id="loginUsername" name = "username" placeholder="Username">
 				  	</div>
 				  	<div class="form-group col-md-6">
 				    		<label for="loginPassword">Password</label>
-				    		<input type="password" class="form-control" id="loginPassword" placeholder="Password">
+				    		<input type="password" class="form-control" id="loginPassword" name = "password" placeholder="Password">
 				  	</div>
 			  	 </div>
 				<div class="form-row">
