@@ -15,6 +15,14 @@ public class Test {
 		if (database.CheckLogin("user1", "111111")) {
 			System.out.println("Correct login");
 		}
+		
+		System.out.println("Check Course");
+		String title = "";
+		Course course;
+		if (database.CheckCourseByTitle(title)) {
+			System.out.println("Has Course");
+			course = database.GetCourseByTitle(title);
+		}
 		return;
 	}
 }

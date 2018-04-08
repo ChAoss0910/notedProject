@@ -35,7 +35,7 @@
   			"answer": 4
   		  },
   		  {
-  		  	"title": "Which one is used on Condition to notify all other threads?",
+  		  	"title": "Which method is used on Condition to notify all other threads?",
   			"options":[
   				"notify()",
   				"notifyall()",
@@ -43,7 +43,21 @@
   				"signalAll()"
   			],
   			"answer": 2
+  		  },
+  		  {
+  		  	"title":"Which one is not front-end language",
+  		  	"options":[
+  		  		"HTML",
+  		  		"CSS",
+  		  		"Javascript",
+  		  		"java"
+  		  	],
+  		    "answer": 4
   		  }
+  		 ],
+  		 "notes"  :[
+  		 	
+  		 
   		 ]
   	}
   ]
