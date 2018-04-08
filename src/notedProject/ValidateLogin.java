@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.portable.InputStream;
+
 /**
  * Servlet implementation class ValidateLogin
  */
@@ -33,7 +35,13 @@ public class ValidateLogin extends HttpServlet {
 		String username = request.getParameter("loginUsername");
 		String password =request.getParameter("loginPassword") ;
 		String forward = "";
-		HttpSession session = request.getSession(false);
+		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/db.json");
+		String path = getServletContext().getRealPath("/db.json");
+		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
+		loadDatabase.writeData();
+		HttpSession session = request.getSession();
+		session.setAttribute("database", loadDatabase);
+		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		boolean check = true;
 		

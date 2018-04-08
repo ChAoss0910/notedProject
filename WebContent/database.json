@@ -6,7 +6,7 @@
         "firstname" : "dummyFirst",
         "lastname" : "dummyLast"
       },
-      "passwork" : 111111,
+      "password" : 111111,
       "username" : "user1"
     },
     {
@@ -15,7 +15,7 @@
         "firstname" : "dummyFirst2",
         "lastname" : "dummyLast2"
       },
-      "passwork" : 111111,
+      "password" : 111111,
       "username" : "user2"
     }
   ]
