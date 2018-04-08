@@ -81,6 +81,12 @@
 		#questions button {
 			width: 100%;
 		}
+		#q-cards {
+			display:	 inline;
+		}
+		.card {
+			display: inline;
+		}
 	</style>
 	<script>
 	$(document).ready(function() {
@@ -113,20 +119,21 @@
 			$("#questions-button").css("border-bottom","none");
 		});
 	});
-	$(document).ready(function() {
-		$("#question-button").click(function() {
-			$("#question-button").hide();
-			$("#answer-button").show();
+	/* $(document).ready(function() {
+		$(".question-button").click(function() {
+			$(".question-button").hide();
+			alert("Answer: " + $(".question-button").val());
+			$(".answer-button").show();
 		});
 	});
 	$(document).ready(function() {
-		$("#answer-button").click(function() {
-			$("#answer-button").hide();
-			$("#question-button").show();
+		$(".answer-button").click(function() {
+			$(".answer-button").hide();
+			$(".question-button").show();
 		});
-	});
+	}); */
+		
 	</script>
-	
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -177,13 +184,41 @@
 						</div>
 					</div>
 					<div id="questions" style=display:none>
-						<ul class="list-group list-group-flush">
-							<% for (int i = 0; i < numQuestions; i++) { %>
-								<button class="list-group-item" id="question-button"><%= questions[i]  %></button>
-								<button class="list-group-item" id="answer-button" style="display:none"><%= answers[i] %></button>
+						<%-- <div id="q-cards">
+							<% int i = 0; %>
+							<% while (i < numQuestions) { %>
+								<div class="row">
+								<% for (int q = 0; q < 2; i++) { %> 
+									<div class="col-sm-6">
+									<% if (i < numQuestions) { %> 
+					 					<div class="card" style="width: 20rem;">
+										  	<div class="card-body">
+										    		<h5 class="card-title">class name</h5>
+										    		<p class="card-text"><%=questions[i]%></p>
+										    		<a href="#" class="card-link">Answer</a>
+										  	</div>
+										</div>
+										<% i++; %>
+									<% } %>
+									</div>
+								<% } %>
+								</div>
 							<% } %>
-	 					</ul>
-					</div>
+						</div> --%>
+					<script>
+					/* $(document).ready(function() {
+						$(".question-button").click(function() {
+							$(".question-button").toggle();
+							$(".answer-button").toggle();
+						});
+					});
+					$(document).ready(function() {
+						$(".answer-button").click(function() {
+							$(".answer-button").toggle();
+							$(".question-button").toggle();
+						});
+					}); */
+					</script	>
 					<div id="classes" style=display:none>
 						<ul class="list-group">
 							<li class="list-group-item d-flex justify-content-between align-items-center">
