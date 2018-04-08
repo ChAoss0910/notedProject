@@ -25,6 +25,24 @@ public class LoadDatabase {
 	
 	private DummyDatabase database;
 	
+	public LoadDatabase(String filePath) {
+		path = filePath;
+		courses = new ArrayList<Course>();
+		users = new ArrayList<User>();
+		try {
+			InputStream inputStream = new FileInputStream(path);
+			Reader reader = new InputStreamReader(inputStream);
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			database = gson.fromJson(reader, DummyDatabase.class);
+			users = database.users;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public LoadDatabase(InputStream content, String filePath) {
 		
 		this.path = filePath;
