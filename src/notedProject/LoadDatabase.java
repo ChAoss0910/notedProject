@@ -25,28 +25,18 @@ public class LoadDatabase {
 	
 	private DummyDatabase database;
 	
-	public LoadDatabase(String filePath) {
-		this.path = filePath;
-		courses = new ArrayList<Course>();
+	public LoadDatabase(InputStream content, String filePath) {
 		
+		this.path = filePath;
+		InputStream inputStream = content;
+		
+		courses = new ArrayList<Course>();
 		users = new ArrayList<User>();
-	}
-	
-	public boolean loadData() {
-		InputStream inputStream;
-		try {
-			inputStream = new FileInputStream(path);
-			Reader reader = new InputStreamReader(inputStream);
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			database = gson.fromJson(reader, DummyDatabase.class);
-			users = database.users;
-			
-		} catch (FileNotFoundException f) {
-			System.out.println("That file could not be found.");
-		} catch (JsonParseException j) {
-			System.out.println("That file is not a well-formed JSON file. ");
-		}
-		return true;
+		
+		Reader reader = new InputStreamReader(inputStream);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		database = gson.fromJson(reader, DummyDatabase.class);
+		users = database.users;
 	}
 	
 	public void writeData() {
