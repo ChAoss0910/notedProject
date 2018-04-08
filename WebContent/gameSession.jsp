@@ -46,6 +46,10 @@
 		<div class="container">
 			<h1>Game Session:</h1>
 		</div>
+		
+		<div class="container">
+  			
+		</div>
 	</div>
 </body>
 </html>
