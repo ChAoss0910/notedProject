@@ -6,11 +6,14 @@ package notedProject;
  */
 public class Test {
 	public static void main(String[] args) {
-		LoadDatabase database = new LoadDatabase();
+		LoadDatabase database = new LoadDatabase("database.json");
 		database.loadData();
 		System.out.println("Read");
 		if (database.CheckUserExist("user1")) {
 			System.out.println("Exist");
+		}
+		if (database.CheckLogin("user1", "111111")) {
+			System.out.println("Correct login");
 		}
 		return;
 	}
