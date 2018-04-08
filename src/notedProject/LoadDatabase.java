@@ -1,15 +1,17 @@
 package notedProject;
 
 import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.Scanner;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,31 +21,53 @@ public class LoadDatabase {
 	private List<Course> courses;
 	private List<User> users;
 	
-	private static String filename = "database.json";
+	private String path;
 	
 	private DummyDatabase database;
 	
-	public LoadDatabase() {
+	public LoadDatabase(String filePath) {
+		path = filePath;
 		courses = new ArrayList<Course>();
 		users = new ArrayList<User>();
-	}
-	
-	public boolean loadData() {
-		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream(filename);
+			InputStream inputStream = new FileInputStream(path);
 			Reader reader = new InputStreamReader(inputStream);
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			database = gson.fromJson(reader, DummyDatabase.class);
 			users = database.users;
-			courses = database.courses;
-			
-		} catch (FileNotFoundException f) {
-			System.out.println("That file could not be found.");
-		} catch (JsonParseException j) {
-			System.out.println("That file is not a well-formed JSON file. ");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return true;
+		
+	}
+	
+	
+	public LoadDatabase(InputStream content, String filePath) {
+		
+		this.path = filePath;
+		InputStream inputStream = content;
+		
+		courses = new ArrayList<Course>();
+		users = new ArrayList<User>();
+		
+		Reader reader = new InputStreamReader(inputStream);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		database = gson.fromJson(reader, DummyDatabase.class);
+		users = database.users;
+	}
+	
+	public void writeData() {
+		try (Writer writer = new FileWriter(path)) {
+		    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		    gson.toJson(database, writer);
+//		    System.out.println("");
+		    System.out.println("File has been saved ");
+		    
+		} catch (IOException e) {
+			System.out.println("");
+	    	System.out.println(e.getMessage());
+		}
 	}
 	
 	public boolean CheckUserExist(String uName) {
@@ -58,6 +82,7 @@ public class LoadDatabase {
 	
 	public boolean AddUser(String username, String fname, String lname, String password, String email) {
 		User temp = new User(username, lname, fname, password, email);
+		writeData();
 		return true;
 	}
 	

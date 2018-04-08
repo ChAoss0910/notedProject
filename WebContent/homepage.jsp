@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import= "java.io.*"%>
+<%@ page import= "notedProject.LoadDatabase" %>
+<%
+	InputStream jsonPath = getServletContext().getResourceAsStream("/db.json");
+	String path = getServletContext().getRealPath("/db.json");
+	System.out.println(path);
+	LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
+	loadDatabase.writeData();
+	session.setAttribute("database", loadDatabase);
+	String currentUser = (String)session.getAttribute("currentUser");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
