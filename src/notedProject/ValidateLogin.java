@@ -47,8 +47,6 @@ public class ValidateLogin extends HttpServlet {
 		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		boolean check = true;
-		System.out.println(username);
-		System.out.println(password);
 		boolean logincheck = database.CheckLogin(username, password);
 		if(logincheck)
 			System.out.println("true");

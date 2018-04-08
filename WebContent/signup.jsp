@@ -50,26 +50,26 @@
 				<div class="form-row">
 				    	<div class="form-group col-md-6">
 				    		<label for="fname">First name</label>
-				      	<input type="text" class="form-control" id="fname" placeholder="First name">
+				      	<input type="text" class="form-control" id="fname" name = "firstname" placeholder="First name">
 				    </div>
 				    <div class="form-group col-md-6">
 				    		<label for="lname">Last name</label>
-				      	<input type="text" class="form-control" id="lname" placeholder="Last name">
+				      	<input type="text" class="form-control" id="lname" name = "lastname" placeholder="Last name">
 				    </div>
 			  	</div>
 				<div class="form-row">
 			    		<div class="form-group col-md-4">
 				      	<label for="signupEmail">Email</label>
-				      	<input type="email" class="form-control" id="signupEmail" placeholder="Email">
+				      	<input type="email" class="form-control" id="signupEmail" name = "email" placeholder="Email">
 				    </div>
 				  	<div class="form-group col-md-4">
 					    <label for="signupUsername">Username</label>
-					    <input type="text" class="form-control" id="signupUsername" aria-describedby="usernameHelp" placeholder="Username">
+					    <input type="text" class="form-control" id="signupUsername" name = "susername" aria-describedby="usernameHelp" placeholder="Username">
 					    <small id="usernameHelp" class="form-text text-muted">This will be public to other players.</small>
 				  	</div>
 				  	<div class="form-group col-md-4">
 				    		<label for="signupPassword">Password</label>
-				      	<input type="password" class="form-control" id="signupPassword" placeholder="Password">
+				      	<input type="password" class="form-control" id="signupPassword" name="spassword" placeholder="Password">
 				    </div>
 			  	</div>
 			  	<div class="form-row">
