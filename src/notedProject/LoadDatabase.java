@@ -35,6 +35,7 @@ public class LoadDatabase {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			database = gson.fromJson(reader, DummyDatabase.class);
 			users = database.users;
+			courses = database.courses;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,4 +120,28 @@ public class LoadDatabase {
 			return false;
 		}
 	}
+	
+	public boolean CheckCourseByTitle(String title) {
+		boolean check = false;
+		for (Course course : courses) {
+			if (course.GetTitle().equals(title)) {
+				check = true;
+			}
+		}
+		return check;
+	}
+	
+	public Course GetCourseByTitle(String title) {
+		Course temp = null;
+		if (CheckCourseByTitle(title)) {
+			for (Course course : courses) {
+				if (course.GetTitle().equals(title)) {
+					temp = course;
+				}
+			}
+		}
+		return temp;
+	}
+	
+	
 }

@@ -10,14 +10,12 @@ import java.util.List;
 // Quiz synchronize method needed
 
 public class Quiz {
-	private int id;
 	private String title;
 	private List<Question> qPool;
 	private List<Question> qList;
 	
 	private int qPointer;
 	private int quizSize;
-	
 	
 	public Quiz(String t, List<Question> qPool, int size) {
 		this.qPool = qPool;
@@ -38,22 +36,55 @@ public class Quiz {
 		}
 	}
 	
-	public Question GetNextQuestion() {
-		Question question = qList.get(qPointer);
-		qPointer ++;
-		if (qPointer >= qList.size()) {
-			qPointer = 0;
+	public Question GetCurrentQuestion() {
+		Question temp = null;
+		if (qPointer < qList.size()) {
+			temp = qList.get(qPointer);
 		}
-		return question;
+		return temp;
 	}
 	
-	public void SetID(int id) {
-		this.id = id;
+	public boolean CheckAnswerCurrent(int questionID, int choice) {
+		Question temp = qList.get(questionID);
+		if (temp!=null) {
+			if (choice == temp.getAnswer()) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
-	public int GetID() {
-		return id;
+	public int GetScore(List<Integer> choices, List<Integer> multiplier) {
+		int score = 0;
+		if (choices.size() != qList.size() || multiplier.size() != qList.size()) {
+			System.err.println("Choices and Multiplier not corresponding");
+			return -1;
+		}
+		for (int i = 0; i < choices.size() ; i++) {
+			if (choices.get(i) == qList.get(i).getAnswer()) {
+				score += multiplier.get(i);
+			}
+		}
+		return score;
 	}
+	
+	public boolean HasNextQuestion() {
+		return (qPointer < qList.size());
+	}
+	
+	public Question GetNextQuestion() {
+		if (HasNextQuestion()) {
+			qPointer ++;
+			return qList.get(qPointer - 1);
+		} else {
+			return null;
+		}
+	}
+	
+	
 	
 	public void SetTitle(String t) {
 		title = t;

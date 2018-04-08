@@ -64,5 +64,9 @@ public class Course {
 			return false;
 		}
 	}
+	
+	public Quiz GenerateQuiz(String title, int size) {
+		return new Quiz(title, questions, size);
+	}
 }
 
