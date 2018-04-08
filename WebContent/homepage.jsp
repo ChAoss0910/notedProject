@@ -59,7 +59,7 @@
 		    <p>Learn through friendly competition</p>
 		    <p class="lead">
 	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Join a Game</a>
-	  </p>
+	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="newGame.jsp" role="button">Start a Game</a>
 		  </div>
 		</div>
 		  

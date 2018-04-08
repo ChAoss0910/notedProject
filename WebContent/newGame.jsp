@@ -82,7 +82,7 @@
 						</select>
 			  		</div>
 			  	</div>
-			  	<button type="submit" id="submit-button" class="btn btn-primary">Create Game</button>
+			  	<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Create Game</a>
 		  	</form>
 		</div>
 	</div>
