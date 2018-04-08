@@ -83,6 +83,7 @@ public class LoadDatabase {
 	
 	public boolean AddUser(String username, String fname, String lname, String password, String email) {
 		User temp = new User(username, lname, fname, password, email);
+		users.add(temp);
 		writeData();
 		return true;
 	}
