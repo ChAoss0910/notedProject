@@ -1,6 +1,7 @@
 package notedProject;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,16 +23,28 @@ public class ValidateSignup extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String firstName= request.getParameter("fname");
-		String lastName= request.getParameter("lname");
-		String username = request.getParameter("signupUsername");
-		String email = request.getParameter("signupEmail");
-		String password = request.getParameter("signupPassword");
+		String firstName= request.getParameter("firstname");
+		String lastName= request.getParameter("lastname");
+		String username = request.getParameter("susername");
+		String email = request.getParameter("email");
+		String password = request.getParameter("spassword");
 		String forward = "";
-		HttpSession session = request.getSession(false);
+		
+		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
+		String path = getServletContext().getRealPath("/database.json");
+		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
+		loadDatabase.writeData();
+		HttpSession session = request.getSession();
+		session.setAttribute("database", loadDatabase);
+		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		// Sign up check
 		boolean check = true;
+		boolean logincheck = database.CheckLogin(username, password);
+//		HttpSession session = request.getSession(false);
+//		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
+		
+//		boolean check = true;
 		
 		if (username == "") {
 			request.setAttribute("name_err", "Please enter Username");
@@ -50,7 +63,7 @@ public class ValidateSignup extends HttpServlet {
 					
 		if (check) {
 			database.AddUser(username, firstName, lastName, password,email);
-			session.setAttribute("currentUser", username.toLowerCase());
+//			session.setAttribute("currentUser", username.toLowerCase());
 						
 			// Direct to empty search result page 
 			String query = "intitle:";
@@ -73,6 +86,8 @@ public class ValidateSignup extends HttpServlet {
 					System.err.println(e.getMessage());
 				}
 			}
+		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
+		dispatch.forward(request,response);
 	}
 
 }
