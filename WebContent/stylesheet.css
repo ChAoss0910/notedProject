@@ -46,3 +46,8 @@ h1 {
     border-color: #ffa31a;
     box-shadow: 0 0 10px #ffa31a;
 }
+
+/* NEW NOTES */
+.new-notes {
+	margin-top: 20px;
+}

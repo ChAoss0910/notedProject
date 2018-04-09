@@ -16,6 +16,20 @@
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	
 	<title>noted | upload notes</title>
+	<style>
+		select {
+			height: 35px;
+			width: 100%;
+		    background: white;
+		    color:black;
+		    border-color: #d9d9d9;
+		}
+		select:focus {
+			outline: none;
+		    border-color: #ffa31a;
+		    box-shadow: 0 0 10px #ffa31a;
+		}
+	</style>
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -44,28 +58,18 @@
 	</nav>
 	<!-- NAVBAR -->
 	<!-- START GAME -->
-	<div class="new-game">
+	<div class="new-notes">
 		<div class="container"> 
 			<div id="title">
-				<h1>Start a Game</h1>
+				<h1>Upload Notes</h1>
 			</div>
-			<form name="newGame" method="POST" action="ValidateNewGame">
+			<form name="newNotes" method="POST" action="ValidateNotes">
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
-				    		<label for="gameName">Game Name</label>
-				      	<input type="text" class="form-control" id="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
-				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
+				    		<label for="notesTitle">Title</label>
+				      	<input type="text" class="form-control" id="notesTitle" aria-describedby="titleHelp" placeholder="ex: Networking">
+				    		<small id="titleHelp" class="form-text text-muted">Please only use letters and numbers.</small>
 				    </div>
-				    <div class="form-group col-md-3">
-				    		<label for="numPlayers">Num Players</label>			    			
-					  	<select id="numPlayers">
-						    <option val="">Players</option>
-						    <option val="2">2</option>
-						    <option val="3">3</option>
-						    <option val="4">4</option>
-						</select>
-						
-			  		</div>
 			  		<div class="form-group col-md-3">
 			  			<label for="selectClass">Select Class</label>
 						<select id="selectClass">
@@ -78,10 +82,28 @@
 						    <option val="csci270">CSCI 270</option>
 						</select>
 			  		</div>
+			  		<div class="form-group col-md-3">
+			  			<label for="dateClass">Date of Lecture</label>
+						<input type="date" class="form-control" id="date" name="date">
+			  		</div>
+			  	</div>
+			  	<div class="form-row">
+			  		<div class="form-group col-md-12">
+					  	<div class="custom-file">
+						    <input type="file" class="custom-file-input" id="inputGroupFile02">
+					  	</div>
+					</div>
+			  	</div>
+			  	<div class="form-row">
+			  		<div class="form-group col-md-12">
+					  	<label for="classTags">Tags</label>
+    						<textarea class="form-control" id="tags" name="tags" rows="1" aria-describedby="tagsHelp" ></textarea>
+    						<small id="tagsHelp" class="form-text text-muted">ex: #networking, #threads, #synchronization</small>
+					</div>
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Create Game</a>
+			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Upload Notes</a>
 		  			</div>
 		  		</div>
 		  	</form>
