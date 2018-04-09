@@ -4,47 +4,44 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+			<meta name="description" content="" />
+			<meta name="keywords" content="" />
+			<link rel="stylesheet" href="assets/css/main.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	
 	<title>noted | Start Game</title>
 </head>
 <body>	
 	<!-- NAVBAR -->
-	<nav class="navbar navbar-dark bg-dark">
-		  <a class="navbar-brand" href="homepage.jsp">noted</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-		    <ul class="navbar-nav">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">Features</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">Pricing</a>
-		      </li>
-		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Dropdown link
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-		          <a class="dropdown-item" href="#">Action</a>
-		          <a class="dropdown-item" href="#">Another action</a>
-		          <a class="dropdown-item" href="#">Something else here</a>
-		        </div>
-		      </li>
-		    </ul>
-		  </div>
-		</nav>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="login.jsp">Login</a></li>
+	        <li><a href="signup.jsp">Signup</a></li>
+	        <li><a href="about.jsp">About</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 	<!-- NAVBAR -->
 	<!-- START GAME -->
 	<div class="new-game">
@@ -59,7 +56,7 @@
 				      	<input type="text" class="form-control" id="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
 				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
 				    </div>
-				    <div class="form-group col-md-2">
+				    <div class="form-group col-md-3">
 				    		<label for="numPlayers">Num Players</label>			    			
 					  	<select id="numPlayers">
 						    <option val="">Players</option>
@@ -69,7 +66,7 @@
 						</select>
 						
 			  		</div>
-			  		<div class="form-group col-md-2">
+			  		<div class="form-group col-md-3">
 			  			<label for="selectClass">Select Class</label>
 						<select id="selectClass">
 						    <option val="">Class</option>
@@ -82,7 +79,11 @@
 						</select>
 			  		</div>
 			  	</div>
-			  	<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Create Game</a>
+			  	<div class="form-row"> 
+			  		<div class="form-group col-md-12">
+			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Create Game</a>
+		  			</div>
+		  		</div>
 		  	</form>
 		</div>
 	</div>
