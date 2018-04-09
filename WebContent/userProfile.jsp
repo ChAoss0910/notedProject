@@ -17,12 +17,54 @@
 	
 	<title>noted | profile</title>
 	<%
-	String[] questions = {"hello","world","computer science"};
+	String[] notesLinks = {"#", "#", "#"};
+	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
+	String[] notesClasses = {"CSCI-201","CSCI-201","CSCI-201"};
+	String[] notesDates = {"1/1","2/14","4/2"};
+	int numNotes = notesLinks.length;
+	String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
 	int numQuestions = questions.length;
-	String[] answers = {"goodbye","space","english"};
-	int numAnswers = answers.length;
+	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
+	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"};
+	String[] classesLinks = {"#", "#"};
+	String[] classesTitles = {"CSCI-201","CSCI-270"};
+	int numClasses = classesLinks.length;
 	%>
-	
+	<script>
+	$(document).ready(function() {
+		$("#notes-button").click(function() {
+			$("#questions").hide();
+			$("#classes").hide();
+			$("#notes").show();
+			$("#notes-button").css("border-bottom"," 2px solid orange");
+			$("#questions-button").css("border-bottom","none");
+			$("#classes-button").css("border-bottom","none");
+		});
+	});
+	$(document).ready(function() {
+		$("#questions-button").click(function() {
+			$("#notes").hide();
+			$("#classes").hide();
+			$("#questions").show();
+			$("#questions-button").css("border-bottom"," 2px solid orange");
+			$("#notes-button").css("border-bottom","none");
+			$("#classes-button").css("border-bottom","none");
+		});
+	});
+	$(document).ready(function() {
+		$("#classes-button").click(function() {
+			$("#notes").hide();
+			$("#questions").hide();
+			$("#classes").show();
+			$("#classes-button").css("border-bottom"," 2px solid orange");
+			$("#notes-button").css("border-bottom","none");
+			$("#questions-button").css("border-bottom","none");
+		});
+	});
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 	<style>
 		.col-sm-2,.col-sm-3 {
 			margin: 0px 2px;
@@ -81,59 +123,38 @@
 		#questions button {
 			width: 100%;
 		}
-		#q-cards {
-			display:	 inline;
+		.card-body {
+			border-radius: 10%;
+			border: 1px solid #d9d9d9;
+			padding: 5px 20px 0px 20px;
+			text-align: left;
+			margin-bottom: 20px;
 		}
-		.card {
-			display: inline;
+		.card-title {
+			font-size: 14pt;
+			font-weight: bold;
+		}
+		#notes button{
+			background-color: #ffa31a;
+			border: none;
+			width: 200px;
+			margin-bottom: 20px;
+		}
+		#notes button:hover {
+			background-color: #ff9900;
+		}
+		.light {
+			background-color: #f2f2f2;
+		}
+		.notes-action {
+			color: black;
+		}
+		.notes-action:hover {
+			color: black;
+			text-decoration: none;
+			font-weight: bold;
 		}
 	</style>
-	<script>
-	$(document).ready(function() {
-		$("#notes-button").click(function() {
-			$("#questions").hide();
-			$("#classes").hide();
-			$("#notes").show();
-			$("#notes-button").css("border-bottom"," 2px solid orange");
-			$("#questions-button").css("border-bottom","none");
-			$("#classes-button").css("border-bottom","none");
-		});
-	});
-	$(document).ready(function() {
-		$("#questions-button").click(function() {
-			$("#notes").hide();
-			$("#classes").hide();
-			$("#questions").show();
-			$("#questions-button").css("border-bottom"," 2px solid orange");
-			$("#notes-button").css("border-bottom","none");
-			$("#classes-button").css("border-bottom","none");
-		});
-	});
-	$(document).ready(function() {
-		$("#classes-button").click(function() {
-			$("#notes").hide();
-			$("#questions").hide();
-			$("#classes").show();
-			$("#classes-button").css("border-bottom"," 2px solid orange");
-			$("#notes-button").css("border-bottom","none");
-			$("#questions-button").css("border-bottom","none");
-		});
-	});
-	/* $(document).ready(function() {
-		$(".question-button").click(function() {
-			$(".question-button").hide();
-			alert("Answer: " + $(".question-button").val());
-			$(".answer-button").show();
-		});
-	});
-	$(document).ready(function() {
-		$(".answer-button").click(function() {
-			$(".answer-button").hide();
-			$(".question-button").show();
-		});
-	}); */
-		
-	</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -176,69 +197,44 @@
 						<button id="classes-button">Classes</button>
 					</div>
 					<div id="notes">
+						<button class="btn btn-primary">Upload Notes</button>
 						<div class="list-group">
-						  	<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-						  	<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-						  	<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-						 	<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+							<% for (int n = 0; n < numNotes; n++){ %>
+								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="<%=notesLinks[n]%>" class="notes-action"><%=notesTitles[n]%></a>
+									<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+								</li>
+							<% } %>
 						</div>
 					</div>
 					<div id="questions" style=display:none>
-						<%-- <div id="q-cards">
-							<% int i = 0; %>
-							<% while (i < numQuestions) { %>
-								<div class="row">
-								<% for (int q = 0; q < 2; i++) { %> 
+						<div id="q-cards">
+							<div class="row">
+								<%for (int q = 0; q < numQuestions; q++){%>
 									<div class="col-sm-6">
-									<% if (i < numQuestions) { %> 
-					 					<div class="card" style="width: 20rem;">
-										  	<div class="card-body">
-										    		<h5 class="card-title">class name</h5>
-										    		<p class="card-text"><%=questions[i]%></p>
-										    		<a href="#" class="card-link">Answer</a>
-										  	</div>
-										</div>
-										<% i++; %>
-									<% } %>
-									</div>
-								<% } %>
-								</div>
-							<% } %>
-						</div> --%>
-					<script>
-					/* $(document).ready(function() {
-						$(".question-button").click(function() {
-							$(".question-button").toggle();
-							$(".answer-button").toggle();
-						});
-					});
-					$(document).ready(function() {
-						$(".answer-button").click(function() {
-							$(".answer-button").toggle();
-							$(".question-button").toggle();
-						});
-					}); */
-					</script	>
+										<div class="card-body">
+									    		<h5 class="card-title"><%=questions[q]%></h5>
+									    		<p class="card-text"><%=classes[q]%></p>
+									    		<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="<%=answers[q]%>">
+											  	Answer
+											</button>
+									  	</div>
+								  	</div>
+								<%}%>
+							</div>
+						</div>
+					</div>
 					<div id="classes" style=display:none>
-						<ul class="list-group">
-							<li class="list-group-item d-flex justify-content-between align-items-center">
-						    		Cras justo odio
-						    		<span class="badge badge-primary badge-pill">14</span>
-						  	</li>
-						  	<li class="list-group-item d-flex justify-content-between align-items-center">
-						   		Dapibus ac facilisis in
-						    		<span class="badge badge-primary badge-pill">2</span>
-					  		</li>
-						  	<li class="list-group-item d-flex justify-content-between align-items-center">
-						    		Morbi leo risus
-						    		<span class="badge badge-primary badge-pill">1</span>
-						  	</li>
-						</ul>
+						<div class="list-group">
+							<% for (int n = 0; n < numClasses; n++){ %>
+								<a href="<%=classesLinks[n]%>" class="list-group-item list-group-item-action"><%=classesTitles[n]%></a>
+							<% } %>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </body>
 </html>
