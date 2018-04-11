@@ -26,13 +26,12 @@
 	        <span class="icon-bar"></span>                        
 	      </button>
 	      <a class="navbar-brand" href="homepage.jsp">noted</a>
-	    </div>
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home</a></li>
-	        <li><a href="newGame.jsp">New Game</a></li>
-	        <li><a href="about.jsp">About</a></li>
-	      </ul>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li><a href="newGame.jsp">New Game</a></li>
+		        <li><a href="about.jsp">About</a></li>
+		      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
         		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 	      </ul>
