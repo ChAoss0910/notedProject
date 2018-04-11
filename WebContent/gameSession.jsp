@@ -64,6 +64,22 @@
 	</div>
 	
 	<script>
+	//-------------------Main Functionality---------------------//
+	
+	//Gets database from localStorage
+	var database = localStorage.getItem('database');
+	
+	</script>
+
+
+	<script>
+	//-----------------------Helper Functions--------------------------//
+	
+	
+	</script>
+	
+	<script>
+	//-------------------------TIMER-----------------------------------//
 	var timeleft = 10;
 	var downloadTimer = setInterval(function(){
 	  document.getElementById("progressBar").value = 10 - --timeleft;
