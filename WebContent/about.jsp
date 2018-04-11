@@ -15,32 +15,44 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>noted | about</title>
+	<%
+	String username = "user1";
+	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+	%>
+	<style>
+		.navbar-right img {
+			margin-top: 5px;
+			width: 40px;  
+			height: 40px;
+			border-radius: 20%; 
+		}
+	</style>
 </head>
 <body>
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>                        
-		      </button>
-		      <a class="navbar-brand" href="homepage.jsp">noted</a>
-		    </div>
-		    <div class="collapse navbar-collapse" id="myNavbar">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="homepage.jsp">Home</a></li>
-		        <li><a href="login.jsp">Login</a></li>
-		        <li><a href="signup.jsp">Signup</a></li>
-		        <li><a href="about.jsp">About</a></li>
-		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-		      </ul>
-		    </div>
-		  </div>
-		</nav>
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home</a></li>
+	        <li><a href="newGame.jsp">New Game</a></li>
+	        <li><a href="about.jsp">About</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right" id="right-nav">
+	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+     		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
 	<!-- NAVBAR -->
 	<div class="outer-user">
 		<div class="container">

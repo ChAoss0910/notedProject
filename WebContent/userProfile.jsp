@@ -17,6 +17,7 @@
 	
 	<title>noted | profile</title>
 	<%
+	String username = "user1"; 
 	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
 
 	String[] notesLinks = {"#", "#", "#"};
@@ -182,7 +183,8 @@
 	        <li><a href="about.jsp">About</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
-	      	<a id="myProfile" href="userProfile.jsp"><img src=<%= profilePic %>/></a>
+	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+     		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
 	      </ul>
 	    </div>
 	  </div>
@@ -194,7 +196,7 @@
 					<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 					<h2 id="name">MY NAME</h2>
 					<h3 id="username">MY USERNAME</h3>
-					<a href="userProfileEdit.jsp"><button id="submit-button" class="btn btn-primary">Edit Info</button></a>
+					<a href="userProfileEdit.jsp"><button id="submit-button" class="btn btn-primary">Edit</button></a>
 					<h3>Won: 92%</h3><br> 
 				</div>
 				<div class="col-sm-6" id="content">
@@ -204,7 +206,8 @@
 						<button id="classes-button">Classes</button>
 					</div>
 					<div id="notes">
-						<button class="btn btn-primary">Upload Notes</button>
+						<% String upload = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
+						<a href=<%=upload%>><button class="btn btn-primary">Upload Notes</button></a>
 						<div class="list-group">
 							<% for (int n = 0; n < numNotes; n++){ %>
 								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>

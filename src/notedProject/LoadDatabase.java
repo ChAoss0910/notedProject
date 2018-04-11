@@ -22,7 +22,6 @@ public class LoadDatabase {
 	private List<User> users;
 	
 	private String path;
-	
 	private DummyDatabase database;
 	
 	public LoadDatabase(String filePath) {
@@ -70,6 +69,7 @@ public class LoadDatabase {
 	    	System.out.println(e.getMessage());
 		}
 	}
+
 	
 	public boolean CheckUserExist(String uName) {
 		boolean check = false;
@@ -81,11 +81,26 @@ public class LoadDatabase {
 		return check;
 	}
 	
-	public boolean AddUser(String username, String fname, String lname, String password, String email) {
-		User temp = new User(username, lname, fname, password, email);
+	public boolean AddUser(String username, String fname, String lname, String password, String email, String url) {
+		User temp = new User(username, lname, fname, password, email, url);
 		users.add(temp);
 		writeData();
 		return true;
+	}
+	
+	public void Remove(String username, int delete, String type) {
+		User u = GetUser(username);
+		if (type.equalsIgnoreCase("notes")) {
+			u.removeNote(delete);
+		} else if (type.equalsIgnoreCase("question")) {
+			u.removeQuestion(delete);
+		} else if (type.equalsIgnoreCase("course")) {
+			u.removeCourse(delete);
+		}
+	}
+	
+	public User getUser(String username) {
+		return GetUser(username);
 	}
 	
 	/**
@@ -143,6 +158,5 @@ public class LoadDatabase {
 		}
 		return temp;
 	}
-	
-	
+
 }

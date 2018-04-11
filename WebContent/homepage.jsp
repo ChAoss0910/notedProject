@@ -19,6 +19,7 @@
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	<%
   	boolean guest = false;
+  	String username = "user1";
   	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   	%>
   	<style>
@@ -61,7 +62,8 @@
 		      	<% if (guest) { %>
 		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 		     	<% } else { %>
-		     		<a id="myProfile" href="userProfile.jsp">
+		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+		     		<a id="myProfile" href=<%=pass%>>
 		     			<img src=<%= profilePic %> />
 		     		</a>
 		     	<% } %>

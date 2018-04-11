@@ -28,6 +28,7 @@ public class ValidateSignup extends HttpServlet {
 		String username = request.getParameter("susername");
 		String email = request.getParameter("email");
 		String password = request.getParameter("spassword");
+		String url = request.getParameter("url");
 		String forward = "";
 		
 		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
@@ -60,9 +61,14 @@ public class ValidateSignup extends HttpServlet {
 			forward = "/signup.jsp";
 			check = false;
 		}
+		if (url == "") {
+			request.setAttribute("url_err", "Please enter a URL for your profile picture");
+			forward = "/signup.jsp";
+			check = false;
+		}
 					
 		if (check) {
-			database.AddUser(username, firstName, lastName, password,email);
+			database.AddUser(username, firstName, lastName, password,email,url);
 //			session.setAttribute("currentUser", username.toLowerCase());
 						
 			// Direct to empty search result page 

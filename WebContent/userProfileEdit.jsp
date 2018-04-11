@@ -1,3 +1,6 @@
+<%@page import="notedProject.User"%>
+<%@page import="notedProject.LoadDatabase"%>
+<%@page import="java.io.InputStream"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +20,11 @@
 	
 	<title>noted | edit profile</title>
 	<%
+	String username = "user1";
 	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+	
+/* 	LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
+	User u = database.getUser(username); */
 	
 	String[] notesLinks = {"#", "#", "#"};
 	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
@@ -26,11 +33,11 @@
 	int numNotes = notesLinks.length;
 	String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
 	int numQuestions = questions.length;
-	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
+	String[] courses = {"CSCI-103","CSCI-104","CSCI-170"};
 	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"};
-	String[] classesLinks = {"#", "#"};
-	String[] classesTitles = {"CSCI-201","CSCI-270"};
-	int numClasses = classesLinks.length;
+	String[] courseLinks = {"#", "#"};
+	String[] courseTitles = {"CSCI-201","CSCI-270"};
+	int numCourses = courses.length;
 	%>
 	<script>
 	$(document).ready(function() {
@@ -63,9 +70,15 @@
 			$("#questions-button").css("border-bottom","none");
 		});
 	});
-	$(function () {
-		  $('[data-toggle="tooltip"]').tooltip()
-		})
+	</script>
+	<script>
+	function remove(index, type){
+		xhttp.open("GET", "DeleteProfile?username=" + username + 
+				"&delete=" + n + 
+				"&type=" + type, false);
+		xhttp.send();
+		window.location.reload(true);
+	}
 	</script>
 	<style>
 		.navbar-right img {
@@ -182,7 +195,8 @@
 	        <li><a href="about.jsp">About</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
-	      	<a id="myProfile" href="userProfile.jsp"><img src=<%= profilePic %> /></a>
+	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+     		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
 	      </ul>
 	    </div>
 	  </div>
@@ -194,7 +208,10 @@
 					<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 					<h2 id="name">MY NAME</h2>
 					<h3 id="username">MY USERNAME</h3>
-					<button id="submit-button" class="btn btn-primary">Edit Info</button>
+					<%String done = "userProfile.jsp?username="+username+"&url="+profilePic;%>
+					<a href=<%=done%>>
+						<button id="submit-button" class="btn btn-primary">Done</button>
+					</a>
 					<h3>Won: 92%</h3><br>
 				</div>
 				<div class="col-sm-6" id="content">
@@ -221,7 +238,7 @@
 									<div class="col-sm-6">
 										<div class="card-body">
 									    		<h5 class="card-title"><%=questions[q]%></h5>
-									    		<p class="card-text"><%=classes[q]%></p>
+									    		<p class="card-text"><%=courses[q]%></p>
 									    		<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="<%=answers[q]%>">
 											  	Answer
 											</button>
@@ -232,30 +249,7 @@
 						</div>
 					</div>
 					<div id="classes" style=display:none>
-						<div class="list-group">
-							<% for (int n = 0; n < numClasses; n++){ %>
-								<li class="list-group-item d-flex justify-content-between align-items-center" id="myClass">
-									<a href="<%=classesLinks[n]%>" class="notes-action"><%=classesTitles[n]%></a>
-									<a href="#" class="badge light">
-										<button class="deleteClassButton" onclick="removeClass(<%=classesTitles[n]%>);">
-										<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px">
-										</button>
-									</a>
-								</li>
-							<% } %>
-						</div>
-						<script>
-						function removeClass(){
-							var elem = document.getElementById('myClass');
-							elem.parentNode.removeChild(elem);
-							
-							xhttp.open("GET", "DeleteClass?myName=" + myName + 
-									"&myClass=" + elem + 
-									"&follow=" + follow, false);
-							xhttp.send();
-							window.location.reload(true);
-						}
-						</script>
+						
 					</div>
 				</div>
 			</div>
