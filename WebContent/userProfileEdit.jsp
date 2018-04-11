@@ -202,9 +202,8 @@
 						<button id="notes-button" style="border-bottom: 2px solid orange;">Notes</button>
 						<button id="questions-button">Questions</button>
 						<button id="classes-button">Classes</button>
-					</div>
+					</div> 
 					<div id="notes">
-						<button class="btn btn-primary">Upload Notes</button>
 						<div class="list-group">
 							<% for (int n = 0; n < numNotes; n++){ %>
 								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>
@@ -235,12 +234,28 @@
 					<div id="classes" style=display:none>
 						<div class="list-group">
 							<% for (int n = 0; n < numClasses; n++){ %>
-								<li class="list-group-item d-flex justify-content-between align-items-center">
+								<li class="list-group-item d-flex justify-content-between align-items-center" id="myClass">
 									<a href="<%=classesLinks[n]%>" class="notes-action"><%=classesTitles[n]%></a>
-									<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+									<a href="#" class="badge light">
+										<button class="deleteClassButton" onclick="removeClass(<%=classesTitles[n]%>);">
+										<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px">
+										</button>
+									</a>
 								</li>
 							<% } %>
 						</div>
+						<script>
+						function removeClass(){
+							var elem = document.getElementById('myClass');
+							elem.parentNode.removeChild(elem);
+							
+							xhttp.open("GET", "DeleteClass?myName=" + myName + 
+									"&myClass=" + elem + 
+									"&follow=" + follow, false);
+							xhttp.send();
+							window.location.reload(true);
+						}
+						</script>
 					</div>
 				</div>
 			</div>

@@ -10,9 +10,7 @@ import java.util.List;
 public class Course {
 	
 	private String title;
-	
 	private List<Question> questions;
-	
 	private List<Note> notes;
 	
 	public Course(String title) {

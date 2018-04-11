@@ -6,9 +6,7 @@ import java.util.ArrayList;
 
 public class Question {
 	private String title;
-	
 	private ArrayList<String> options = new ArrayList<String>();
-	
 	private int answer;
 	
 	public Question(String title) {
