@@ -68,6 +68,7 @@
 	
 	//Gets database from localStorage
 	var database = localStorage.getItem('database');
+	var currQuiz = localStorage.getItem('quiz');
 	
 	</script>
 
