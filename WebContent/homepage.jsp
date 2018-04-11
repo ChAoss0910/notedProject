@@ -17,19 +17,22 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  	<%
+  	boolean guest = false;
+  	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+  	%>
   	<style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
 	    .navbar {
 	      margin-bottom: 0;
 	      border-radius: 0;
 	    }
-	    
 	    /* Add a gray background color and some padding to the footer */
 	    footer {
 	      background-color: #f2f2f2;
 	      padding: 25px;
 	    }
-  	</style>
+  	</style> 
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -45,12 +48,17 @@
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="#">Home</a></li>
-		        <li><a href="login.jsp">Login</a></li>
-		        <li><a href="signup.jsp">Signup</a></li>
+		        <li><a href="newGame.jsp">New Game</a></li>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		      	<% if (guest) { %>
+		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		     	<% } else { %>
+		     		<a id="myProfile" href="userProfile.jsp">
+		     			<img src=<%= profilePic %> />
+		     		</a>
+		     	<% } %>
 		      </ul>
 		    </div>
 		  </div>

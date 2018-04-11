@@ -53,12 +53,12 @@
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
 				    		<label for="gameName">Game Name</label>
-				      	<input type="text" class="form-control" id="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
+				      	<input type="text" class="form-control" id="gameName" name="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
 				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
 				    </div>
 				    <div class="form-group col-md-3">
 				    		<label for="numPlayers">Num Players</label>			    			
-					  	<select id="numPlayers">
+					  	<select id="numPlayers" name="numPlayers">
 						    <option val="">Players</option>
 						    <option val="2">2</option>
 						    <option val="3">3</option>
@@ -68,7 +68,7 @@
 			  		</div>
 			  		<div class="form-group col-md-3">
 			  			<label for="selectClass">Select Class</label>
-						<select id="selectClass">
+						<select id="selectClass" name="selectClass">
 						    <option val="">Class</option>
 						    <option val="csci109">CSCI 109</option>
 						    <option val="csci103">CSCI 103</option>
@@ -81,7 +81,7 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button">Create Game</a>
+			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button" name="submit">Create Game</a>
 		  			</div>
 		  		</div>
 		  	</form>

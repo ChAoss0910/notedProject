@@ -1,3 +1,11 @@
+/* NAV BAR */
+.navbar-right img {
+	margin-top: 5px;
+	width: 40px; 
+	height: 40px;
+	border-radius: 20%;
+}
+
 
 /* USER LOGIN or SIGNUP */
 body {
