@@ -32,12 +32,6 @@
 	      background-color: #f2f2f2;
 	      padding: 25px;
 	    }
-	    .navbar-right img {
-	    		margin-top: 5px;
-	    		width: 40px; 
-	    		height: 40px;
-	    		border-radius: 20%;
-	    } 
   	</style> 
 	</head>
 	<body>
