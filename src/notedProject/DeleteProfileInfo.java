@@ -19,12 +19,14 @@ private static final long serialVersionUID = 1L;
 		
 		String username = (String) request.getParameter("username");
 		String del = (String) request.getParameter("delete");
+		String tp = (String) request.getParameter("type");
 		int delete = -1;
+		int type = -1;
 		try {
 			delete = Integer.parseInt(del);
+			type = Integer.parseInt(tp);
 		} catch (NumberFormatException nfe) {
 		}
-		String type = (String) request.getParameter("type");
 		
 		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
 		String path = getServletContext().getRealPath("/database.json");

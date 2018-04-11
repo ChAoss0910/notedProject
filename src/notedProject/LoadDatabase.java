@@ -88,13 +88,13 @@ public class LoadDatabase {
 		return true;
 	}
 	
-	public void Remove(String username, int delete, String type) {
+	public void Remove(String username, int delete, int type) {
 		User u = GetUser(username);
-		if (type.equalsIgnoreCase("notes")) {
+		if (type == 0) {
 			u.removeNote(delete);
-		} else if (type.equalsIgnoreCase("question")) {
+		} else if (type == 1) {
 			u.removeQuestion(delete);
-		} else if (type.equalsIgnoreCase("course")) {
+		} else if (type == 2) {
 			u.removeCourse(delete);
 		}
 	}

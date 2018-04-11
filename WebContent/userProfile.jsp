@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 			<meta name="description" content="" />
 			<meta name="keywords" content="" />
-			<link rel="stylesheet" href="assets/css/main.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,9 +16,9 @@
 	
 	<title>noted | profile</title>
 	<%
-	String username = "user1"; 
-	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-
+	String username = request.getParameter("username");
+	String profilePic = request.getParameter("url");
+	
 	String[] notesLinks = {"#", "#", "#"};
 	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
 	String[] notesClasses = {"CSCI-201","CSCI-201","CSCI-201"};
@@ -196,7 +195,8 @@
 					<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 					<h2 id="name">MY NAME</h2>
 					<h3 id="username">MY USERNAME</h3>
-					<a href="userProfileEdit.jsp"><button id="submit-button" class="btn btn-primary">Edit</button></a>
+					<% String edit = "userProfileEdit.jsp?username="+username+"&url="+profilePic; %>
+					<a href=<%=edit%>><button id="submit-button" class="btn btn-primary">Edit</button></a>
 					<h3>Won: 92%</h3><br> 
 				</div>
 				<div class="col-sm-6" id="content">

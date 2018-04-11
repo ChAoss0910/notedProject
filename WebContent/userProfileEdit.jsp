@@ -10,7 +10,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 			<meta name="description" content="" />
 			<meta name="keywords" content="" />
-			<link rel="stylesheet" href="assets/css/main.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,11 +19,12 @@
 	
 	<title>noted | edit profile</title>
 	<%
-	String username = "user1";
-	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+	String username = request.getParameter("username");
+	String profilePic = request.getParameter("url");
 	
 /* 	LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 	User u = database.getUser(username); */
+	int type = -1;
 	
 	String[] notesLinks = {"#", "#", "#"};
 	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
@@ -33,11 +33,11 @@
 	int numNotes = notesLinks.length;
 	String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
 	int numQuestions = questions.length;
-	String[] courses = {"CSCI-103","CSCI-104","CSCI-170"};
+	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
 	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"};
-	String[] courseLinks = {"#", "#"};
-	String[] courseTitles = {"CSCI-201","CSCI-270"};
-	int numCourses = courses.length;
+	String[] classLinks = {"#", "#"};
+	String[] classTitles = {"CSCI-201","CSCI-270"};
+	int numClasses = classLinks.length;
 	%>
 	<script>
 	$(document).ready(function() {
@@ -70,15 +70,15 @@
 			$("#questions-button").css("border-bottom","none");
 		});
 	});
-	</script>
-	<script>
-	function remove(index, type){
-		xhttp.open("GET", "DeleteProfile?username=" + username + 
-				"&delete=" + n + 
-				"&type=" + type, false);
-		xhttp.send();
-		window.location.reload(true);
-	}
+	$(document).ready(function() {
+		$("#deleteQ").click(function() {
+			xhttp.open("GET", "DeleteProfile?username=" + username + 
+					"&delete=" + index + 
+					"&type=" + type, false);
+			xhttp.send();
+			$('#questions').load(document.URL +  ' #questions');
+		});
+	});
 	</script>
 	<style>
 		.navbar-right img {
@@ -176,6 +176,16 @@
 			font-weight: bold;
 		}
 	</style>
+	<script>
+	function remove(index, type){
+		var xhttp = new XMLHttpRequest(); 
+		xhttp.open("GET", "DeleteProfile?username=" + username + 
+				"&delete=" + index + 
+				"&type=" + type, false);
+		xhttp.send();
+		window.location.reload(true);
+	}
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -221,35 +231,51 @@
 						<button id="classes-button">Classes</button>
 					</div> 
 					<div id="notes">
-						<div class="list-group">
+						<ul class="list-group">
 							<% for (int n = 0; n < numNotes; n++){ %>
-								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>
+								<%-- <span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span> --%>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
 									<a href="<%=notesLinks[n]%>" class="notes-action"><%=notesTitles[n]%></a>
-									<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+									<% type = 0; %>
+									<button onclick="remove(<%=n%>,<%=type%>);" style="background-color:white; width:50px; height: 50px;"> 
+										<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+									</button>
 								</li>
 							<% } %>
-						</div>
+						</ul>
 					</div>
 					<div id="questions" style=display:none>
 						<div id="q-cards">
 							<div class="row">
 								<%for (int q = 0; q < numQuestions; q++){%>
 									<div class="col-sm-6">
-										<div class="card-body">
+										<div class="card-body"> 
 									    		<h5 class="card-title"><%=questions[q]%></h5>
-									    		<p class="card-text"><%=courses[q]%></p>
-									    		<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="<%=answers[q]%>">
-											  	Answer
-											</button>
-									  	</div>
+									    		<p class="card-text"><%=classes[q]%></p>
+									    		<% type = 1; %>
+									    		<button onclick="remove(<%=q%>,<%=type%>);">  
+									    			<div class="badge light" style="margin-bottom:10px;margin-left:auto;margin-right:auto;">
+									    			<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"> 
+								    				</div>
+								    			</button>
+									  	</div> 
 								  	</div>
 								<%}%>
 							</div>
 						</div>
 					</div>
 					<div id="classes" style=display:none>
-						
+						<ul class="list-group">
+							<% for (int n = 0; n < numClasses; n++){ %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="<%=classLinks[n]%>" class="notes-action"><%=classTitles[n]%></a>
+									<% type = 2; %>
+									<button onclick="remove(<%=n%>,<%=type%>);"> 
+										<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+									</button>
+								</li>
+							<% } %>
+						</ul>
 					</div>
 				</div>
 			</div>
