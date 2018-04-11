@@ -32,7 +32,7 @@
 	      padding: 25px;
 	    }
 	    .navbar-right img {
-	    		padding-top: 5px;
+	    		margin-top: 5px;
 	    		width: 40px; 
 	    		height: 40px;
 	    		border-radius: 20%;
