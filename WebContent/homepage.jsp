@@ -19,6 +19,7 @@
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	<%
   	boolean guest = false;
+  	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   	%>
   	<style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -61,7 +62,7 @@
 		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 		     	<% } else { %>
 		     		<a id="myProfile" href="userProfile.jsp">
-		     			<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+		     			<img src=<%= profilePic %> />
 		     		</a>
 		     	<% } %>
 		      </ul>
