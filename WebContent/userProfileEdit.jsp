@@ -15,10 +15,10 @@
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	
-	<title>noted | profile</title>
+	<title>noted | edit profile</title>
 	<%
 	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-
+	
 	String[] notesLinks = {"#", "#", "#"};
 	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
 	String[] notesClasses = {"CSCI-201","CSCI-201","CSCI-201"};
@@ -182,7 +182,7 @@
 	        <li><a href="about.jsp">About</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
-	      	<a id="myProfile" href="userProfile.jsp"><img src=<%= profilePic %>/></a>
+	      	<a id="myProfile" href="userProfile.jsp"><img src=<%= profilePic %> /></a>
 	      </ul>
 	    </div>
 	  </div>
@@ -194,8 +194,8 @@
 					<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 					<h2 id="name">MY NAME</h2>
 					<h3 id="username">MY USERNAME</h3>
-					<a href="userProfileEdit.jsp"><button id="submit-button" class="btn btn-primary">Edit Info</button></a>
-					<h3>Won: 92%</h3><br> 
+					<button id="submit-button" class="btn btn-primary">Edit Info</button>
+					<h3>Won: 92%</h3><br>
 				</div>
 				<div class="col-sm-6" id="content">
 					<div id="content-buttons">
@@ -208,7 +208,10 @@
 						<div class="list-group">
 							<% for (int n = 0; n < numNotes; n++){ %>
 								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>
-								<a href="<%=notesLinks[n]%>" class="list-group-item list-group-item-action notes-action"><%=notesTitles[n]%></a>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="<%=notesLinks[n]%>" class="notes-action"><%=notesTitles[n]%></a>
+									<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+								</li>
 							<% } %>
 						</div>
 					</div>
@@ -232,7 +235,10 @@
 					<div id="classes" style=display:none>
 						<div class="list-group">
 							<% for (int n = 0; n < numClasses; n++){ %>
-								<a href="<%=classesLinks[n]%>" class="list-group-item list-group-item-action"><%=classesTitles[n]%></a>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="<%=classesLinks[n]%>" class="notes-action"><%=classesTitles[n]%></a>
+									<a href="#" class="badge light"><img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"></a>
+								</li>
 							<% } %>
 						</div>
 					</div>
