@@ -32,6 +32,12 @@
 	      background-color: #f2f2f2;
 	      padding: 25px;
 	    }
+	    .navbar-right img {
+			margin-top: 5px;
+			width: 40px; 
+			height: 40px;
+			border-radius: 20%; 
+		}
   	</style> 
 	</head>
 	<body>
@@ -51,7 +57,7 @@
 		        <li><a href="newGame.jsp">New Game</a></li>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
+		      <ul class="nav navbar-nav navbar-right" id="right-nav">
 		      	<% if (guest) { %>
 		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 		     	<% } else { %>
