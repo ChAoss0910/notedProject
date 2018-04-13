@@ -17,12 +17,19 @@
 	
 	<style>
 	
+		table {
+	   	border: 5px solid gold;
+}
+	</style>
+	
+	<!-- <style>
+	
 	body{ 
 		font: normal 13px/20px Arial, Helvetica, sans-serif; word-wrap:break-word;
 		color: #eee;
 		background: #353535;
 	}
-	</style>
+	</style> -->
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -51,39 +58,49 @@
 	<div class="outer-user">
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
+			
+			<table class="table">
+			<thead>
+				<tr>
+          			<th>Question #1: Who's the professor for CS-201?
+   			 </thead>
+			<tbody>
+				<tr><td><button class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
+				<tr><td><button class="btn btn-block btn-default editbtn">Choice #2</button></td></tr>
+				<tr><td><button class="btn btn-block btn-default editbtn">Choice #3</button></td></tr>
+				<tr><td><button class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
+			</tbody>
+			</table>
 		</div>
 		
 <!-- 		COUNTDOWN TIMER -->
 		<div class="container">
-			<h3>15 Second Timer:</h3>
+			<h3>Time Left:</h3>
   			<progress value="0" max="15" id="progressBar"></progress>
 		</div>
 	</div>
 	
 	<script>
-	//-------------------Main Functionality---------------------//
-	
-	//Gets database from localStorage
-	var database = localStorage.getItem('database');
-	var currQuiz = localStorage.getItem('quiz');
-	
-	</script>
-
-
-	<script>
-	//-----------------------Helper Functions--------------------------//
-	
-	
-	</script>
-	
-	<script>
 	//-------------------------TIMER-----------------------------------//
-	var timeleft = 10;
+	var timeleft = 15;
 	var downloadTimer = setInterval(function(){
 	  document.getElementById("progressBar").value = 10 - --timeleft;
 	  if(timeleft <= 0)
 	    clearInterval(downloadTimer);
 	},1000);
+	
+	
+	//-----------------------Quiz UX----------------------------------//
+	$(document).ready(function(){
+    	$('.editbtn').click(function(){
+        	console.log("Time left: ");
+        	console.log(timeleft);
+        	alert("Answered in " + timeleft + " seconds.");
+        	
+    	});
+	});
+	//-----------------------Helper Functions--------------------------//
+	
 	
 	</script>
 </body>
