@@ -13,11 +13,17 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
-	
+	<script>
+		function submit(){
+			
+			ducument.getElementById("newGame").submit();
+		}
+		
+	</script>
 	<title>noted | Start Game</title>
 	<%
-	String username = "user1";
-	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+		String username = "user1";
+		String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
 	%>
 	<style>
 		.navbar-right img {
@@ -91,7 +97,8 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a class="btn btn-primary btn-lg"  id="submit-button" href="gameSession.jsp" role="button" name="submit">Create Game</a>
+			  			<a class="btn btn-primary btn-lg"  id="submit-button"  role="button" onclick="submit();">Create Game</a>
+			  			
 		  			</div>
 		  		</div>
 		  	</form>
