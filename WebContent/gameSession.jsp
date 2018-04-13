@@ -19,17 +19,15 @@
 	
 		table {
 	   	border: 5px solid gold;
+	   	
+	   	.border-radius(@radius){
+	    .border-top-radius(@radius);
+	    .border-right-radius(@radius);
+	    .border-bottom-radius(@radius);
+	    .border-left-radius(@radius);
+	}
 }
 	</style>
-	
-	<!-- <style>
-	
-	body{ 
-		font: normal 13px/20px Arial, Helvetica, sans-serif; word-wrap:break-word;
-		color: #eee;
-		background: #353535;
-	}
-	</style> -->
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -55,7 +53,10 @@
 	  </div>
 	</nav>
 	<!-- NAVBAR -->
-	<div class="outer-user">
+	
+	
+	<!-- Quiz UX -->
+	<div class="quiz-frame">
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
@@ -72,6 +73,9 @@
 			</tbody>
 			</table>
 		</div>
+	<!-- Quiz UX -->
+		
+		
 		
 <!-- 		COUNTDOWN TIMER -->
 		<div class="container">
