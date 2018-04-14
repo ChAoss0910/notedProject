@@ -14,9 +14,28 @@
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<script>
-		function submit(){
+		function submit (){
+			document.getElementById("newGame").submit();
+		}
+		function validate(){
+			var xhttp =new XMLHttpRequest();
+			xhttp.open("GET", "ValidateNewGame?gameName="+document.newGame.gameName.value +
+					"&numPlayers=" + document.newGame.numPlayers.value+"&selectClass="+document.newGame.selectClass.value, false);
+			xhttp.send();
+			console.log(xhttp.responseText.trim());
+			if(xhttp.responseText.trim().length > 0){
+				alert("Please complete the form!");
+				return false;
+			}
+			return true;
+			/* else{
+				
+				return false;
+			} */
 			
-			ducument.getElementById("newGame").submit();
+			/* ducument.getElementById("newGame").submit(); */
+			
+			
 		}
 		
 	</script>
@@ -65,7 +84,7 @@
 			<div id="title">
 				<h1>Start a Game</h1>
 			</div>
-			<form name="newGame" method="POST" action="ValidateNewGame">
+			<form name="newGame" id = "newGame" method="GET" action = "gameSession.jsp" onSubmit = "return validate();">
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
 				    		<label for="gameName">Game Name</label>
@@ -97,7 +116,7 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a class="btn btn-primary btn-lg"  id="submit-button"  role="button" onclick="submit();">Create Game</a>
+			  			<a class="btn btn-primary btn-lg"  href = "newGame.jsp" id="submit-button"  role="button"><button id="submit-button">Create Game</button></a>
 			  			
 		  			</div>
 		  		</div>

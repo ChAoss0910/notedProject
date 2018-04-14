@@ -1,6 +1,7 @@
 package notedProject;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,28 +25,26 @@ public class validateNewGame extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("wtf?");
+		System.out.println("lalala");
 		String coursename = request.getParameter("selectClass");
 		String title = request.getParameter("gameName");
 		String numPlayers = request.getParameter("numPlayers");
 		String forward="";
-		System.out.println(coursename+" "+title+" "+numPlayers);
+		PrintWriter out =  response.getWriter();
 		if (coursename.equals("Class")||title ==null||numPlayers.equals("Players")) {
-			forward = "/newGame.jsp";
-			
+			out.print("none");
+			out.flush();
+			out.close();
 		}
-			
+	
 		else {
-			
-		
-			forward = "/gameSession.jsp";
+
 			request.getSession().setAttribute("course", coursename);
 			request.getSession().setAttribute("numPlayers", numPlayers);
 			request.getSession().setAttribute("gameName", title);
 			
 		}
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
-		dispatch.forward(request,response);
+
 //		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 //		Course course = database.GetCourseByTitle(coursename);
 //		Quiz newQuiz = course.GenerateQuiz(coursename, 3);
