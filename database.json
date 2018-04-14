@@ -8,7 +8,28 @@
       },
       "password" : 111111,
       "username" : "user1",
-      "picURL" : "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg"
+      "picURL":"",
+      "savedNotes": 
+      	[
+      		{
+  		 		"title":"Definition of the Garbage Collection",	
+  		 		"time": "2018/04/14 14:33:09",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15 17:13:56",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22 09:10:16",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
+  			 }
+      	]
     },
     {
       "email" : "email@usc.edu",
@@ -18,7 +39,27 @@
       },
       "password" : 111111,
       "username" : "user2",
-      "picURL" : "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      "savedNotes": 
+      	[
+      		{
+  		 		"title":"Definition of the Garbage Collection",	
+  		 		"time": "2018/04/14 14:33:09",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15 17:13:56",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22 09:10:16",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
+  			 }
+      	]
     }
   ],
  
@@ -60,9 +101,21 @@
   		 "notes":[
   		 	{
   		 		"title":"Definition of the Garbage Collection",	
-  		 		"time": "2018/04/14 14:33:09",
+  		 		"time": "2018/04/14",
   		 		"classtitle": "CSCI 201",
   		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
   			 }
   		 	
   		 
