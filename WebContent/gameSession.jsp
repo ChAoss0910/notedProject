@@ -66,10 +66,10 @@
           			<th>Question #1: Who's the professor for CS-201?
    			 </thead>
 			<tbody>
-				<tr><td><button class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
-				<tr><td><button class="btn btn-block btn-default editbtn">Choice #2</button></td></tr>
-				<tr><td><button class="btn btn-block btn-default editbtn">Choice #3</button></td></tr>
-				<tr><td><button class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
+				<tr><td><button id="choice1" class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
+				<tr><td><button id="choice2" class="btn btn-block btn-default editbtn">Choice #2</button></td></tr>
+				<tr><td><button id="choice3" class="btn btn-block btn-default editbtn">Choice #3</button></td></tr>
+				<tr><td><button id="choice4" class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
 			</tbody>
 			</table>
 		</div>
@@ -95,6 +95,8 @@
 	
 	
 	//-----------------------Quiz UX----------------------------------//
+	
+	//Timer UI
 	$(document).ready(function(){
     	$('.editbtn').click(function(){
         	console.log("Time left: ");
@@ -103,6 +105,15 @@
         	
     	});
 	});
+	
+	//Choices
+	$(document).ready(function(){
+    		document.getElementById('choice1').innerText = 'This is option 1';
+    		document.getElementById('choice2').innerText = 'This is option 2';
+    		document.getElementById('choice3').innerText = 'This is option 3';
+    		document.getElementById('choice4').innerText = 'This is option 4';
+	});
+	
 	//-----------------------Helper Functions--------------------------//
 	
 	

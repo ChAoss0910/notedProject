@@ -86,7 +86,7 @@
 			</div>
 			<form name="newGame" id = "newGame" method="GET" action = "gameSession.jsp" onSubmit = "return validate();">
 				<div class="form-row">
-				    	<div class="form-group col-md-6"">
+				    	<div class="form-group col-md-6">
 				    		<label for="gameName">Game Name</label>
 				      	<input type="text" class="form-control" id="gameName" name="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
 				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
