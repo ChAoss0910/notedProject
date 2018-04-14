@@ -53,7 +53,7 @@ public class Test {
 //		String dateInString = "31-08-1982";
 //		Date date = sdf.parse(dateInString);
 //		System.out.println(date); 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
 		System.out.println(dateFormat.format(date));
 //		Date time = new Date();

@@ -6,18 +6,18 @@ import java.util.Date;
 
 public class Note {
 	private String title;
-	private Date time;
+	private String time;
 	private String classTitle;
 	private String tags;
 	
 	public Note(String title) {
 		this.title = title;
-		time = new Date();
+//		time = new Date();
 	}
 	public String getTitle() {
 		return this.title;
 	}
-	public Date getTime(){
+	public String getTime(){
 		return this.time;
 	}
 	public String getClassTitle() {

@@ -7,7 +7,29 @@
         "lastname" : "dummyLast"
       },
       "password" : 111111,
-      "username" : "user1"
+      "username" : "user1",
+      "picURL":"",
+      "savedNotes": 
+      	[
+      		{
+  		 		"title":"Definition of the Garbage Collection",	
+  		 		"time": "2018/04/14 14:33:09",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15 17:13:56",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22 09:10:16",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
+  			 }
+      	]
     },
     {
       "email" : "email@usc.edu",
@@ -16,7 +38,29 @@
         "lastname" : "dummyLast2"
       },
       "password" : 111111,
-      "username" : "user2"
+      "username" : "user2",
+       "picURL":"",
+      "savedNotes": 
+      	[
+      		{
+  		 		"title":"Definition of the Garbage Collection",	
+  		 		"time": "2018/04/14 14:33:09",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15 17:13:56",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22 09:10:16",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
+  			 }
+      	]
     }
   ],
  
@@ -58,9 +102,21 @@
   		 "notes":[
   		 	{
   		 		"title":"Definition of the Garbage Collection",	
-  		 		"time": "2018/04/14 14:33:09",
+  		 		"time": "2018/04/14",
   		 		"classtitle": "CSCI 201",
   		 		"tags": "#gc"
+  			 },
+  			 {
+  		 		"title":"Definition of the Serialization",	
+  		 		"time": "2018/04/15",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#serialization"
+  			 },
+  			 {
+  		 		"title":"Definition of the Networking",	
+  		 		"time": "2018/03/22",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#networking"
   			 }
   		 	
   		 
