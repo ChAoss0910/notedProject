@@ -1,6 +1,9 @@
 package notedProject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,7 +12,7 @@ import java.util.List;
  *Only for testing purpose
  */
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
 		LoadDatabase database = new LoadDatabase("database.json");
 		System.out.println("Read");
@@ -46,7 +49,15 @@ public class Test {
 			}
 			System.out.println("Get score: " + newQuiz.GetScore(choices, multiplier));
 		}
-		
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+//		String dateInString = "31-08-1982";
+//		Date date = sdf.parse(dateInString);
+//		System.out.println(date); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+//		Date time = new Date();
+//		System.out.println();
 		return;
 	}
 }
