@@ -116,7 +116,7 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a class="btn btn-primary btn-lg"  href = "newGame.jsp" id="submit-button"  role="button"><button id="submit-button">Create Game</button></a>
+			  			<a  href = "newGame.jsp" id="submit-button"  role="button"><button class="btn btn-primary btn-lg"  id="submit-button">Create Game</button></a>
 			  			
 		  			</div>
 		  		</div>

@@ -25,13 +25,13 @@ public class validateNewGame extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("lalala");
+	
 		String coursename = request.getParameter("selectClass");
 		String title = request.getParameter("gameName");
 		String numPlayers = request.getParameter("numPlayers");
 		String forward="";
 		PrintWriter out =  response.getWriter();
-		if (coursename.equals("Class")||title ==null||numPlayers.equals("Players")) {
+		if (coursename.equals("Class")||title ==null||title.equals("")||numPlayers.equals("Players")) {
 			out.print("none");
 			out.flush();
 			out.close();
