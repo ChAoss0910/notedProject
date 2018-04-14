@@ -16,15 +16,16 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	  <%
-	  String username = "";
+	  String username = (String) request.getAttribute("username");
 	  String profilePic = "";
+	  System.out.println(username);
 	  boolean guest = false;
 	  LoadDatabase db = (LoadDatabase) session.getAttribute("database");
 	  if (db != null) {
-	  		User u = db.getUser("user1");
-	  		username = u.getUsername();
-	  		profilePic = u.getPicURL();
-	  	}
+  	  		User u = db.getUser(username);
+  			profilePic = u.getPicURL();
+  	  }
+	  System.out.println(profilePic);
 	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
