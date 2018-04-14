@@ -1,3 +1,5 @@
+<%@page import="notedProject.User"%>
+<%@page import="notedProject.LoadDatabase"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,6 +15,17 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  <%
+	  String username = "";
+	  String profilePic = "";
+	  boolean guest = false;
+	  LoadDatabase db = (LoadDatabase) session.getAttribute("database");
+	  if (db != null) {
+	  		User u = db.getUser("user1");
+	  		username = u.getUsername();
+	  		profilePic = u.getPicURL();
+	  	}
+	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
 	    .navbar {
@@ -44,8 +57,15 @@
 		        <li><a href="newGame.jsp">New Game</a></li>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		      <ul class="nav navbar-nav navbar-right" id="right-nav">
+		      	<% if (guest) { %>
+		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		     	<% } else { %>
+		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+		     		<a id="myProfile" href=<%=pass%>>
+		     			<img src=<%= profilePic %> />
+		     		</a>
+		     	<% } %>
 		      </ul>
 		    </div>
 		  </div>

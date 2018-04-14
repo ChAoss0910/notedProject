@@ -53,7 +53,7 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Note Bank</h3><br>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href="uploadNotes.jsp" role="button">Upload a Note:</a>
+		  <a class="btn btn-primary btn-lg"  id="submit-button" href="uploadNotes.jsp" role="button">Upload Notes</a>
 		  <div class="container-fluid" style="text-align: left;">
 		  	<h4>Filter Notes:</h4>
 		  	<form class="navbar-form navbar-left" role="search">

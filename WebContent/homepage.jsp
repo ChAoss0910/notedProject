@@ -1,3 +1,4 @@
+<%@page import="notedProject.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import= "java.io.*"%>
@@ -17,7 +18,12 @@
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	<%
-  	boolean guest = false;
+  	LoadDatabase db = (LoadDatabase) session.getAttribute("database");
+  	if (db != null) {
+  		User u = db.getUser("user1");
+  	}
+	
+  	boolean guest = true;
   	String username = "user1";
   	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
   	%>
