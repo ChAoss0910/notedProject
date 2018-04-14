@@ -56,7 +56,12 @@
   		  }
   		 ],
   		 "notes":[
-  		 	"title":"The definition of the ",
+  		 	{
+  		 		"title":"Definition of the Garbage Collection",	
+  		 		"time": "2018/04/14 14:33:09",
+  		 		"classtitle": "CSCI 201",
+  		 		"tags": "#gc"
+  			 }
   		 	
   		 
   		 ]
