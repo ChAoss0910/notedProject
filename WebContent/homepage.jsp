@@ -63,9 +63,9 @@
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
 		      	<% String toNewGame = "newGame.jsp?username="+username+"&url="+profilePic; %>
-		        <li><a href="newGame.jsp">New Game</a></li>
+		        <li><a href=<%= toNewGame %>>New Game</a></li>
 		        <% String toAbout = "about.jsp?username="+username+"&url="+profilePic; %>
-		        <li><a href="about.jsp">About</a></li>
+		        <li><a href=<%= toAbout %>>About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right" id="right-nav">
 		      	<% if (guest) { %>
