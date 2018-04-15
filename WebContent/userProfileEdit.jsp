@@ -84,6 +84,11 @@
 	});
 	</script>
 	<style>
+		/* Remove the navbar's default margin-bottom and rounded borders */ 
+	    .navbar {
+	      margin-bottom: 0;
+	      border-radius: 0;
+	    }
 		.navbar-right img {
 			margin-top: 5px;
 			width: 40px; 

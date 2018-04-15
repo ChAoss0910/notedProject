@@ -22,6 +22,11 @@
 	String password = (String) request.getAttribute("password");
 	%>
 	<style>
+		/* Remove the navbar's default margin-bottom and rounded borders */ 
+	    .navbar {
+	      margin-bottom: 0;
+	      border-radius: 0;
+	    }
 		#signup {
 			text-align: center;
 		}

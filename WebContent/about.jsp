@@ -15,10 +15,23 @@
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>noted | about</title>
 	<%
-	String username = "user1";
-	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-	%>
+	String username = request.getParameter("username");
+	String profilePic = request.getParameter("url");
+	boolean guest = true;
+	
+	if (username == null){
+	} else {
+		if (!username.equalsIgnoreCase("")){
+			guest = false;
+		}
+	}
+  	%>
 	<style>
+		/* Remove the navbar's default margin-bottom and rounded borders */ 
+	    .navbar {
+	      margin-bottom: 0;
+	      border-radius: 0;
+	    }
 		.navbar-right img {
 			margin-top: 5px;
 			width: 40px;  
@@ -37,7 +50,8 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	    <% String toHome = "homepage.jsp?username="+username+"&url="+profilePic; %>
+      	<a class="navbar-brand" href=<%= toHome %>>noted</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">

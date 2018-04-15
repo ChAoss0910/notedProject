@@ -53,6 +53,11 @@
 	</script>
 	<title>noted | Start Game</title>
 	<style>
+		/* Remove the navbar's default margin-bottom and rounded borders */ 
+	    .navbar {
+	      margin-bottom: 0;
+	      border-radius: 0;
+	    }
 		.navbar-right img {
 			margin-top: 5px;
 			width: 40px;  
@@ -71,7 +76,8 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	    <% String toHome = "homepage.jsp?username="+username+"&url="+profilePic; %>
+      	<a class="navbar-brand" href=<%= toHome %>>noted</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
