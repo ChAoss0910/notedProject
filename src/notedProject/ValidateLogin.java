@@ -52,8 +52,7 @@ public class ValidateLogin extends HttpServlet {
 		boolean logincheck = database.CheckLogin(username, password);
 		
 		User u = database.getUser(username);
-		System.out.println("url: "+u.getPicURL());
-		
+		String profilePic = u.getPicURL();
 		
 		if(logincheck)
 			System.out.println("true");
@@ -86,7 +85,7 @@ public class ValidateLogin extends HttpServlet {
 //				Volumes volumes = bResult.getSearchResult(query);
 				
 				//output result
-				String page = "joinGame.jsp";
+				String page = "joinGame.jsp?username="+username+"&url="+profilePic;
 //				session.setAttribute("result", volumes);
 				
 //				System.out.println(volumes.getTotalItems());					

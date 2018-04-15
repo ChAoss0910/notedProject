@@ -99,9 +99,12 @@ public class ValidateSignup extends HttpServlet {
 			try {
 //				BookResult bResult = new BookResult();
 //				Volumes volumes = bResult.getSearchResult(query);
+				
+				User u = database.getUser(username);
+				String profilePic = u.getPicURL();
 //							
 				//output result
-				String page = "joinGame.jsp";
+				String page = "joinGame.jsp?username="+username+"&url="+profilePic;
 //				session.setAttribute("result", volumes);
 							
 //				System.out.println(volumes.getTotalItems());					
