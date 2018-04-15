@@ -102,6 +102,11 @@ public class LoadDatabase {
 	public User getUser(String username) {
 		return GetUser(username);
 	}
+	public void printUsers() {
+		for (int i = 0; i < users.size(); i++) {
+			System.out.println(users.get(i).getUsername());
+		}
+	}
 	
 	/**
 	 * @param username
@@ -111,7 +116,7 @@ public class LoadDatabase {
 		
 		User temp = null;
 		for (User u: users) {
-			if (u.getUsername().equals(uName)) {
+			if (u.getUsername().equalsIgnoreCase(uName)) {
 				temp = u;
 			}
 		}

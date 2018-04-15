@@ -18,9 +18,10 @@
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	<%
+  	User u = null;
   	LoadDatabase db = (LoadDatabase) session.getAttribute("database");
   	if (db != null) {
-  		User u = db.getUser("user1");
+  		u = db.getUser("user1");
   	}
 	
   	boolean guest = true;
@@ -82,7 +83,9 @@
 		    <p>Learn through friendly competition</p>
 		    <p class="lead">
 	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Join a Game</a>
+	    	<% if (u != null) { %>
 	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="newGame.jsp" role="button">Start a Game</a>
+		  	<% } %>
 		  </div>
 		</div>
 		  

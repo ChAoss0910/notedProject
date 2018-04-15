@@ -14,6 +14,26 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>noted | sign up</title>
+	<%
+	String name_err = (String) request.getAttribute("name_err");
+	String username_err = (String) request.getAttribute("username_err");
+	String password_err = (String) request.getAttribute("password_err");
+	String email_err = (String) request.getAttribute("email_err");
+	String usc_err = (String) request.getAttribute("usc_err");
+	String url_err = (String) request.getAttribute("url_err");
+	
+	String firstName = (String) request.getAttribute("firstName");
+	String lastName = (String) request.getAttribute("lastName");
+	String username = (String) request.getAttribute("username");
+	String password = (String) request.getAttribute("password");
+	String email = (String) request.getAttribute("email");
+	String url = (String) request.getAttribute("url");
+	%>
+	<style>
+		.error-msg {
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -45,34 +65,79 @@
 			<h1>Sign Up</h1>
 			<form name="signup" method="POST" action="ValidateSignup">
 				<div class="form-row">
-				    	<div class="form-group col-md-6">
-				    		<label for="fname">First name</label>
-				      	<input type="text" class="form-control" id="fname" name = "firstname" placeholder="First name">
+			    	<div class="form-group col-md-6">
+			    		<label for="fname">First name</label>
+			    		<% if (firstName == null || firstName.equalsIgnoreCase("")) { %>
+			    			<input type="text" class="form-control" id="fname" name="firstname" placeholder="First name">
+			    		<% } else { %>
+			    			<input type="text" class="form-control" id="fname" name="firstname" value=<%=firstName%>>
+			    		<% } %>
+				   		<% if (name_err != null) { %>
+			    			<div class="error-msg"><%=name_err%></div>
+			    		<% } %>
 				    </div>
 				    <div class="form-group col-md-6">
-				    		<label for="lname">Last name</label>
-				      	<input type="text" class="form-control" id="lname" name = "lastname" placeholder="Last name">
+			    		<label for="lname">Last name</label>
+			    		<% if (firstName == null || firstName.equalsIgnoreCase("")) { %>
+			    			<input type="text" class="form-control" id="lname" name="lastname" placeholder="Last name">
+			    		<% } else { %>
+			    			<input type="text" class="form-control" id="lname" name="lastname" value=<%=lastName%>>
+			    		<% } %>
+				   		<% if (name_err != null) { %>
+			    			<br>
+			    		<% } %>
 				    </div>
 			  	</div>
 				<div class="form-row">
 			    		<div class="form-group col-md-4">
 				      	<label for="signupEmail">Email</label>
-				      	<input type="email" class="form-control" id="signupEmail" name = "email" placeholder="Email">
+				      	<% if (email == null || email.equalsIgnoreCase("")) { %>
+			    			<input type="email" class="form-control" id="signupEmail" name="email" placeholder="Email">
+			    		<% } else { %>
+			    			<input type="email" class="form-control" id="signupEmail" name="email" value=<%=email%>>
+			    		<% } %>
+				    	<% if (email_err != null) { %>
+				    		<div class="error-msg"><%=email_err%></div>
+				    	<% } %>
+				    	<% if (usc_err != null) { %>
+				    		<div class="error-msg"><%=usc_err%></div>
+				    	<% } %>
 				    </div>
 				  	<div class="form-group col-md-4">
 					    <label for="signupUsername">Username</label>
-					    <input type="text" class="form-control" id="signupUsername" name = "susername" aria-describedby="usernameHelp" placeholder="Username">
+					    <% if (username == null || username.equalsIgnoreCase("")) { %>
+			    			<input type="text" class="form-control" id="signupUsername" name="username" aria-describedby="usernameHelp" placeholder="Username">
+			    		<% } else { %>
+			    			<input type="text" class="form-control" id="signupUsername" name="username" aria-describedby="usernameHelp" value=<%=username%>>
+			    		<% } %>
 					    <small id="usernameHelp" class="form-text text-muted">This will be public to other players.</small>
+				  		<% if (username_err != null) { %>
+				    		<div class="error-msg"><%=username_err%></div>
+				    	<% } %>
 				  	</div>
 				  	<div class="form-group col-md-4">
-				    		<label for="signupPassword">Password</label>
-				      	<input type="password" class="form-control" id="signupPassword" name="spassword" placeholder="Password">
+			    		<label for="signupPassword">Password</label>
+				      	<% if (password == null || password.equalsIgnoreCase("")) { %>
+			    			<input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password">
+			    		<% } else { %>
+			    			<input type="password" class="form-control" id="signupPassword" name="password" value=<%=password%>>
+			    		<% } %>
+				    	<% if (password_err != null) { %>
+				    		<div class="error-msg"><%=password_err%></div>
+				    	<% } %>
 				    </div>
 			  	</div>
 			  	<div class="form-row">
 				  	<div class="form-group col-md-12">
 				  		<label for="signupURL">URL for Profile Picture</label>
-				      	<input type="text" class="form-control" id="signupURL" name="url" placeholder="ex: https://www.pexels.com/search/cat/">
+				      	<% if (url == null || url.equalsIgnoreCase("")) { %>
+			    			<input type="text" class="form-control" id="signupURL" name="url" placeholder="ex: https://www.pexels.com/search/cat/">
+			    		<% } else { %>
+			    			<input type="text" class="form-control" id="signupURL" name="url" value=<%=url%>>
+			    		<% } %>
+				    	<% if (url_err != null) { %>
+				    		<div class="error-msg"><%=url_err%></div>
+				    	<% } %>
 				    </div>
 		  		</div>
 			  	<div class="form-row">

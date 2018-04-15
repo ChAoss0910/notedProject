@@ -14,6 +14,21 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>noted | login</title>
+	<%
+	String name_err = (String) request.getAttribute("name_err");
+	String password_err = (String) request.getAttribute("password_err");
+	String login_err = (String) request.getAttribute("login_err");
+	String username = (String) request.getAttribute("username");
+	String password = (String) request.getAttribute("password");
+	%>
+	<style>
+		#signup {
+			text-align: center;
+		}
+		.error-msg {
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	<!-- NAVBAR -->
@@ -46,12 +61,33 @@
 			<form name="login" method="POST" action="ValidateLogin">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-				    		<label for="loginUsername">Username</label>
-				    		<input type="text" class="form-control" id="loginUsername" name = "username" placeholder="Username">
+			    		<label for="loginUsername">Username</label>
+			    		<% 
+			    		String u_placeholder = "";
+			    		if (username == null || username.equalsIgnoreCase("")) { %>
+			    			<input type="text" class="form-control" id="loginUsername" name ="username" placeholder="Username">
+			    		<% } else { %>
+			    			<input type="text" class="form-control" id="loginUsername" name ="username" value=<%=username%>>
+			    		<% } %>
+			    		<% if (name_err != null) { %>
+			    			<div class="error-msg">Please enter a username</div>
+			    		<% } else { %>
+			    			<br>
+			    		<% } %>
 				  	</div>
 				  	<div class="form-group col-md-6">
-				    		<label for="loginPassword">Password</label>
-				    		<input type="password" class="form-control" id="loginPassword" name = "password" placeholder="Password">
+			    		<label for="loginPassword">Password</label>
+			    		<% if (password == null || password.equalsIgnoreCase("")) { %>
+			    			<input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password">
+			  			<% } else { %>
+			  				<input type="password" class="form-control" id="loginPassword" name="password" value=<%=password%>>
+			  			<% } %>
+			  			<% if (password_err != null) { %>
+			  				<div class="error-msg">Please enter a password</div>
+			  			<% } %>
+			  			<% if (login_err != null) { %>
+			  				<div class="error-msg">Incorrect password</div>
+			  			<% } %>
 				  	</div>
 			  	 </div>
 				<div class="form-row">
@@ -60,6 +96,11 @@
 			  		</div>
 		  		</div>
 	  		</form>
+	  		<div class="row"  id="signup">
+	  			<div class="col-md-12">
+	  				No account? <a href="signup.jsp" style="color: #ffa31a;">Sign up</a> here.
+	  			</div>
+	  		</div>
 		</div>
 	</div>
 	<!-- LOGIN -->
