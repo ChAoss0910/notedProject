@@ -26,16 +26,18 @@
 	}
   	%>
   	<script>
-  		function submit(){
-  			document.getElementById("newNotes").submit();
-  		}
+ 
   		function validate(){
 			var xhttp =new XMLHttpRequest();
+			var file = document.newNotes.uploadfile.value;
+			
+			var tags = document.newNotes.tags.value;
+			
 			xhttp.open("GET", "ValidateNotes?notesTitle="+document.newNotes.notesTitle.value +
 					"&selectClass=" + document.newNotes.selectClass.value+"&date="+document.newNotes.date.value+
-					"&uploadfile="+ document.newNotes.uploadfile+"&tags="+document.newNotes.tags, false);
+					"&uploadfile="+ file+"&tags="+tags, false);
 			xhttp.send();
-			console.log(xhttp.responseText.trim());
+			/* alert(xhttp.responseText.trim()) */
 			if(xhttp.responseText.trim().length > 0){
 				alert("Please complete the form!");
 				return false;
@@ -140,13 +142,13 @@
 			  	<div class="form-row">
 			  		<div class="form-group col-md-12">
 					  	<label for="classTags">Tags</label>
-    						<input type="text" class="form-control" id="tags" name="tags" rows="1" aria-describedby="tagsHelp" ></textarea>
+    						<input type="text" class="form-control" id="tags" name="tags" rows="1" aria-describedby="tagsHelp" >
     						<small id="tagsHelp" class="form-text text-muted">ex: #networking, #threads, #synchronization</small>
 					</div>
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a role="button" "><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
+			  			<a role="button" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
 		  			</div>
 		  		</div>
 		  	</form>
