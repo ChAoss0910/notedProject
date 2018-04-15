@@ -14,16 +14,16 @@ public class MongoDBJDBC{
    public static void main( String args[] ){
       try{   
     	  
-       // 连接到 mongodb 服务
+       // start driver
          MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
        
-         // 连接到数据库
+         // connect to database
          MongoDatabase mongoDatabase = mongoClient.getDatabase("Noted");  
        System.out.println("Connect to database successfully");
 //       mongoDatabase.createCollection("test");
-//       System.out.println("集合创建成功");
+//       System.out.println("test created");
        MongoCollection<Document> collection = mongoDatabase.getCollection("test");
-       System.out.println("集合 test 选择成功");
+       System.out.println("test choosed");
 //       Document user1 = new Document("email", "email@usc.edu").append("name", new Document("firstname", "dummyFirst").
 //    		   append("lastname", "dummyLast")).append("password", 111111).append("username", "user1").append("picURL", 
 //    				   "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg");
@@ -35,9 +35,8 @@ public class MongoDBJDBC{
 //       users.add(user1);
 //       users.add(user2);
 //       collection.insertMany(users);
-//       System.out.println("文档插入成功");  
-       collection.deleteOne(Filters.eq("username", "user1"));  
-       collection.deleteOne(Filters.eq("username", "user2"));  
+//       System.out.println("document inserted");  
+//         
        FindIterable<Document> findIterable = collection.find();  
        MongoCursor<Document> mongoCursor = findIterable.iterator();  
        while(mongoCursor.hasNext()){  
