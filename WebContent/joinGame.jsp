@@ -16,16 +16,25 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	  <%
- 		String username = request.getParameter("username");
-		String profilePic = request.getParameter("url");
-		boolean guest = true;
-	
-		if (username == null){
-		} else {
-			if (!username.equalsIgnoreCase("")){
-				guest = false;
+  		String username = (String) request.getAttribute("username");
+	  	String profilePic = (String) request.getAttribute("url"); 
+	  	boolean guest = true;
+	  	
+	  	System.out.println("here:"+username+" "+profilePic);
+	  	
+	  	if (username == null){
+	  		username = request.getParameter("username");
+			profilePic = request.getParameter("url");
+			
+			if (username == null){
+			} else {
+				if (!username.equalsIgnoreCase("")){
+					guest = false;
+				}
 			}
-		}
+	  	} else {
+	  		guest = false;
+	  	}
   	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 

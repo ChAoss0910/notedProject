@@ -46,6 +46,23 @@
 			height: 40px;
 			border-radius: 20%; 
 		}
+		#profileButton {
+			background-color: black;
+			height: 50px;
+			width: 50px;
+			padding: 0px;
+		}
+		.dropdown-menu, .dropdown-item {
+			width: 70px;
+			color: orange;
+			text-align: center; 
+			width: 10px;
+		}
+		.dropdown-item:hover {
+			text-decoration: none; 
+			font-weight: bold;
+			color: orange;
+		}
   	</style> 
 	</head>
 	<body>
@@ -72,9 +89,16 @@
 		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 		     	<% } else { %>
 		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
-		     		<a id="myProfile" href=<%=pass%>>
-		     			<img src=<%= profilePic %> />
-		     		</a>
+		     		<div class="dropdown">
+					  <button class="btn btn-secondary dropdown-toggle" type="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <img src=<%= profilePic %>/>
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="profileButton">
+					    <a class="dropdown-item" href=<%=pass%>>My Profile</a>
+					    <br>
+					    <a class="dropdown-item" href="homepage.jsp">Log Out</a>
+					  </div>
+					</div>
 		     	<% } %>
 		      </ul>
 		    </div>

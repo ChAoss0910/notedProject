@@ -40,6 +40,7 @@ public class ValidateLogin extends HttpServlet {
 		String forward = "";
 		request.setAttribute("username", username);
 		request.setAttribute("password", password);
+		
 		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
 		String path = getServletContext().getRealPath("/database.json");
 		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
@@ -52,7 +53,9 @@ public class ValidateLogin extends HttpServlet {
 		boolean logincheck = database.CheckLogin(username, password);
 		
 		User u = database.getUser(username);
-		String profilePic = u.getPicURL();
+		String url = u.getPicURL();
+		request.setAttribute("url", url);
+		System.out.println("picture"+url);
 		
 		if(logincheck)
 			System.out.println("true");
