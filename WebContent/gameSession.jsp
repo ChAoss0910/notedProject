@@ -93,13 +93,13 @@
 <!-- 		COUNTDOWN TIMER -->
 		<div class="container">
 			<h3>Time Left:</h3>
-  			<progress value="0" max="15" id="progressBar"></progress>
+  			<progress value="0" max="10" id="progressBar"></progress>
 		</div>
 	</div>
 	
 	<script>
 	//-------------------------TIMER-----------------------------------//
-	var timeleft = 15;
+	var timeleft = 10;
 	var downloadTimer = setInterval(function(){
 	  document.getElementById("progressBar").value = 10 - --timeleft;
 	  if(timeleft <= 0)
