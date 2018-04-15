@@ -11,8 +11,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="gson-2.8.0.jar"/>
 	<classpathentry kind="lib" path="mongodb-driver-3.6.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/chenchaoyang/eclipse-workspace/notedProject/mongodb-driver-3.6.3.jar"/>
-	<classpathentry kind="lib" path="/Users/chenchaoyang/eclipse-workspace/notedProject/mongodb-driver-core-3.6.3.jar"/>
-	<classpathentry kind="lib" path="/Users/chenchaoyang/eclipse-workspace/notedProject/bson-3.6.3.jar"/>
+	<classpathentry kind="lib" path="mongodb-driver-3.6.3.jar"/>
+	<classpathentry kind="lib" path="mongodb-driver-core-3.6.3.jar"/>
+	<classpathentry kind="lib" path="notedProject/bson-3.6.3.jar"/>
+	<classpathentry kind="lib" path="bson-3.6.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
