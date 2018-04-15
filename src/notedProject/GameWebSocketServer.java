@@ -172,12 +172,13 @@ public class GameWebSocketServer {
 		q1.addOption("Option1");
 		q1.addOption("Option2");
 		q1.addOption("Option3");
+		q1.addOption("Option4");
 		
 		Question q2 = new Question("DummyQuestion2");
-		q2.addOption("Option1");
-		q2.addOption("Option2");
-		q2.addOption("Option3");
-		
+		q2.addOption("Option5");
+		q2.addOption("Option6");
+		q2.addOption("Option7");
+		q2.addOption("Option8");
 		qPool.add(q1);
 		qPool.add(q2);
 		Quiz quiz = new Quiz("DummyQuiz", qPool, 2);
