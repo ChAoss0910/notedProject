@@ -61,7 +61,6 @@ public class LoadDatabase {
 		try (Writer writer = new FileWriter(path)) {
 		    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		    gson.toJson(database, writer);
-//		    System.out.println("");
 		    System.out.println("File has been saved ");
 		    
 		} catch (IOException e) {
@@ -104,7 +103,7 @@ public class LoadDatabase {
 	}
 	public void printUsers() {
 		for (int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i).getUsername());
+			System.out.println(users.get(i).getUsername()+": "+users.get(i).getPicURL());
 		}
 	}
 	

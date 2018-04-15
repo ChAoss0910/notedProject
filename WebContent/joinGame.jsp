@@ -18,14 +18,12 @@
 	  <%
 	  String username = (String) request.getAttribute("username");
 	  String profilePic = "";
-	  System.out.println(username);
 	  boolean guest = false;
 	  LoadDatabase db = (LoadDatabase) session.getAttribute("database");
 	  if (db != null) {
   	  		User u = db.getUser(username);
   			profilePic = u.getPicURL();
   	  }
-	  System.out.println(profilePic);
 	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -39,6 +37,22 @@
 	      background-color: #f2f2f2;
 	      padding: 25px;
 	    }
+	    
+	    .navbar-right img {
+			margin-top: 5px;
+			width: 40px; 
+			height: 40px;
+			border-radius: 20%; 
+		}
+		
+		a {
+			color: orange;
+		}
+		a:hover {
+			text-decoration: none;
+			color: #ff9900;
+			font-weight: bold;
+		}
 	  </style>
 	</head>
 	<body>
@@ -51,11 +65,14 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="homepage.jsp">noted</a>
+		    <% String toHome = "homepage.jsp?username="+username+"&url="+profilePic; %>
+	      	<a class="navbar-brand" href=<%= toHome %>>noted</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
+		      	<% String toNewGame = "newGame.jsp?username="+username+"&url="+profilePic; %>
 		        <li><a href="newGame.jsp">New Game</a></li>
+		        <% String toAbout = "about.jsp?username="+username+"&url="+profilePic; %>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right" id="right-nav">
@@ -77,40 +94,39 @@
 		    <h1>Select a Game</h1>      
 		    <p class="lead">
 		    	<ul class="list-group">
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				    CSCI-201 Midterm
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				    <a href="#">CSCI-201 Midterm</a>
 				    <span class="badge badge-primary badge-pill">slots: 1</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				    CSCI-104 Quiz 2
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				    <a href="#">CSCI-104 Quiz 2</a>
 				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				   PYSC-442 Quiz 8
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				   	<a href="#">PYSC-442 Quiz 8</a>
 				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				   CSCI-104 Quiz 2
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				   	<a href="#">CSCI-104 Quiz 2</a>
 				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				   MATH-224 Quiz 1
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				  	<a href="#">MATH-224 Quiz 1</a>
 				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				   CSCI-102 Quiz 3
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				   	<a href="#">CSCI-102 Quiz 3</a>
 				    <span class="badge badge-primary badge-pill">slots: 2</span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center">
-				   PYSC-442 Quiz 5
+				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				   	<a href="#">PYSC-442 Quiz 5</a>
 				    <span class="badge badge-primary badge-pill">slots: 1</span>
 				  </li>
 				</ul>
 			</p>
 			
 			<div>
-				<a style="margin: 10px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Join Game</a>
-	    		<a style="margin: 10px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">Start Game</a>
+	    		<a style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">New Game</a>
 			</div>
 		  </div>
 		</div>

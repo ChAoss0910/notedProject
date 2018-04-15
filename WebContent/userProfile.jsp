@@ -22,7 +22,10 @@
 	String profilePic = request.getParameter("url");
 	
 	LoadDatabase db = (LoadDatabase) session.getAttribute("database");
-	User u = db.getUser("user1");
+	User u = db.getUser(username);
+	String fName = u.getFirstName();
+	String lName = u.getLastName();
+		
 	
 	String[] notesLinks = {"#", "#", "#"};
 	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
@@ -170,6 +173,7 @@
 	</style>
 </head>
 <body>
+	
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -178,13 +182,16 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	      <% String toHome = "homepage.jsp?username="+username+"&url="+profilePic; %>
+	      	<a class="navbar-brand" href=<%= toHome %>>noted</a>
 		    </div>
-		    <div class="collapse navbar-collapse" id="myNavbar">
-		      <ul class="nav navbar-nav">
-		        <li><a href="newGame.jsp">New Game</a></li>
-		        <li><a href="about.jsp">About</a></li>
-		      </ul>
+	    	<div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	      	<% String toNewGame = "newGame.jsp?username="+username+"&url="+profilePic; %>
+	        <li><a href="newGame.jsp">New Game</a></li>
+	        <% String toAbout = "about.jsp?username="+username+"&url="+profilePic; %>
+	        <li><a href="about.jsp">About</a></li>
+	      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
 	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
      		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
@@ -196,9 +203,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4" id="picture">
-					<img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-					<h2 id="name">MY NAME</h2>
-					<h3 id="username">MY USERNAME</h3>
+					<img src=<%= profilePic %>>
+					<h2 id="name"><%=fName%> <%=lName%></h2>
+					<h3 id="username"><%=username%></h3>
 					<% String edit = "userProfileEdit.jsp?username="+username+"&url="+profilePic; %>
 					<a href=<%=edit%>><button id="submit-button" class="btn btn-primary">Edit</button></a>
 					<h3>Won: 92%</h3><br> 

@@ -13,6 +13,18 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  <%
+  		String username = request.getParameter("username");
+		String profilePic = request.getParameter("url");
+		boolean guest = true;
+		
+		if (username == null){
+		} else {
+			if (!username.equalsIgnoreCase("")){
+				guest = false;
+			}
+		}
+  	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
 	    .navbar {
@@ -28,7 +40,6 @@
 	  </style>
 	</head>
 	<body>
-	
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -41,11 +52,18 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li><a href="newGame.jsp">New Game</a></li>
+		        <li class="active"><a href="newGame.jsp">New Game</a></li>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		       <ul class="nav navbar-nav navbar-right" id="right-nav">
+	      			<% if (guest) { %>
+			        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+			     	<% } else { %>
+			     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+			     		<a id="myProfile" href=<%=pass%>>
+			     			<img src=<%= profilePic %> />
+			     		</a>
+			     	<% } %>
 		      </ul>
 		    </div>
 		  </div>

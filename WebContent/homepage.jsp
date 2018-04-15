@@ -18,15 +18,16 @@
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
   	<%
-  	User u = null;
-  	LoadDatabase db = (LoadDatabase) session.getAttribute("database");
-  	if (db != null) {
-  		u = db.getUser("user1");
-  	}
+  	String username = request.getParameter("username");
+	String profilePic = request.getParameter("url");
+	boolean guest = true;
 	
-  	boolean guest = true;
-  	String username = "user1";
-  	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+	if (username == null){
+	} else {
+		if (!username.equalsIgnoreCase("")){
+			guest = false;
+		}
+	}
   	%>
   	<style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -56,11 +57,14 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="homepage.jsp">noted</a>
+	      	<% String toHome = "homepage.jsp?username="+username+"&url="+profilePic; %>
+	      	<a class="navbar-brand" href=<%= toHome %>>noted</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
+		      	<% String toNewGame = "newGame.jsp?username="+username+"&url="+profilePic; %>
 		        <li><a href="newGame.jsp">New Game</a></li>
+		        <% String toAbout = "about.jsp?username="+username+"&url="+profilePic; %>
 		        <li><a href="about.jsp">About</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right" id="right-nav">
@@ -82,9 +86,10 @@
 		    <h1>noted</h1>      
 		    <p>Learn through friendly competition</p>
 		    <p class="lead">
-	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="joinGame.jsp" role="button">Join a Game</a>
-	    	<% if (u != null) { %>
-	    	<a class="btn btn-primary btn-lg"  id="submit-button" href="newGame.jsp" role="button">Start a Game</a>
+		    <% String toJoinGame = "joinGame.jsp?username="+username+"&url="+profilePic; %>
+	    	<a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toJoinGame%> role="button">Join a Game</a>
+	    	<% if (!guest) { %>
+		    	<a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toNewGame%> role="button">Start a Game</a>
 		  	<% } %>
 		  </div>
 		</div>

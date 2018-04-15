@@ -13,6 +13,18 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  	<%
+  	String username = request.getParameter("username");
+	String profilePic = request.getParameter("url");
+	boolean guest = true;
+	
+	if (username == null){
+	} else {
+		if (!username.equalsIgnoreCase("")){
+			guest = false;
+		}
+	}
+  	%>
   	<script>
   		function submit(){
   			document.getElementById("newNotes").submit();
@@ -34,10 +46,6 @@
   		
   	</script>
 	<title>noted | upload notes</title>
-	<%
-	String username = "user1";
-	String profilePic = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-	%>
 	<style>
 		.navbar-right img {
 			margin-top: 5px;
@@ -70,15 +78,21 @@
 	        <span class="icon-bar"></span>                        
 	      </button>
 	      <a class="navbar-brand" href="homepage.jsp">noted</a>
-		    </div>
-		    <div class="collapse navbar-collapse" id="myNavbar">
-		      <ul class="nav navbar-nav">
-		        <li><a href="newGame.jsp">New Game</a></li>
-		        <li><a href="about.jsp">About</a></li>
-		      </ul>
-	      <ul class="nav navbar-nav navbar-right" id="right-nav">
-	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
-     		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="newGame.jsp">New Game</a></li>
+	        <li><a href="about.jsp">About</a></li>
+	      </ul>
+	       <ul class="nav navbar-nav navbar-right" id="right-nav">
+      			<% if (guest) { %>
+		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+		     	<% } else { %>
+		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+		     		<a id="myProfile" href=<%=pass%>>
+		     			<img src=<%= profilePic %> />
+		     		</a>
+		     	<% } %>
 	      </ul>
 	    </div>
 	  </div>
