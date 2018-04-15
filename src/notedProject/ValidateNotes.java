@@ -27,19 +27,24 @@ public class ValidateNotes extends HttpServlet {
 		String course= request.getParameter("selectClass");
 		String date=request.getParameter("date");
 		String file=request.getParameter("uploadfile");
-		String tags=request.getParameter("tags");
+		String tag=request.getParameter("tags");
 		PrintWriter out =  response.getWriter();
-		System.out.println(title);
-		System.out.println(course);
-		System.out.println(date);
-		System.out.println(file);
-		System.out.println(tags);
-		if(title.equals("")||course.equals("Class")||date.equals("")||tags==null) {
+//		System.out.println(title);
+//		System.out.println(course);
+//		System.out.println(date);
+//		System.out.println(file);
+//		System.out.println(tag);
+		
+		if(title.equals("")||course.equals("Class")||date.equals("")||tag.equals("")) {
+			
 			out.print("none");
 			out.flush();
-			out.close();
+			
 		}
+//		if(file.equals(""))
+//			out.println("none");
 		
+		out.close();
 //		String forward="/homepage.jsp";
 		
 //		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
