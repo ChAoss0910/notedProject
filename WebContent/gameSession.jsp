@@ -113,6 +113,8 @@
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
+			<button onclick="sendInitialMessage();" class="btn">Start</button>
+			
 			<table class="table">
 			<thead>
 				<tr>
@@ -127,6 +129,10 @@
 			</table>
 		</div>
 	<!-- Quiz UX -->
+	
+	<!-- Testing -->
+	<div id="messages">
+	</div>
 		
 		
 		
@@ -150,9 +156,10 @@
 	//-----------------------Quiz UX----------------------------------//
 	
 	//Global Variables
-	var gameroom;
-	var roomname;
-	var currQ;
+	var gameRoom = "Game Room 1";
+	var roomName = "Sample Quiz 1";
+	var classTitle = "CS-201";
+	var currQ = 1;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
 	var option1 = "This is sample option 1";
@@ -267,7 +274,6 @@
     function sendInitialMessage() {
     	var numPlayer = 1;
     	var roomName = 'Testing';
-    	var classTitle = document.getElementById('classTitle').value;
     	
     	var message = new Message('Start');
     	message.classTitle = classTitle;
@@ -308,8 +314,7 @@
     	Called whenever the timer is for previous question is out
     */
     function sendNextQuesMessage() {
-    	var currentQ = 3;
-    	var roomName = 'Testing';
+    	var currentQ = currQ;
     	
     	var message = new Message('Next');
     	message.current = currentQ;
