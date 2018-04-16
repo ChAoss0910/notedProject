@@ -81,8 +81,6 @@ public class ValidateLogin extends HttpServlet {
 		if (check) {
 			session.setAttribute("currentUser", username.toLowerCase());
 			
-			System.out.println("CHECK");
-			
 			// Direct to empty search result page 
 			String query = "intitle:";
 			

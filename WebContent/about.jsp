@@ -61,8 +61,20 @@
 	        <li><a href=<%= toAbout %>>About</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right" id="right-nav">
-	      	<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
-     		<a id="myProfile" href=<%=pass%>><img src=<%= profilePic %> /></a>
+	      	<% if (guest) { %>
+	        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+	     	<% } else { %>
+	     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+				<div class="dropdown show">
+				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <img src=<%= profilePic %> width="100%"/>
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="profileButton">
+				    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
+				    <a class="dropdown-item" href="homepage.jsp">Log Out</a>
+				  </div>
+				</div>
+	     	<% } %>
 	      </ul>
 	    </div>
 	  </div>

@@ -75,7 +75,7 @@
 			    			<input type="text" class="form-control" id="loginUsername" name ="username" value=<%=username%>>
 			    		<% } %>
 			    		<% if (name_err != null) { %>
-			    			<div class="error-msg">Please enter a username</div>
+			    			<div class="error-msg">Please enter your username</div>
 			    		<% } else { %>
 			    			<br>
 			    		<% } %>
@@ -88,7 +88,7 @@
 			  				<input type="password" class="form-control" id="loginPassword" name="password" value=<%=password%>>
 			  			<% } %>
 			  			<% if (password_err != null) { %>
-			  				<div class="error-msg">Please enter a password</div>
+			  				<div class="error-msg">Please enter your password</div>
 			  			<% } %>
 			  			<% if (login_err != null) { %>
 			  				<div class="error-msg">Incorrect password</div>
