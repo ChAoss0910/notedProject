@@ -118,7 +118,7 @@
 			<table class="table">
 			<thead>
 				<tr>
-          			<th>Question #1: Who's the professor for CS-201?
+          			<th><div id="questionDisplay">Question #1: Who's the professor for CS-201?</div>
    			 </thead>
 			<tbody>
 				<tr><td><button onclick="updateChoice(1);" id="choice1" class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
@@ -346,11 +346,13 @@
 		var question = json.content;
 		var options = json.options;
 		
+		document.getElementById('questionDisplay').innerText = question;
+		
 		//updates four options
-		option1 = options[0];
-		option2 = options[1];
-		option3 = options[2];
-		option4 = options[3];
+		document.getElementById('choice1').innerText = options[0];
+		document.getElementById('choice2').innerText = options[1];
+		document.getElementById('choice3').innerText = options[2];
+		document.getElementById('choice4').innerText = options[3];
 		
 	}
 	
