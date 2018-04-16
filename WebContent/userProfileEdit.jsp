@@ -1,3 +1,7 @@
+<%@page import="notedProject.Course"%>
+<%@page import="notedProject.Question"%>
+<%@page import="notedProject.Note"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="notedProject.User"%>
 <%@page import="notedProject.LoadDatabase"%>
 <%@page import="java.io.InputStream"%>
@@ -19,6 +23,8 @@
 	
 	<title>noted | edit profile</title>
 	<%
+	int type = -1;
+	
 	String username = request.getParameter("username");
 	String profilePic = request.getParameter("url");
 
@@ -27,21 +33,41 @@
 	String fName = u.getFirstName();
 	String lName = u.getLastName();
 	ArrayList<Note> savedNotes = u.getNotes();
+	ArrayList<Question> savedQues = u.getQuestions();
+	ArrayList<Course> savedCourses = u.getCourses();
 	
-	int type = -1;
-	
-	String[] notesLinks = {"#", "#", "#"};
-	String[] notesTitles = {"Networking", "Threading", "Synchronization"};
-	String[] notesClasses = {"CSCI-201","CSCI-201","CSCI-201"};
-	String[] notesDates = {"1/1","2/14","4/2"};
-	int numNotes = notesLinks.length;
-	String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
-	int numQuestions = questions.length;
+	String[] notesLinks = {};
+	String[] notesTitles = {};
+	String[] notesClasses = {};
+	String[] notesDates = {};
+	int numNotes = savedNotes.size();
+	for (int i = 0; i < numNotes; i++){
+		Note n = savedNotes.get(i);
+		notesLinks[i] = "#";
+		notesTitles[i] = n.getTitle();
+		notesClasses[i] = n.getClassTitle();
+	}
+	/* String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
 	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
-	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"};
-	String[] classLinks = {"#", "#"};
-	String[] classTitles = {"CSCI-201","CSCI-270"};
-	int numClasses = classLinks.length;
+	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"}; */
+	String[] questions = {};
+	String[] classes = {};
+	String[] answers = {};
+	int numQuestions = savedQues.size();
+	for (int i = 0; i < numQuestions; i++){
+		Question q = savedQues.get(i);
+		questions[i] = q.getTitle();
+		classes[i] = q.getClass().getName();
+		answers[i] = q.getStringAnswer();
+	}
+	String[] classLinks = {};
+	String[] classTitles = {};
+	int numClasses = savedCourses.size();
+	for (int i = 0; i < numClasses; i++){
+		Course c = savedCourses.get(i);
+		classLinks[i] = "#";
+		classTitles[i] = c.GetTitle();
+	}
 	%>
 	<script>
 	$(document).ready(function() {
