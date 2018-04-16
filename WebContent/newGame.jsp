@@ -64,6 +64,29 @@
 			height: 40px;
 			border-radius: 20%; 
 		}
+		#profileButton {
+			background-color: #262626;
+			height: 50px;
+			width: 50px;
+			padding: 0px;
+			outline: 0;
+		}
+		#profileButton:focus, #profileButton:active {
+		   outline: none;
+		   border: orange; 
+		   box-shadow: none;
+		}
+		.dropdown-menu, .dropdown-item {
+			width: 70px;
+			color: orange;
+			text-align: center; 
+			width: 10px;
+		}
+		.dropdown-item:hover {
+			text-decoration: none; 
+			font-weight: bold;
+			color: orange;
+		} 
 	</style>
 </head>
 <body>	
