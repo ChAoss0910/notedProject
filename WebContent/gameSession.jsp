@@ -128,9 +128,9 @@
 	//-----------------------Quiz UX----------------------------------//
 	
 	//Global Variables
-	/* var gameroom;
+	var gameroom;
 	var roomname;
-	var currQ; */
+	var currQ;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
 	var option1 = "This is sample option 1";
