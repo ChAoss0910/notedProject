@@ -26,6 +26,9 @@ public class Question {
 	public int getAnswer() {
 		return this.answer;
 	}
+	public String getStringAnswer() {
+		return options.get(answer);
+	}
 	public void addOption(String m) {
 		options.add(m);
 	}
