@@ -273,7 +273,6 @@
     
     function sendInitialMessage() {
     	var numPlayer = 1;
-    	var roomName = 'Testing';
     	
     	var message = new Message('Start');
     	message.classTitle = classTitle;
