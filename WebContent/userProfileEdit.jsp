@@ -130,6 +130,9 @@
 		.col-sm-4 {
 			text-align: center;
 		}
+		#picture {
+			padding-top: 20px;
+		}
 		#picture img {
 			width:80%;
 			border-radius: 10%;
