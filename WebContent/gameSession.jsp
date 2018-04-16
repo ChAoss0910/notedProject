@@ -119,10 +119,10 @@
           			<th>Question #1: Who's the professor for CS-201?
    			 </thead>
 			<tbody>
-				<tr><td><button id="choice1" class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
-				<tr><td><button id="choice2" class="btn btn-block btn-default editbtn">Choice #2</button></td></tr>
-				<tr><td><button id="choice3" class="btn btn-block btn-default editbtn">Choice #3</button></td></tr>
-				<tr><td><button id="choice4" class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
+				<tr><td><button onclick="updateChoice(1);" id="choice1" class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
+				<tr><td><button onclick="updateChoice(2);" id="choice2" class="btn btn-block btn-default editbtn">Choice #2</button></td></tr>
+				<tr><td><button onclick="updateChoice(3);" id="choice3" class="btn btn-block btn-default editbtn">Choice #3</button></td></tr>
+				<tr><td><button onclick="updateChoice(4);" id="choice4" class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
 			</tbody>
 			</table>
 		</div>
@@ -149,25 +149,205 @@
 	
 	//-----------------------Quiz UX----------------------------------//
 	
-	//Timer UI
+	//Global Variables
+	/* var gameroom;
+	var roomname;
+	var currQ; */
+	
+	var choice = 0; //always initialized to 0; changes based on the user's answer
+	var option1 = "This is sample option 1";
+	var option2 = "This is sample option 2";
+	var option3 = "This is sample option 3";
+	var option4 = "This is sample option 4";
+	
+	//When an option is clicked, the choice is updated and stored
+	
+	function updateChoice(choiceVal){
+		choice = choiceVal;
+	}
+	
+	//Quiz Frame Answer Chosen
 	$(document).ready(function(){
     	$('.editbtn').click(function(){
+    		
         	console.log("Time left: ");
         	console.log(timeleft);
-        	alert("Answered in " + timeleft + " seconds.");
+        	alert("Answered: " + choice + " in " + timeleft + " seconds.");
+        	
+        	//sends answer to Game Server
+        	sendAnswerMessage(choice, time);
         	
     	});
 	});
 	
 	//Choices
 	$(document).ready(function(){
-    		document.getElementById('choice1').innerText = 'This is option 1';
-    		document.getElementById('choice2').innerText = 'This is option 2';
-    		document.getElementById('choice3').innerText = 'This is option 3';
-    		document.getElementById('choice4').innerText = 'This is option 4';
+    		document.getElementById('choice1').innerText = option1;
+    		document.getElementById('choice2').innerText = option2;
+    		document.getElementById('choice3').innerText = option3;
+    		document.getElementById('choice4').innerText = option4;
 	});
 	
-	//-----------------------Helper Functions--------------------------//
+	//-----------------------Helper Functions (Networking) --------------------------//
+
+	var webSocket = 
+	    new WebSocket('ws://localhost:8080/notedProject/actions');
+
+	    webSocket.onerror = function(event) { 
+	      onError(event);
+	    };
+
+	    webSocket.onopen = function(event) {
+	      onOpen(event);
+	    };
+
+	    webSocket.onmessage = function(event) {
+	      onMessage(event);
+	    };
+	    
+	    webSocket.onclose = function(event) {
+	    	alert('Closed connection');
+	    }
+	
+	function onOpen(event) {
+	      alert('Connection established');
+	}
+
+	function onError(event) {
+	      alert('Error');
+	}
+	
+    function onMessage(event) {
+        var json = JSON.parse(event.data); 
+        var type = json.type; 
+        
+        switch (type) {
+        case ('Initialize') :
+        	HandleInitialize(json);
+        	break;
+        case ('Waiting') :
+        	HandleWaiting(json);
+        	break;
+        case ('StartGame') :
+        	HandleStartGame(json);
+        	break;
+        case ('NextQues') :
+        	HandleNextQues(json);
+        	break;
+        case ('EndGame') :
+        	HandleEndGame(json);
+        	break;
+        }
+        
+        /*  
+        	Testing purpose display
+        */
+        document.getElementById('messages').innerHTML 
+        += '<br />Received server response!'
+        + '<br />Type: ' + json.type
+        + '<br />Content: ' + json.content;
+        
+        if (type == 'StartResponse') {
+        	document.getElementById('messages').innerHTML
+        	+= '<br />Starting game';
+        }
+        document.getElementById('messages').innerHTML
+        += '<br />';
+       
+    }
+    
+    
+    
+    function Message(type) {
+    	this.type = type;
+    	this.content = '';
+    }
+    
+    
+    function sendInitialMessage() {
+    	var numPlayer = 1;
+    	var roomName = 'Testing';
+    	var classTitle = document.getElementById('classTitle').value;
+    	
+    	var message = new Message('Start');
+    	message.classTitle = classTitle;
+    	message.roomName = roomName;
+    	message.num = numPlayer.toString();
+    	message.soj = 'start';
+    	
+    	webSocket.send(JSON.stringify(message));
+    }
+    
+    function sendJoinMessage() {
+    	var roomName = 'dummyRoom';
+    	var classTitle = 'dummytitle';
+    	
+    	var message = new Message('Join');
+    	message.roomName = roomName;
+    	message.classTitle = classTitle;
+    	message.soj = 'Join';
+    	
+    	webSocket.send(JSON.stringify(message));
+    }
+    
+    /* 
+    	Called whenever the player hasn't got the correct choice and answered again
+    */
+    function sendAnswerMessage(answer, time) {
+    	var currentQ = 1;
+    	
+    	var message = new Message('Answer');
+    	message.current = currentQ;
+    	message.choice = answer;
+    	message.time = time;
+    	
+    	webSocket.send(JSON.stringify(message));
+    }
+    
+    /* 
+    	Called whenever the timer is for previous question is out
+    */
+    function sendNextQuesMessage() {
+    	var currentQ = 3;
+    	var roomName = 'Testing';
+    	
+    	var message = new Message('Next');
+    	message.current = currentQ;
+    	message.roomName = roomName;
+    	
+    	webSocket.send(JSON.stringify(message));
+    }
+    
+	function HandleInitialize(json) {
+		
+	}
+	
+	function HandleWaiting(json) {
+		
+	}
+	
+	function HandleEndGame(json) {
+		
+	}
+	
+	function HandleStartGame(json) {
+		sendNextQuesMessage();
+	}
+	
+	function HandleNextQues(json) {
+		/*
+			question is String; options is String array
+		*/
+		var question = json.content;
+		var options = json.options;
+		
+		//updates four options
+		option1 = options[0];
+		option2 = options[1];
+		option3 = options[2];
+		option4 = options[3];
+		
+	}
 	
 	
 	</script>
