@@ -171,7 +171,7 @@
 			</p>
 			
 			<div>
-	    		<a style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg"  id="submit-button" href="#" role="button">New Game</a>
+	    		<a style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg"  id="submit-button" href=<%=toNewGame%> role="button">New Game</a>
 			</div>
 		  </div>
 		</div>

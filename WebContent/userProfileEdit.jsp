@@ -26,6 +26,7 @@
 	User u = db.getUser(username);
 	String fName = u.getFirstName();
 	String lName = u.getLastName();
+	ArrayList<Note> savedNotes = u.getNotes();
 	
 	int type = -1;
 	
