@@ -16,10 +16,14 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	  <%
-  		String username = (String) request.getAttribute("username");
-	  	String profilePic = (String) request.getAttribute("url"); 
 	  	boolean guest = true;
+  		String username = (String) request.getAttribute("username");
+	  	String profilePic = ""; 
 	  	
+	  	profilePic = request.getParameter("url");
+	  	System.out.println("here:"+username+" "+profilePic);
+	  	
+	  	profilePic = (String) request.getAttribute("url");
 	  	System.out.println("here:"+username+" "+profilePic);
 	  	
 	  	if (username == null){
