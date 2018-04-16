@@ -1,4 +1,4 @@
-package TestGame;
+package notedProject;
 
 import java.util.HashMap;
 
