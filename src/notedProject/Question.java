@@ -18,6 +18,11 @@ public class Question {
 	public ArrayList<String> getOptions() {
 		return this.options;
 	}
+	
+	public void SetAnswer(int answer) {
+		this.answer = answer;
+	}
+	
 	public int getAnswer() {
 		return this.answer;
 	}

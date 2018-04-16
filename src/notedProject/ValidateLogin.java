@@ -57,15 +57,16 @@ public class ValidateLogin extends HttpServlet {
 		request.setAttribute("url", url);
 		System.out.println("picture"+url);
 		
-		if(logincheck)
+		if(logincheck) {
 			System.out.println("true");
-		else
+		}
+		else {
 			System.out.println("false");
+		}
 		if (username == "") {
     			request.setAttribute("name_err", "Please enter Username");
     			forward = "/login.jsp";
     			check = false;
-    			
 		}
 		if (password == "") {
     			request.setAttribute("password_err", "Please enter Password");
@@ -88,7 +89,8 @@ public class ValidateLogin extends HttpServlet {
 //				Volumes volumes = bResult.getSearchResult(query);
 				
 				//output result
-				String page = "joinGame.jsp?username="+username+"&url="+profilePic;
+				String page = "/joinGame.jsp?username="+username+"&url="+url;
+				forward = "/joinGame.jsp?username="+username+"&url="+url;
 //				session.setAttribute("result", volumes);
 				
 //				System.out.println(volumes.getTotalItems());					

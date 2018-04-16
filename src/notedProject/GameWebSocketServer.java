@@ -1,10 +1,11 @@
-package TestGame;
+package notedProject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import java.util.function.Predicate;
 
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
@@ -172,11 +173,15 @@ public class GameWebSocketServer {
 		q1.addOption("Option1");
 		q1.addOption("Option2");
 		q1.addOption("Option3");
+		q1.addOption("Option4");
+		q1.SetAnswer(2);
 		
 		Question q2 = new Question("DummyQuestion2");
-		q2.addOption("Option1");
-		q2.addOption("Option2");
-		q2.addOption("Option3");
+		q2.addOption("Option5");
+		q2.addOption("Option6");
+		q2.addOption("Option7");
+		q2.addOption("Option8");
+		q2.SetAnswer(3);
 		
 		qPool.add(q1);
 		qPool.add(q2);
@@ -307,7 +312,7 @@ public class GameWebSocketServer {
 			if (true) {
 				// Still has questions left in quiz
 				response.SetType("NextQues");
-				Question question = quiz.GetNextQuestion();
+				Question question = quiz.GetQuestionById(current);
 				response.SetContent(question.getTitle());
 				List<String> options = question.getOptions();
 				for (String option : options) {

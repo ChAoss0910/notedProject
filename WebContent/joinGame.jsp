@@ -16,25 +16,30 @@
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	  <%
-  		String username = (String) request.getAttribute("username");
-	  	String profilePic = (String) request.getAttribute("url"); 
 	  	boolean guest = true;
-	  	
-	  	System.out.println("here:"+username+" "+profilePic);
-	  	
-	  	if (username == null){
-	  		username = request.getParameter("username");
-			profilePic = request.getParameter("url");
-			
-			if (username == null){
-			} else {
-				if (!username.equalsIgnoreCase("")){
-					guest = false;
+  		String username = (String) request.getAttribute("username");
+	  	String profilePic = ""; 
+	  			
+	  	try {
+			LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
+			User u = database.getUser(username);
+			profilePic = u.getPicURL();
+			guest = false;
+	  	} catch (NullPointerException npe){
+	  		if (username == null){
+		  		username = request.getParameter("username");
+				profilePic = request.getParameter("url");
+				
+				if (username == null){
+				} else {
+					if (!username.equalsIgnoreCase("")){
+						guest = false;
+					}
 				}
-			}
-	  	} else {
-	  		guest = false;
-	  	}
+		  	} else {
+		  		guest = false;
+		  	}
+	  	} finally { }
   	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -91,9 +96,15 @@
 		        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 		     	<% } else { %>
 		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
-		     		<a id="myProfile" href=<%=pass%>>
-		     			<img src=<%= profilePic %> />
-		     		</a>
+					<div class="dropdown show">
+					  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <img src=<%= profilePic %> width="100%"/>
+					  </a>
+					  <div class="dropdown-menu" aria-labelledby="profileButton">
+					    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
+					    <a class="dropdown-item" href="homepage.jsp">Log Out</a>
+					  </div>
+					</div>
 		     	<% } %>
 		      </ul>
 		    </div>

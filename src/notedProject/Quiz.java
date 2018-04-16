@@ -74,6 +74,14 @@ public class Quiz {
 		}
 	}
 	
+	public Question GetQuestionById(int id) {
+		if (id <= qList.size()) {
+			return qList.get(id - 1);
+		} else {
+			return null;
+		}
+	}
+	
 	public int GetQuizSize() {
 		return qList.size();
 	}
