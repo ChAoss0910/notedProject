@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="mongodb-driver-3.6.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="mongodb-driver-3.6.3.jar"/>
 	<classpathentry kind="lib" path="mongodb-driver-core-3.6.3.jar"/>
-	<classpathentry kind="lib" path="notedProject/bson-3.6.3.jar"/>
 	<classpathentry kind="lib" path="bson-3.6.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.json-1.0.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.json-api-1.0.jar"/>
