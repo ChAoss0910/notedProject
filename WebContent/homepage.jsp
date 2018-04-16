@@ -69,9 +69,6 @@
 			font-weight: bold;
 			color: orange;
 		}
-		#myProfile:hover {
-		
-		}
   	</style> 
 	</head>
 	<body>

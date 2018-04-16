@@ -77,14 +77,14 @@ public class User implements Serializable {
 	public String getPicURL() {
 		return this.picURL;
 	}
-	public Note getNote(int i) {
-		return this.savedNotes.get(i);
+	public ArrayList<Note> getNotes() {
+		return this.savedNotes;
 	}
-	public Question getQuestion(int i) {
-		return this.savedQuestions.get(i);
+	public ArrayList<Question> getQuestions() {
+		return this.savedQuestions;
 	}
-	public Course getCourses(int i) {
-		return this.savedCourses.get(i);
+	public ArrayList<Course> getCourses() {
+		return this.savedCourses;
 	}
 	
 	/* REMOVE */

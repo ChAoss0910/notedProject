@@ -26,6 +26,7 @@
 	User u = db.getUser(username);
 	String fName = u.getFirstName();
 	String lName = u.getLastName();
+	ArrayList<Note> savedNotes = u.getNotes();
 	
 	int type = -1;
 	
@@ -95,6 +96,30 @@
 			height: 40px;
 			border-radius: 20%; 
 		}
+		#profileButton {
+			background-color: #262626;
+			height: 50px;
+			width: 50px;
+			padding: 0px;
+			outline: 0;
+		}
+		#profileButton:focus, #profileButton:active {
+		   outline: none;
+		   border: orange; 
+		   box-shadow: none;
+		}
+		.dropdown-menu, .dropdown-item {
+			width: 70px;
+			color: orange;
+			text-align: center; 
+			width: 10px;
+		}
+		.dropdown-item:hover {
+			text-decoration: none; 
+			font-weight: bold;
+			color: orange;
+		}
+		
 		.col-sm-2,.col-sm-3 {
 			margin: 0px 2px;
 			text-align: left;
@@ -105,6 +130,9 @@
 		}
 		.col-sm-4 {
 			text-align: center;
+		}
+		#picture {
+			padding-top: 20px;
 		}
 		#picture img {
 			width:80%;
