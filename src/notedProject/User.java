@@ -24,7 +24,7 @@ public class User implements Serializable {
 		this.name = new Name(fName, lName);
 		this.password = password;
 		this.picURL = url;
-		System.out.println("url:"+picURL);
+//		System.out.println("url:"+picURL);
 		this.savedNotes = new ArrayList<Note>();
 		this.savedQuestions = new ArrayList<Question>();
 		this.savedCourses = new ArrayList<Course>();

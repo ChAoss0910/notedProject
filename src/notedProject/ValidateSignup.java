@@ -39,7 +39,7 @@ public class ValidateSignup extends HttpServlet {
 		
 		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
 		String path = getServletContext().getRealPath("/database.json");
-		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
+		LoadDatabase loadDatabase = new LoadDatabase(path);
 		loadDatabase.writeData();
 		HttpSession session = request.getSession();
 		session.setAttribute("database", loadDatabase);
@@ -117,8 +117,8 @@ public class ValidateSignup extends HttpServlet {
 					System.err.println(e.getMessage());
 				}
 			}
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
-		dispatch.forward(request,response);
+//		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
+//		dispatch.forward(request,response);
 	}
 
 }

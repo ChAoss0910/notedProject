@@ -41,21 +41,18 @@ public class ValidateLogin extends HttpServlet {
 		request.setAttribute("username", username);
 		request.setAttribute("password", password);
 		
-		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
-		String path = getServletContext().getRealPath("/database.json");
-		LoadDatabase loadDatabase = new LoadDatabase(jsonPath, path);
-		loadDatabase.writeData();
-		HttpSession session = request.getSession();
+//		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
+//		String path = getServletContext().getRealPath("/database.json");
+		LoadDatabase loadDatabase = new LoadDatabase("database.json");
+//		loadDatabase.writeData();
+		HttpSession session = request.getSession(false);
 		session.setAttribute("database", loadDatabase);
 		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		boolean check = true;
 		boolean logincheck = database.CheckLogin(username, password);
 		
-		User u = database.getUser(username);
-		String url = u.getPicURL();
-		request.setAttribute("url", url);
-		System.out.println("picture"+url);
+		
 		
 		if(logincheck) {
 			System.out.println("true");
@@ -79,6 +76,11 @@ public class ValidateLogin extends HttpServlet {
 			check = false;
 		}
 		if (check) {
+			User u = database.getUser(username);
+			String url = u.getPicURL();
+			
+			request.setAttribute("url", url);
+			System.out.println("picture"+url);
 			session.setAttribute("currentUser", username.toLowerCase());
 			
 			// Direct to empty search result page 

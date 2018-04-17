@@ -1,8 +1,10 @@
 package notedProject;
 
 import java.io.Reader;
+
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import java.io.FileInputStream;
@@ -16,25 +18,54 @@ import java.io.InputStreamReader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
 
 public class LoadDatabase {
-	private List<Course> courses;
-	private List<User> users;
+//	private List<Course> courses;
+//	private List<User> users;
 	
 	private String path;
 	private DummyDatabase database;
-	
+	public Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	 private DBCollection userColl;
+	 private DBCollection courseColl;
+	 
 	public LoadDatabase(String filePath) {
 		path = filePath;
-		courses = new ArrayList<Course>();
-		users = new ArrayList<User>();
+//		courses = new ArrayList<Course>();
+//		users = new ArrayList<User>();
+		
 		try {
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		       
+	         // connect to database
+//	         MongoDatabase mongoDatabase = mongoClient.getDatabase("Noted");  
+	         DB db= mongoClient.getDB("Noted");
+	        userColl = db.getCollection("Users");
+	        courseColl = db.getCollection("Courses");
+	    
 			InputStream inputStream = new FileInputStream(path);
 			Reader reader = new InputStreamReader(inputStream);
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			
 			database = gson.fromJson(reader, DummyDatabase.class);
-			users = database.users;
-			courses = database.courses;
+//			users = database.users;
+//			courses = database.courses;
+//			for(Course each:courses) {
+//				DBObject dbObject = (DBObject) JSON.parse(gson.toJson(each)); 
+//				courseColl.insert(dbObject);
+//			}
+			DBCursor findIterable = courseColl.find();  
+		       Iterator<DBObject> mongoCursor = findIterable.iterator();  
+		       while(mongoCursor.hasNext()){  
+		          System.out.println(mongoCursor.next());  
+		       }  
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,19 +74,7 @@ public class LoadDatabase {
 	}
 	
 	
-	public LoadDatabase(InputStream content, String filePath) {
-		
-		this.path = filePath;
-		InputStream inputStream = content;
-		
-		courses = new ArrayList<Course>();
-		users = new ArrayList<User>();
-		
-		Reader reader = new InputStreamReader(inputStream);
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		database = gson.fromJson(reader, DummyDatabase.class);
-		users = database.users;
-	}
+//	
 	
 	public void writeData() {
 		try (Writer writer = new FileWriter(path)) {
@@ -72,18 +91,31 @@ public class LoadDatabase {
 	
 	public boolean CheckUserExist(String uName) {
 		boolean check = false;
-		for (User u: users) {
+		DBCursor cursor= userColl.find();  
+		while(cursor.hasNext()) {
+			DBObject obj=cursor.next();
+        	
+			User u=gson.fromJson(obj.toString(), User.class);
+			System.out.println(u.getUsername());
 			if (u.getUsername().equals(uName)) {
 				check = true;
 			}
+			
 		}
+//		for (User u: users) {
+//			DBObject dbObject = (DBObject) JSON.parse(gson.toJson(u));
+//			if (u.getUsername().equals(uName)) {
+//				check = true;
+//			}
+//		}
 		return check;
 	}
 	
 	public boolean AddUser(String username, String fname, String lname, String password, String email, String url) {
 		User temp = new User(username, lname, fname, password, email, url);
-		users.add(temp);
-		writeData();
+		 DBObject dbObject = (DBObject) JSON.parse(gson.toJson(temp));
+		 userColl.insert(dbObject);
+
 		return true;
 	}
 	
@@ -102,9 +134,12 @@ public class LoadDatabase {
 		return GetUser(username);
 	}
 	public void printUsers() {
-		for (int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i).getUsername()+": "+users.get(i).getPicURL());
-		}
+		DBCursor findIterable = userColl.find();  
+	    Iterator<DBObject> mongoCursor = findIterable.iterator();  
+	    while(mongoCursor.hasNext()){  
+	    		User u=gson.fromJson(mongoCursor.next().toString(), User.class);
+	        System.out.println(u.getUsername()+" "+u.getEmail());  
+	    }  
 	}
 	
 	/**
@@ -112,12 +147,17 @@ public class LoadDatabase {
 	 * @return User by username; null if user not exist
 	 */
 	private User GetUser(String uName) {
-		
 		User temp = null;
-		for (User u: users) {
+		DBCursor cursor= userColl.find();  
+		while(cursor.hasNext()) {
+			DBObject obj=cursor.next();
+        	//Deserialization
+			User u=gson.fromJson(obj.toString(), User.class);
+//			System.out.println(u.getUsername());
 			if (u.getUsername().equalsIgnoreCase(uName)) {
 				temp = u;
 			}
+			
 		}
 		return temp;
 	}
@@ -143,8 +183,12 @@ public class LoadDatabase {
 	
 	public boolean CheckCourseByTitle(String title) {
 		boolean check = false;
-		for (Course course : courses) {
-			if (course.GetTitle().equals(title)) {
+		DBCursor cursor= courseColl.find();  
+		
+		while(cursor.hasNext()) {
+			DBObject obj=cursor.next();
+			Course c=gson.fromJson(obj.toString(), Course.class);
+			if (c.GetTitle().equals(title)) {
 				check = true;
 			}
 		}
@@ -153,10 +197,13 @@ public class LoadDatabase {
 	
 	public Course GetCourseByTitle(String title) {
 		Course temp = null;
-		if (CheckCourseByTitle(title)) {
-			for (Course course : courses) {
-				if (course.GetTitle().equals(title)) {
-					temp = course;
+		DBCursor cursor= courseColl.find();  
+		if(CheckCourseByTitle(title)) {  
+			while(cursor.hasNext()) {
+				DBObject obj=cursor.next();
+				Course c=gson.fromJson(obj.toString(), Course.class);
+				if (c.GetTitle().equals(title)) {
+					temp = c;
 				}
 			}
 		}
