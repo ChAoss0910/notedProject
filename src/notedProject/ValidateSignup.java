@@ -101,7 +101,12 @@ public class ValidateSignup extends HttpServlet {
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}
-			}
+		}
+		else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+			dispatcher.forward(request, response);
+		}
+		
 	}
 
 }
