@@ -146,7 +146,6 @@
 	<script>
 	//-------------------------TIMER-----------------------------------//
 	function countdown() {
-	    // your code goes here
 	    
 	    var count = 10;
 	    var timerId = setInterval(function() {
@@ -154,7 +153,12 @@
 	        document.getElementById("progressBar").value = 10 - count;
 
 	        if(count == 0) {
-	            // your code goes here
+	        	 //Enable buttons
+	    	    document.getElementById('choice1').disabled = false;
+	        	document.getElementById('choice2').disabled = false;
+	        	document.getElementById('choice3').disabled = false;
+	        	document.getElementById('choice4').disabled = false;
+	        	
 	            currQ++;
 	            sendNextQuesMessage();
 	            
@@ -181,6 +185,7 @@
 	var option3 = "This is sample option 3";
 	var option4 = "This is sample option 4";
 	
+	
 	countdown();
 	
 	//When an option is clicked, the choice is updated and stored
@@ -197,6 +202,12 @@
     	
     	currQ++;
     	console.log("CurrentQuestion ID is: "  +currQ);
+    	
+    	//Disable all buttons
+    	document.getElementById('choice1').disabled = true;
+    	document.getElementById('choice2').disabled = true;
+    	document.getElementById('choice3').disabled = true;
+    	document.getElementById('choice4').disabled = true;
 	}
 	
 	//Quiz Frame Answer Chosen
@@ -224,10 +235,6 @@
 	});
 	
 	//-----------------------Helper Functions (Networking) --------------------------//
-	
-	function refreshPage(){
-	    window.location.reload();
-	} 
 
 	var webSocket = 
 	    new WebSocket('ws://localhost:8080/notedProject/actions');
@@ -304,7 +311,7 @@
     
     
     function sendInitialMessage() {
-    	var numPlayer = 1;
+    	var numPlayer = 2;
     	
     	var message = new Message('Start');
     	message.classTitle = classTitle;
