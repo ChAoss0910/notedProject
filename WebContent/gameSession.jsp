@@ -113,7 +113,7 @@
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
-			<button onclick="sendInitialMessage(); gameStartFunc();" class="btn">Start Game</button>
+			<button id="startButton" onclick="sendInitialMessage(); gameStartFunc();" class="btn">Start Game</button>
 			
 			<table class="table">
 			<thead>
@@ -167,8 +167,6 @@
 	
 	
 	//-----------------------Quiz UX----------------------------------//
-	//This works
-	var gameStarted = false;
 	
 	//Global Variables
 	var gameRoom = "Game Room 1";
@@ -224,7 +222,7 @@
 	//-----------------------Helper Functions (Networking) --------------------------//
 	
 	function gameStartFunc(){
-		gameStarted = true;
+		document.getElementById('startButton').disabled = true;
 		countdown();
 	}
 
