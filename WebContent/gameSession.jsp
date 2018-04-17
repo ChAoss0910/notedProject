@@ -149,7 +149,6 @@
 	function countdown() {
 	    // your code goes here
 	    
-	    
 	    var count = 10;
 	    var timerId = setInterval(function() {
 	        count--;
@@ -196,7 +195,6 @@
     	
     	currQ++;
     	console.log("CurrentQuestion ID is: "  +currQ);
-    	sendNextQuesMessage();
 	}
 	
 	//Quiz Frame Answer Chosen
