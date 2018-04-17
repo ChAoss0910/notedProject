@@ -3,6 +3,10 @@ package notedProject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
+
 //Serializable needed
 
 public class User implements Serializable {
@@ -17,7 +21,8 @@ public class User implements Serializable {
 	private ArrayList<Note> savedNotes;
 	private ArrayList<Question> savedQuestions;
 	private ArrayList<Course> savedCourses;
-	
+	LoadDatabase database = new LoadDatabase();
+	Gson gson = new Gson();
 	public User(String username, String lName, String fName, String password, String email, String url) {
 		this.username = username;
 		this.email = email;
@@ -89,12 +94,21 @@ public class User implements Serializable {
 	
 	/* REMOVE */
 	public void removeNote(int i) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedNotes.remove(i);
+		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+		database.courseColl.update(preObj, newObj);
 	}
 	public void removeQuestion(int i) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedQuestions.remove(i);
+		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+		database.courseColl.update(preObj, newObj);
 	}
 	public void removeCourse(int i) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedCourses.get(i);
+		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+		database.courseColl.update(preObj, newObj);
 	}
 }

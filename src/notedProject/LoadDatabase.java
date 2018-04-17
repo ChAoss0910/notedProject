@@ -33,8 +33,8 @@ public class LoadDatabase {
 	private String path;
 	private DummyDatabase database;
 	public Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	 private DBCollection userColl;
-	 private DBCollection courseColl;
+	 public DBCollection userColl;
+	 public DBCollection courseColl;
 	 
 	public LoadDatabase() {
 		

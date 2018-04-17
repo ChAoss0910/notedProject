@@ -59,16 +59,19 @@ public class ValidateLogin extends HttpServlet {
     			request.setAttribute("name_err", "Please enter Username");
     			forward = "/login.jsp";
     			check = false;
+    			
 		}
 		if (password == "") {
     			request.setAttribute("password_err", "Please enter Password");
     			forward = "/login.jsp";
     			check = false;
+    			
 		}
 		if (username != "" && password != "" && !logincheck) {
 			forward = "/login.jsp";
 			request.setAttribute("login_err", "Login failed");
 			check = false;
+			
 		}
 		if (check) {
 			User u = database.getUser(username);
@@ -80,9 +83,9 @@ public class ValidateLogin extends HttpServlet {
 			
 			try {
 				//output result
-				String page = "/joinGame.jsp?username="+username+"&url="+url;
-				forward = "/joinGame.jsp?username="+username+"&url="+url;				
-				RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+				forward = "/joinGame.jsp?username="+username+"&url="+url;
+//				forward = "/joinGame.jsp?username="+username+"&url="+url;				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
 				
 				if (dispatcher != null){
 					dispatcher.forward(request, response);
@@ -91,6 +94,11 @@ public class ValidateLogin extends HttpServlet {
 				// TODO Auto-generated catch block
 				System.err.println(e.getMessage());
 			}
+			
+		}
+		else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+			dispatcher.forward(request, response);
 		}
 
 	}
