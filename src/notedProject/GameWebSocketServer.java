@@ -107,6 +107,11 @@ public class GameWebSocketServer {
 	
 	
 	
+	private void HandleRoomRequest(Message message, Session session) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Handle Answer message, add answer if empty, update answer if exist
 	 * @param message
