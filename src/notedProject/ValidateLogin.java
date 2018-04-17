@@ -43,7 +43,7 @@ public class ValidateLogin extends HttpServlet {
 		
 //		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
 //		String path = getServletContext().getRealPath("/database.json");
-		LoadDatabase loadDatabase = new LoadDatabase("database.json");
+		LoadDatabase loadDatabase = new LoadDatabase();
 //		loadDatabase.writeData();
 		HttpSession session = request.getSession(false);
 		session.setAttribute("database", loadDatabase);

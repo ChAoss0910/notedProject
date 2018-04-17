@@ -27,8 +27,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 
 public class LoadDatabase {
-//	private List<Course> courses;
-//	private List<User> users;
+	private List<Course> courses;
+	private List<User> users;
 	
 	private String path;
 	private DummyDatabase database;
@@ -36,41 +36,18 @@ public class LoadDatabase {
 	 private DBCollection userColl;
 	 private DBCollection courseColl;
 	 
-	public LoadDatabase(String filePath) {
-		path = filePath;
-//		courses = new ArrayList<Course>();
-//		users = new ArrayList<User>();
+	public LoadDatabase() {
 		
-		try {
-			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		       
-	         // connect to database
-//	         MongoDatabase mongoDatabase = mongoClient.getDatabase("Noted");  
-	         DB db= mongoClient.getDB("Noted");
-	        userColl = db.getCollection("Users");
-	        courseColl = db.getCollection("Courses");
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 ); 
+	    DB db= mongoClient.getDB("Noted");
+	    userColl = db.getCollection("Users");
+	    courseColl = db.getCollection("Courses");
 	    
-			InputStream inputStream = new FileInputStream(path);
-			Reader reader = new InputStreamReader(inputStream);
-			
-			database = gson.fromJson(reader, DummyDatabase.class);
-//			users = database.users;
-//			courses = database.courses;
-//			for(Course each:courses) {
-//				DBObject dbObject = (DBObject) JSON.parse(gson.toJson(each)); 
-//				courseColl.insert(dbObject);
-//			}
-			DBCursor findIterable = courseColl.find();  
-		       Iterator<DBObject> mongoCursor = findIterable.iterator();  
-		       while(mongoCursor.hasNext()){  
-		          System.out.println(mongoCursor.next());  
-		       }  
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		DBCursor findIterable = userColl.find();  
+		Iterator<DBObject> mongoCursor = findIterable.iterator();  
+		while(mongoCursor.hasNext()){  
+			System.out.println(mongoCursor.next());  
 		}
-		
 	}
 	
 	
