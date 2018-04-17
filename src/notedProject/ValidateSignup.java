@@ -38,7 +38,6 @@ public class ValidateSignup extends HttpServlet {
 		request.setAttribute("url", url);
 		
 		LoadDatabase loadDatabase = new LoadDatabase();
-		loadDatabase.writeData();
 		HttpSession session = request.getSession();
 		session.setAttribute("database", loadDatabase);
 		
@@ -46,10 +45,7 @@ public class ValidateSignup extends HttpServlet {
 		// Sign up check
 		boolean check = true;
 		boolean logincheck = database.CheckLogin(username, password);
-//		HttpSession session = request.getSession(false);
-//		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
-		
-//		boolean check = true;
+
 		
 		if (firstName == "" || lastName == "") {
 			request.setAttribute("name_err", "Please enter your first and last name");
@@ -89,23 +85,14 @@ public class ValidateSignup extends HttpServlet {
 					
 		if (check) {
 			database.AddUser(username, firstName, lastName, password,email,url);
-//			session.setAttribute("currentUser", username.toLowerCase());
-						
-			// Direct to empty search result page 
-			String query = "intitle:";
-						
+					
 			try {
-//				BookResult bResult = new BookResult();
-//				Volumes volumes = bResult.getSearchResult(query);
-				
+
 				User u = database.getUser(username);
 				String profilePic = u.getPicURL();
 //							
 				//output result
-				String page = "joinGame.jsp?username="+username+"&url="+profilePic;
-//				session.setAttribute("result", volumes);
-							
-//				System.out.println(volumes.getTotalItems());					
+				String page = "joinGame.jsp?username="+username+"&url="+profilePic;				
 				RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 							
 				if (dispatcher != null){
@@ -115,8 +102,6 @@ public class ValidateSignup extends HttpServlet {
 					System.err.println(e.getMessage());
 				}
 			}
-//		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
-//		dispatch.forward(request,response);
 	}
 
 }

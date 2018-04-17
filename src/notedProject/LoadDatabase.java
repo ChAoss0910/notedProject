@@ -49,10 +49,7 @@ public class LoadDatabase {
 			System.out.println(mongoCursor.next());  
 		}
 	}
-	
-	
-//	
-	
+
 	public void writeData() {
 		try (Writer writer = new FileWriter(path)) {
 		    Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -130,7 +127,6 @@ public class LoadDatabase {
 			DBObject obj=cursor.next();
         	//Deserialization
 			User u=gson.fromJson(obj.toString(), User.class);
-//			System.out.println(u.getUsername());
 			if (u.getUsername().equalsIgnoreCase(uName)) {
 				temp = u;
 			}
