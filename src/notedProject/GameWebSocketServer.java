@@ -71,7 +71,7 @@ public class GameWebSocketServer {
 	private boolean LoadDB() {
 		//TODO: Connect to Mongo DB
 		//String path = "ws://localhost:8080/notedProject/database.json";
-		//database = new LoadDatabase(path);
+		database = new LoadDatabase();
 		return true;
 	}
 	
@@ -340,6 +340,7 @@ public class GameWebSocketServer {
 	 */
 	private Quiz dummyQuiz() {
 		List<Question> qPool = new ArrayList<>();
+		
 		Question q1 = new Question("DummyQuestion1");
 		q1.addOption("Option1");
 		q1.addOption("Option2");
@@ -352,9 +353,32 @@ public class GameWebSocketServer {
 		q2.addOption("Option7");
 		q2.addOption("Option8");
 		
+		Question q3 = new Question("DummyQuestion3");
+		q3.addOption("Option9");
+		q3.addOption("Option10");
+		q3.addOption("Option11");
+		q3.addOption("Option12");
+		
+		Question q4 = new Question("DummyQuestion4");
+		q3.addOption("Option13");
+		q3.addOption("Option14");
+		q3.addOption("Option15");
+		q3.addOption("Option16");
+		
+		Question q5 = new Question("DummyQuestion5");
+		q3.addOption("Option17");
+		q3.addOption("Option18");
+		q3.addOption("Option19");
+		q3.addOption("Option20");
+		
+		
+		
 		qPool.add(q1);
 		qPool.add(q2);
-		Quiz quiz = new Quiz("DummyQuiz", qPool, 2);
+		qPool.add(q3);
+		qPool.add(q4);
+		qPool.add(q5);
+		Quiz quiz = new Quiz("DummyQuiz", qPool, 5);
 		return quiz;
 	}
 	
