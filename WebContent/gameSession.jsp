@@ -113,7 +113,7 @@
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
-			<button onclick="sendInitialMessage();" class="btn">Start</button>
+			<button onclick="sendInitialMessage();" class="btn">Start Game</button>
 			
 			<table class="table">
 			<thead>
@@ -142,10 +142,9 @@
   			<progress value="0" max="10" id="progressBar"></progress>
 		</div>
 	</div>
-	
+</body>
 	<script>
 	//-------------------------TIMER-----------------------------------//
-	
 	function countdown() {
 	    // your code goes here
 	    
@@ -169,6 +168,7 @@
 	//-----------------------Quiz UX----------------------------------//
 	//This works
 	
+	
 	//Global Variables
 	var gameRoom = "Game Room 1";
 	var roomName = "Sample Quiz 1";
@@ -187,6 +187,7 @@
 	
 	function updateChoice(choiceVal){
 		choice = choiceVal;
+		var timeleft = document.getElementById("progressBar").value;
 		console.log("Time left: ");
     	console.log(timeleft);
     	alert("Answered: " + choice + " in " + timeleft + " seconds.");
@@ -385,8 +386,5 @@
 		document.getElementById('choice4').innerText = options[3];
 		
 	}
-	
-	
 	</script>
-</body>
 </html>
