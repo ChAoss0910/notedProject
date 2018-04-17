@@ -106,8 +106,8 @@ public class ValidateLogin extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
-		dispatch.forward(request,response);
+//		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
+//		dispatch.forward(request,response);
 	}
 
 }

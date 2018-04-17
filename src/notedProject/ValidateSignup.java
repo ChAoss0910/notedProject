@@ -37,9 +37,7 @@ public class ValidateSignup extends HttpServlet {
 		request.setAttribute("password", password);
 		request.setAttribute("url", url);
 		
-		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
-		String path = getServletContext().getRealPath("/database.json");
-		LoadDatabase loadDatabase = new LoadDatabase(path);
+		LoadDatabase loadDatabase = new LoadDatabase();
 		loadDatabase.writeData();
 		HttpSession session = request.getSession();
 		session.setAttribute("database", loadDatabase);

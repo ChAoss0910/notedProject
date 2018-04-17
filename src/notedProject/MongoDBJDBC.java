@@ -63,7 +63,7 @@ public class MongoDBJDBC{
 //       while(mongoCursor.hasNext()){  
 //          System.out.println(mongoCursor.next());  
 //       }  
-       LoadDatabase database = new LoadDatabase("database.json");
+       LoadDatabase database = new LoadDatabase();
        if(database.CheckCourseByTitle("csci201"))
     	   	System.out.println("lalala");
     	   
