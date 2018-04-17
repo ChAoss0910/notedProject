@@ -113,12 +113,12 @@
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
-			<button onclick="sendInitialMessage();" class="btn">Start Game</button>
+			<button onclick="sendInitialMessage(); gameStartFunc();" class="btn">Start Game</button>
 			
 			<table class="table">
 			<thead>
 				<tr>
-          			<th><div id="questionDisplay">Question #1: Who's the professor for CS-201?</div>
+          			<th><div id="questionDisplay">Initializing Quiz...</div>
    			 </thead>
 			<tbody>
 				<tr><td><button onclick="updateChoice(1);" id="choice1" class="btn btn-block btn-default editbtn">Choice #1</button></td></tr>
@@ -168,7 +168,7 @@
 	
 	//-----------------------Quiz UX----------------------------------//
 	//This works
-	
+	var gameStarted = false;
 	
 	//Global Variables
 	var gameRoom = "Game Room 1";
@@ -177,16 +177,22 @@
 	var currQ = 1;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
-	var option1 = "This is sample option 1";
-	var option2 = "This is sample option 2";
-	var option3 = "This is sample option 3";
-	var option4 = "This is sample option 4";
+	var option1 = "Choice A";
+	var option2 = "Choice B";
+	var option3 = "Choice C";
+	var option4 = "Choice D";
 	
+	//buttons start off as disabled
+	document.getElementById('choice1').disabled = true;
+	document.getElementById('choice2').disabled = true;
+	document.getElementById('choice3').disabled = true;
+	document.getElementById('choice4').disabled = true;
+
 	
-	countdown();
+	//-----------------------Helper Functions (Quiz UI) --------------------------//
+	
 	
 	//When an option is clicked, the choice is updated and stored
-	
 	function updateChoice(choiceVal){
 		choice = choiceVal;
 		var timeleft = document.getElementById("progressBar").value;
@@ -207,22 +213,6 @@
     	document.getElementById('choice4').disabled = true;
 	}
 	
-	//Quiz Frame Answer Chosen
-/* 	$(document).ready(function(){
-    	$('.editbtn').click(function(){
-    		
-        	console.log("Time left: ");
-        	console.log(timeleft);
-        	alert("Answered: " + choice + " in " + timeleft + " seconds.");
-        	
-        	//sends answer to Game Server
-        	sendAnswerMessage(choice, time);
-        	
-        	currQ++;
-        	sendNextQuesMessage();
-    	});
-	});
-	 */
 	//Choices
 	$(document).ready(function(){
     		document.getElementById('choice1').innerText = option1;
@@ -232,6 +222,11 @@
 	});
 	
 	//-----------------------Helper Functions (Networking) --------------------------//
+	
+	function gameStartFunc(){
+		gameStarted = true;
+		countdown();
+	}
 
 	var webSocket = 
 	    new WebSocket('ws://localhost:8080/notedProject/actions');
