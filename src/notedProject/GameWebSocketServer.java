@@ -71,7 +71,7 @@ public class GameWebSocketServer {
 	private boolean LoadDB() {
 		//TODO: Connect to Mongo DB
 		//String path = "ws://localhost:8080/notedProject/database.json";
-		database = new LoadDatabase();
+		//database = new LoadDatabase();
 		return true;
 	}
 	
@@ -143,8 +143,9 @@ public class GameWebSocketServer {
 			
 		} else {			
 			//TODO: Generate Quiz from DB
-			Quiz quiz = dummyQuiz();
 			
+			//Quiz quiz = database.GetCourseByTitle(message.GetClassTitle()).GenerateQuiz("Test Quiz", 3);
+			Quiz quiz = dummyQuiz();
 			
 			QuizRoom room = new QuizRoom(rName, quiz, rSize);
 			if (!room.CheckRoomFull()) {
@@ -360,24 +361,23 @@ public class GameWebSocketServer {
 		q3.addOption("Option12");
 		
 		Question q4 = new Question("DummyQuestion4");
-		q3.addOption("Option13");
-		q3.addOption("Option14");
-		q3.addOption("Option15");
-		q3.addOption("Option16");
+		q4.addOption("Option13");
+		q4.addOption("Option14");
+		q4.addOption("Option15");
+		q4.addOption("Option16");
 		
 		Question q5 = new Question("DummyQuestion5");
-		q3.addOption("Option17");
-		q3.addOption("Option18");
-		q3.addOption("Option19");
-		q3.addOption("Option20");
-		
-		
+		q5.addOption("Option17");
+		q5.addOption("Option18");
+		q5.addOption("Option19");
+		q5.addOption("Option20");
 		
 		qPool.add(q1);
 		qPool.add(q2);
 		qPool.add(q3);
 		qPool.add(q4);
 		qPool.add(q5);
+		
 		Quiz quiz = new Quiz("DummyQuiz", qPool, 5);
 		return quiz;
 	}
