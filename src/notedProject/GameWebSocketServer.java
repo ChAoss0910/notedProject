@@ -27,20 +27,14 @@ import javax.websocket.server.ServerEndpoint;
 	)
 public class GameWebSocketServer {
 	
-	private HashMap<String, List<Session> > gameRoom;
-	private HashMap<String, Integer> roomSize;
-	private HashMap<String , Quiz> roomQuiz;
+	private HashMap<String , QuizRoom> roomQuiz;
 	private Vector<Session> sessionVector; 
 	private LoadDatabase database;
-	private HashMap<Session, PlayerQuizChoice> sessionQuizInfo;
-	private String path;
+	
 	
 	public GameWebSocketServer() {
-		gameRoom = new HashMap<>();
-		roomSize = new HashMap<>();
 		sessionVector = new Vector<Session>(); 
 		roomQuiz = new HashMap<>();
-		sessionQuizInfo = new HashMap<>();
 	}
 	
 	@OnOpen
@@ -68,7 +62,7 @@ public class GameWebSocketServer {
 	}
 	
 	private boolean CheckRoom(String rName) {
-		return gameRoom.containsKey(rName);
+		return roomQuiz.containsKey(rName);
 	}
 	
 	/**Loads DB every time a new game is created
@@ -121,8 +115,14 @@ public class GameWebSocketServer {
 		int choice = message.GetChoice();
 		int time = message.GetTime();
 		
-		PlayerQuizChoice temp = sessionQuizInfo.get(session);
-		temp.StoreChoice(current, choice, time);
+		QuizRoom room = roomQuiz.get(message.GetRoomName());
+		double multi = room.HandleAnswer(session, current, choice, time);
+		
+		if (multi == 0.0) {
+			//Return answer is wrong
+		} else {
+			//Broadcast
+		}
 	}
 
 	/**
@@ -134,27 +134,27 @@ public class GameWebSocketServer {
 		// Load Database to generate quiz 
 		LoadDB();
 		
-		
 		int rSize = Integer.parseInt(message.GetNum());
 		String rName = message.GetRoomName();
 		
-		// TODO: Handle case Room dosen't exist
+		
 		if (CheckRoom(rName)) {
+			// TODO: Handle case Room exist
 			
-		} else {
-			List<Session> temp = new ArrayList<>();
-			temp.add(session);
-			gameRoom.put(rName, temp);
-			roomSize.put(rName, rSize);
-			
-			//TODO: create Quiz from DB
+		} else {			
+			//TODO: Generate Quiz from DB
 			Quiz quiz = dummyQuiz();
-			roomQuiz.put(rName, quiz);
 			
-			PlayerQuizChoice newInfo = new PlayerQuizChoice(session, quiz);
-			sessionQuizInfo.put(session, newInfo);
+			
+			QuizRoom room = new QuizRoom(rName, quiz, rSize);
+			if (!room.CheckRoomFull()) {
+				room.AddSession(session);
+			}
+			
+			roomQuiz.put(rName, room);
 			
 			MessageInitializeRoom(session);
+			
 			if (rSize == 1) {
 				MessageStart(rName, session);
 			} else {
@@ -162,31 +162,6 @@ public class GameWebSocketServer {
 			}
 		}
 	}
-	
-	
-	/**Only for testing purpose 
-	 * @return Dummy Quiz
-	 */
-	private Quiz dummyQuiz() {
-		List<Question> qPool = new ArrayList<>();
-		Question q1 = new Question("DummyQuestion1");
-		q1.addOption("Option1");
-		q1.addOption("Option2");
-		q1.addOption("Option3");
-		q1.addOption("Option4");
-		
-		Question q2 = new Question("DummyQuestion2");
-		q2.addOption("Option5");
-		q2.addOption("Option6");
-		q2.addOption("Option7");
-		q2.addOption("Option8");
-		
-		qPool.add(q1);
-		qPool.add(q2);
-		Quiz quiz = new Quiz("DummyQuiz", qPool, 2);
-		return quiz;
-	}
-	
 	
 	
 	/**
@@ -197,7 +172,7 @@ public class GameWebSocketServer {
 	 */
 	private void HandlNext(Message message, Session session) {
 		int current = message.GetCurrent();
-		if (current <= roomQuiz.get(message.GetRoomName()).GetQuizSize()) {
+		if (roomQuiz.get(message.GetRoomName()).HasNextQues(current)) {
 			MessageNext(message, session);
 		} else {
 			MessageEndGame(message, session);
@@ -214,18 +189,20 @@ public class GameWebSocketServer {
 	private synchronized void HandleJoin(Message message, Session session) {
 		
 		String rName = message.GetRoomName();
-		int rSize = roomSize.get(rName);
-		int existingPlayer = gameRoom.get(rName).size();
-		if (existingPlayer < rSize) {
-			gameRoom.get(rName).add(session);
-			existingPlayer = gameRoom.get(rName).size();
-			if (existingPlayer == rSize) {
-				for (Session s : gameRoom.get(rName)) {
+		QuizRoom room = roomQuiz.get(rName);
+		
+		if (!room.CheckRoomFull()) {
+			room.AddSession(session);
+			MessageJoinSuccess(message, session);
+			if (room.CheckRoomFull()) {
+				for (Session s : room.GetPlayers()) {
 					MessageStart(rName, s);
 				}
 			} else {
-				for (Session s : gameRoom.get(rName)) {
-					MessageWaiting(rSize - existingPlayer, s);
+				for (Session s : room.GetPlayers()) {
+					if (s != session) {
+						MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), s);
+					}
 				}
 			}
 		} else {
@@ -233,6 +210,8 @@ public class GameWebSocketServer {
 		}
 	} 
 	
+	
+
 	/**
 	 * Return message: Room requested is full
 	 * @param session
@@ -260,6 +239,20 @@ public class GameWebSocketServer {
 			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
 		}
 		
+	}
+	
+	
+	private void MessageJoinSuccess(Message message, Session session) {
+		try {
+			Message response = new Message();
+			response.SetType("JoinSuccess");
+			response.SetContent("Joined room successfully");
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageInitializeRoom: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
+		}
 	}
 	
 	/**
@@ -303,14 +296,16 @@ public class GameWebSocketServer {
 	 * @param session
 	 */
 	public void MessageNext(Message message, Session session) {
-		int current = message.GetChoice();
-		Quiz quiz = roomQuiz.get(message.GetRoomName());
+		int current = message.GetCurrent();
+		System.out.println("Trying to get room");
+		QuizRoom room = roomQuiz.get(message.GetRoomName());
+		System.out.println("Current player num is: " + room.GetPlayerNum());
 		try {
 			Message response = new Message();
-			if (true) {
+			if (room.HasNextQues(current)) {
 				// Still has questions left in quiz
 				response.SetType("NextQues");
-				Question question = quiz.GetNextQuestion();
+				Question question = room.GetQuestionByID(current);
 				response.SetContent(question.getTitle());
 				List<String> options = question.getOptions();
 				for (String option : options) {
@@ -326,7 +321,6 @@ public class GameWebSocketServer {
 	}
 	
 	public void MessageEndGame(Message message, Session session) {
-		// TODO Auto-generated method stub
 		try {
 			Message response = new Message();
 			response.SetType("EndGame");
@@ -339,4 +333,29 @@ public class GameWebSocketServer {
 		}
 		
 	}
+	
+
+	/**Only for testing purpose 
+	 * @return Dummy Quiz
+	 */
+	private Quiz dummyQuiz() {
+		List<Question> qPool = new ArrayList<>();
+		Question q1 = new Question("DummyQuestion1");
+		q1.addOption("Option1");
+		q1.addOption("Option2");
+		q1.addOption("Option3");
+		q1.addOption("Option4");
+		
+		Question q2 = new Question("DummyQuestion2");
+		q2.addOption("Option5");
+		q2.addOption("Option6");
+		q2.addOption("Option7");
+		q2.addOption("Option8");
+		
+		qPool.add(q1);
+		qPool.add(q2);
+		Quiz quiz = new Quiz("DummyQuiz", qPool, 2);
+		return quiz;
+	}
+	
 }

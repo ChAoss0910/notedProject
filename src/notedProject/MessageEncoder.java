@@ -31,6 +31,8 @@ public class MessageEncoder implements Encoder.Text<Message> {
     }
     JsonObject jsonObject = jsonObjectBuilder.build();
     
+    System.out.println("Send out message: " + jsonObject.toString());
+    
     return jsonObject.toString();
 
   }

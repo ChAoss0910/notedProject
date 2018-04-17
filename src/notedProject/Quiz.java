@@ -34,6 +34,7 @@ public class Quiz {
 				qList.add(qPool.get(i));
 			}
 		}
+		quizSize = qList.size();
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class Quiz {
 		}
 		return score;
 	}
-	
+	@Deprecated
 	public boolean HasNextQuestion() {
 		return (qPointer < qList.size());
 	}
@@ -65,6 +66,7 @@ public class Quiz {
 	/**
 	 * USE HasNextQuestion before calling GetNextQuestion, otherwise might get NULL	
 	 */
+	@Deprecated
 	public Question GetNextQuestion() {
 		if (HasNextQuestion()) {
 			qPointer ++;
@@ -74,7 +76,13 @@ public class Quiz {
 		}
 	}
 	
+	/**
+	 * Get question by id, index starting from 1
+	 * @param id
+	 * @return
+	 */
 	public Question GetQuestionById(int id) {
+		
 		if (id <= qList.size()) {
 			return qList.get(id - 1);
 		} else {
