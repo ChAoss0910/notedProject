@@ -129,18 +129,15 @@
 			</table>
 		</div>
 	<!-- Quiz UX -->
-	
-	<!-- Testing -->
-	<div id="messages">
-	</div>
-		
-		
-		
-<!-- 		COUNTDOWN TIMER -->
+	<!-- 		COUNTDOWN TIMER -->
 		<div class="container">
 			<h3>Time Left:</h3>
   			<progress value="0" max="10" id="progressBar"></progress>
 		</div>
+	
+	<!-- Testing -->
+	<div id="messages">
+	</div>
 	</div>
 </body>
 	<script>
