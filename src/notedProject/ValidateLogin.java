@@ -41,19 +41,14 @@ public class ValidateLogin extends HttpServlet {
 		request.setAttribute("username", username);
 		request.setAttribute("password", password);
 		
-//		InputStream jsonPath = (InputStream) getServletContext().getResourceAsStream("/database.json");
-//		String path = getServletContext().getRealPath("/database.json");
-		LoadDatabase loadDatabase = new LoadDatabase("database.json");
-//		loadDatabase.writeData();
+		LoadDatabase loadDatabase = new LoadDatabase();
 		HttpSession session = request.getSession(false);
 		session.setAttribute("database", loadDatabase);
 		
 		LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
 		boolean check = true;
 		boolean logincheck = database.CheckLogin(username, password);
-		
-		
-		
+
 		if(logincheck) {
 			System.out.println("true");
 		}
@@ -83,19 +78,10 @@ public class ValidateLogin extends HttpServlet {
 			System.out.println("picture"+url);
 			session.setAttribute("currentUser", username.toLowerCase());
 			
-			// Direct to empty search result page 
-			String query = "intitle:";
-			
 			try {
-//				BookResult bResult = new BookResult();
-//				Volumes volumes = bResult.getSearchResult(query);
-				
 				//output result
 				String page = "/joinGame.jsp?username="+username+"&url="+url;
-				forward = "/joinGame.jsp?username="+username+"&url="+url;
-//				session.setAttribute("result", volumes);
-				
-//				System.out.println(volumes.getTotalItems());					
+				forward = "/joinGame.jsp?username="+username+"&url="+url;				
 				RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 				
 				if (dispatcher != null){
@@ -106,8 +92,7 @@ public class ValidateLogin extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(forward);
-		dispatch.forward(request,response);
+
 	}
 
 }
