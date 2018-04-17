@@ -145,12 +145,26 @@
 	
 	<script>
 	//-------------------------TIMER-----------------------------------//
-	var timeleft = 10;
-	var downloadTimer = setInterval(function(){
-	  document.getElementById("progressBar").value = 10 - --timeleft;
-	  if(timeleft <= 0)
-	    clearInterval(downloadTimer);
-	},1000);
+	
+	function countdown() {
+	    // your code goes here
+	    
+	    
+	    var count = 10;
+	    var timerId = setInterval(function() {
+	        count--;
+	        document.getElementById("progressBar").value = 10 - count;
+
+	        if(count == 0) {
+	            // your code goes here
+	            currQ++;
+	            sendNextQuesMessage();
+	            
+	            count = 10;
+	            document.getElementById("progressBar").value = 0;
+	        }
+	    }, 1000);
+	}
 	
 	
 	//-----------------------Quiz UX----------------------------------//
@@ -167,14 +181,26 @@
 	var option3 = "This is sample option 3";
 	var option4 = "This is sample option 4";
 	
+	countdown();
+	
 	//When an option is clicked, the choice is updated and stored
 	
 	function updateChoice(choiceVal){
 		choice = choiceVal;
+		console.log("Time left: ");
+    	console.log(timeleft);
+    	alert("Answered: " + choice + " in " + timeleft + " seconds.");
+    	
+    	//sends answer to Game Server
+    	/* sendAnswerMessage(choice, 15 - timeleft); //CHECK THIS */
+    	
+    	currQ++;
+    	console.log("CurrentQuestion ID is: "  +currQ);
+    	sendNextQuesMessage();
 	}
 	
 	//Quiz Frame Answer Chosen
-	$(document).ready(function(){
+/* 	$(document).ready(function(){
     	$('.editbtn').click(function(){
     		
         	console.log("Time left: ");
@@ -184,9 +210,11 @@
         	//sends answer to Game Server
         	sendAnswerMessage(choice, time);
         	
+        	currQ++;
+        	sendNextQuesMessage();
     	});
 	});
-	
+	 */
 	//Choices
 	$(document).ready(function(){
     		document.getElementById('choice1').innerText = option1;
@@ -196,6 +224,10 @@
 	});
 	
 	//-----------------------Helper Functions (Networking) --------------------------//
+	
+	function refreshPage(){
+	    window.location.reload();
+	} 
 
 	var webSocket = 
 	    new WebSocket('ws://localhost:8080/notedProject/actions');
