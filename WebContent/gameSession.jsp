@@ -223,7 +223,7 @@
 	
 	function gameStartFunc(){
 		document.getElementById('startButton').disabled = true;
-		countdown();
+		
 	}
 
 	var webSocket = 
@@ -301,7 +301,7 @@
     
     
     function sendInitialMessage() {
-    	var numPlayer = 2;
+    	var numPlayer = 1;
     	
     	var message = new Message('Start');
     	message.classTitle = classTitle;
@@ -364,6 +364,7 @@
 	}
 	
 	function HandleStartGame(json) {
+		countdown();
 		sendNextQuesMessage();
 	}
 	
