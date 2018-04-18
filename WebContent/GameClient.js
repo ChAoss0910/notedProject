@@ -71,6 +71,7 @@ function onMessage(event) {
     	break;
     case ('AnswerResponse') :
     	HandleAnswerResponse(json);
+    	break;
     }
     /*  
     	Testing purpose display

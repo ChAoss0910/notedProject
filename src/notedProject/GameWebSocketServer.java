@@ -363,6 +363,14 @@ public class GameWebSocketServer {
 		}
 	}
 	
+	/**
+	 * @param message The message should contain other players information
+	 * @param session
+	 */
+	private void MessageOtherPlayer(Message message, Session session) {
+		
+	}
+	
 	private void MessageAnswerResponse(double multi, Message message, Session session) {
 		try {
 			
