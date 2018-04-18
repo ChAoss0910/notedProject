@@ -167,6 +167,7 @@
 	
 	
 	//-----------------------Quiz UX----------------------------------//
+	//After losing 3 hours
 	
 	//Global Variables
 	var gameRoom = "Game Room 1";
