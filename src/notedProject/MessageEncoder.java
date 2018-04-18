@@ -29,6 +29,20 @@ public class MessageEncoder implements Encoder.Text<Message> {
     	}
     	jsonObjectBuilder.add("options", optionArrayBuilder);
     }
+    
+    if (message.HasRoom()) {
+    	List<List<String> > rooms = message.GetAvailableRooms();
+    	JsonArrayBuilder optionArrayBuilder = Json.createArrayBuilder();
+    	for (List<String> roomInfo : rooms) {
+    		JsonArrayBuilder optionArrayBuilderMinor = Json.createArrayBuilder();
+    		for (String info : roomInfo) {
+    			optionArrayBuilderMinor.add(info);
+    		}
+    		optionArrayBuilder.add(optionArrayBuilderMinor);
+    	}
+    	jsonObjectBuilder.add("availableRooms", optionArrayBuilder);
+    }
+    
     JsonObject jsonObject = jsonObjectBuilder.build();
     
     System.out.println("Send out message: " + jsonObject.toString());

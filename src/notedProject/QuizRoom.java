@@ -11,6 +11,7 @@ import org.apache.catalina.Store;
 public class QuizRoom {
 	private Quiz quiz;
 	private String roomName;
+	private String classTitle;
 	private int roomSize;
 	private List<Session> players;
 	HashMap<Integer , List<Session> > answerQueue;
@@ -20,6 +21,7 @@ public class QuizRoom {
 		
 		// Initialize
 		this.roomName = roomName;
+		this.classTitle = quiz.GetTitle();
 		this.quiz = quiz;
 		this.roomSize = size;
 		players = new ArrayList<>();
@@ -89,6 +91,10 @@ public class QuizRoom {
 		return newMulti;
 	}
 	
+	
+	public String GetClassTitle() {
+		return classTitle;
+	}
 	
 	public boolean HasNextQues(int qID) {
 		return (qID <= quiz.GetQuizSize());

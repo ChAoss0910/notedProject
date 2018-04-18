@@ -15,6 +15,23 @@ public class Message {
 	  private int choice;
 	  private int time;
 	  private List<String> options = new ArrayList<>(); 
+	  private List<List<String> > availableRooms = new ArrayList<>();
+	  
+	  public boolean HasRoom() {
+		  return (availableRooms.size() > 0);
+	  }
+	  
+	  public List<List<String> > GetAvailableRooms() {
+		  return availableRooms;
+	  }
+	  
+	  public void AddAvailableRoom(String classTitle, String rName, int slots) {
+		  List<String> temp = new ArrayList<>();
+		  temp.add(classTitle);
+		  temp.add(rName);
+		  temp.add(""+slots);
+		  availableRooms.add(temp);
+	  }
 	  
 	  public boolean HasOptions() {
 		  return (options.size() > 0 );

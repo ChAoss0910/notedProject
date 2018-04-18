@@ -4,7 +4,9 @@ package notedProject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.websocket.EncodeException;
@@ -27,19 +29,19 @@ import javax.websocket.server.ServerEndpoint;
 	)
 public class GameWebSocketServer {
 	
-	private HashMap<String , QuizRoom> roomQuiz;
-	private Vector<Session> sessionVector; 
+	private static HashMap<String , QuizRoom> roomQuiz = new HashMap<>();
+	private static Vector<Session> sessionVector = new Vector<>(); 
 	private LoadDatabase database;
 	
 	
 	public GameWebSocketServer() {
-		sessionVector = new Vector<Session>(); 
-		roomQuiz = new HashMap<>();
+		
 	}
 	
 	@OnOpen
 	public void onOpen(Session session) {
 		System.out.println("Client connected");
+		
 		sessionVector.add(session);
 	}
 
@@ -109,8 +111,11 @@ public class GameWebSocketServer {
 	
 	private void HandleRoomRequest(Message message, Session session) {
 		// TODO Auto-generated method stub
+		MessageRoomOptions(message, session);
 		
 	}
+
+	
 
 	/**
 	 * Handle Answer message, add answer if empty, update answer if exist
@@ -144,10 +149,12 @@ public class GameWebSocketServer {
 		
 		int rSize = Integer.parseInt(message.GetNum());
 		String rName = message.GetRoomName();
+		String classTitle = message.GetClassTitle();
 		
 		
 		if (CheckRoom(rName)) {
 			// TODO: Handle case Room exist
+			MessageRoomExist(message, session);
 			
 		} else {			
 			//TODO: Generate Quiz from DB
@@ -155,7 +162,7 @@ public class GameWebSocketServer {
 			//Quiz quiz = database.GetCourseByTitle(message.GetClassTitle()).GenerateQuiz("Test Quiz", 3);
 			Quiz quiz = dummyQuiz();
 			
-			QuizRoom room = new QuizRoom(rName, quiz, rSize);
+			QuizRoom room = new QuizRoom(classTitle, quiz, rSize);
 			if (!room.CheckRoomFull()) {
 				room.AddSession(session);
 			}
@@ -167,12 +174,14 @@ public class GameWebSocketServer {
 			if (rSize == 1) {
 				MessageStart(rName, session);
 			} else {
-				MessageWaiting(1, session);
+				MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), session);
 			}
 		}
 	}
 	
 	
+	
+
 	/**
 	 * Handle Next question message from front-end; 
 	 * Send Next Question message if there are still question
@@ -209,9 +218,7 @@ public class GameWebSocketServer {
 				}
 			} else {
 				for (Session s : room.GetPlayers()) {
-					if (s != session) {
-						MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), s);
-					}
+					MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), s);
 				}
 			}
 		} else {
@@ -226,9 +233,32 @@ public class GameWebSocketServer {
 	 * @param session
 	 */
 	private void MessageRoomFull(Session session) {
-		Message response = new Message();
-		response.SetType("Full");
-		response.SetContent("Room is full");
+		
+		try {
+			Message response = new Message();
+			response.SetType("Full");
+			response.SetContent("Room is full");
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageInitializeRoom: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
+		}
+		
+	}
+	
+	private void MessageRoomExist(Message message, Session session) {
+		
+		try {
+			Message response = new Message();
+			response.SetType("RoomExist");
+			response.SetContent("Room already exist");
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageInitializeRoom: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
+		}
 	}
 	
 	
@@ -343,6 +373,35 @@ public class GameWebSocketServer {
 		
 	}
 	
+	private void MessageRoomOptions(Message message, Session session) {
+		try {
+			System.out.println("Connecting sessions: " + sessionVector.size());
+			System.out.println("There are " + roomQuiz.size() + " games");
+			Message response = new Message();
+			response.SetType("AvailableRoom");
+			if (roomQuiz.size() == 0) {
+				response.SetContent("No Available Rooms...");
+			} else {
+				response.SetContent(roomQuiz.size() + " rooms are available");
+				Iterator it = roomQuiz.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry pair = (Map.Entry)it.next();
+					String rName = (String) pair.getKey();
+					QuizRoom tempQuiz = (QuizRoom)pair.getValue();
+					String title = tempQuiz.GetClassTitle();
+					int slot = tempQuiz.GetRoomLimit() - tempQuiz.GetPlayerNum();
+					response.AddAvailableRoom(title, rName, slot);
+				}
+			}
+			
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageStart: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageStart: " + e.getMessage());
+		}
+	}
+	
 
 	/**Only for testing purpose 
 	 * @return Dummy Quiz
@@ -386,7 +445,7 @@ public class GameWebSocketServer {
 		qPool.add(q4);
 		qPool.add(q5);
 		
-		Quiz quiz = new Quiz("DummyQuiz", qPool, 5);
+		Quiz quiz = new Quiz("DummyClass", qPool, 5);
 		return quiz;
 	}
 	

@@ -1,7 +1,12 @@
-/**
- * 
- */
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
 var classTitle = 'CSCI 201';
 var roomName = 'New Game1';
 var currQ = 1;
@@ -55,12 +60,8 @@ function onMessage(event) {
     	break;
     case ('AvailableRoom') :
     	HandleAvailableRoom(json);
-    	break;
-    
-    case ('Full') :
-    	HandleRoomFull(json);
-    	break;
     }
+    
     /*  
     	Testing purpose display
     */
@@ -153,10 +154,6 @@ function HandleStartGame(json) {
 	sendNextQuesMessage();
 }
 
-function HandleRoomFull(json) {
-	
-}
-
 function HandleNextQues(json) {
 	/*
 		question is String; options is String array
@@ -200,3 +197,35 @@ function HandleAvailableRoom(json) {
 		}
 	}
 }
+
+</script>
+<body>
+	<div>
+    	<span>Type:</span>
+    	<input id="type" type="text" />
+    	<br />
+    	<span>Content:</span>
+    	<input id="content" type="text" />
+    	<br />
+    	<span>Room Name:</span>
+    	<input id="roomName" type="text" />
+    	<br />
+    	<span>Class Title:</span>
+    	<input id="classTitle" type="text" />
+    	<br />
+    	<span>Num of Player:</span>
+    	<input id="num" type="text" />
+  	</div>
+  	<div>
+    	<input type="submit" value="Start Game Room" onclick="sendInitialMessage()" />
+  	</div>
+  	<div>
+    	<input type="submit" value="Show Game Room" onclick="sendGetRoomsMessage()" />
+  	</div>
+  	<div>
+    	<input type="submit" value="Join" onclick="sendJoinMessage()" />
+  	</div>
+  	<div id="messages"></div>
+  	<div id="rooms"></div>
+</body>
+</html>
