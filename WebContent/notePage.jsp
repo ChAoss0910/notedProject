@@ -3,21 +3,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-			<meta name="description" content="" />
-			<meta name="keywords" content="" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  
-	  <link rel="stylesheet" href="skippr/skippr.css">
+	  	<link rel="stylesheet" href="skippr/skippr.css">
 
-	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-	  <title>noted | notes</title>
-	  <%
+	  	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  	<title>noted | notes</title>
+	  	<%
   		String username = request.getParameter("username");
 		String profilePic = request.getParameter("url");
 		boolean guest = true;
@@ -28,49 +28,50 @@
 				guest = false;
 			}
 		}
-  	  %>
-	  <style>
-	    /* Remove the navbar's default margin-bottom and rounded borders */ 
-	    .navbar {
-	      margin-bottom: 0;
-	      border-radius: 0;
-	    }
+  	  	%>
+	  	<style>
+		    /* Remove the navbar's default margin-bottom and rounded borders */ 
+		    .navbar {
+		      margin-bottom: 0;
+		      border-radius: 0;
+		    }
 	    
-	    /* Add a gray background color and some padding to the footer */
-	    footer {
-	      background-color: #f2f2f2;
-	      padding: 25px;
-	    }
-	    #profileButton {
-			background-color: #262626;
-			height: 50px;
-			width: 50px;
-			padding: 0px;
-			outline: 0;
-		}
-		#profileButton:focus, #profileButton:active {
-		   outline: none;
-		   border: orange; 
-		   box-shadow: none;
-		}
-		.dropdown-menu, .dropdown-item {
-			width: 70px;
-			color: orange;
-			text-align: center; 
-			width: 10px;
-		}
-		.dropdown-item:hover {
-			text-decoration: none; 
-			font-weight: bold;
-			color: orange;
-		}
-		#container {
-			margin-left: auto;
-			margin-right: auto;
-			width: 800px;
-			height: 400px;
-		}
-	  </style>
+		    /* Add a gray background color and some padding to the footer */
+		    footer {
+		      background-color: #f2f2f2;
+		      padding: 25px;
+		    }
+		    #profileButton {
+				background-color: #262626;
+				height: 50px;
+				width: 50px;
+				padding: 0px;
+				outline: 0;
+			}
+			#profileButton:focus, #profileButton:active {
+			   outline: none;
+			   border: orange; 
+			   box-shadow: none;
+			}
+			.dropdown-menu, .dropdown-item {
+				width: 70px;
+				color: orange;
+				text-align: center; 
+				width: 10px;
+			}
+			.dropdown-item:hover {
+				text-decoration: none; 
+				font-weight: bold;
+				color: orange;
+			}
+			#container {
+				margin-left: auto;
+				margin-right: auto;
+				width: 800px;
+				height: 400px;
+				padding: 20px 0px;
+			}
+		  </style>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -113,20 +114,6 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Note Bank</h3><br>
-		  <% String toUploadNotes = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toUploadNotes%> role="button">Upload Notes</a>
-		  <div class="container-fluid" style="text-align: left;">
-		  	<h4>Filter Notes:</h4>
-		  	<form class="navbar-form navbar-left" role="search">
-			 <div class="form-group">
-			   <input type="text" class="form-control" placeholder="Search">
-			 </div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		  </form>
-		  </div>
-		  
-		  
-		  <br>
 		  
 		<div id="container">
             <div id="notes">
@@ -136,7 +123,6 @@
                 <div style="background-image: url(images/note1.png)"></div>
             </div>    
         </div>
-		  
 		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
        	<script src="skippr/skippr.js"></script>
        	<script>
@@ -144,6 +130,19 @@
             $("#notes").skippr();
         });    
        	</script>
+       	
+       	<% String toUploadNotes = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
+	  	<a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toUploadNotes%> role="button">Upload Notes</a>
+       	
+       	<div class="container-fluid" style="text-align: left;">
+		  	<h4>Filter Notes:</h4>
+		  	<form class="navbar-form navbar-left" role="search">
+			 <div class="form-group">
+			   <input type="text" class="form-control" placeholder="Search">
+			 </div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		  </form>
+	  	</div>
 		   
 		  <div class="row" style="padding-top:20px;">
 			  <div class="col-sm-3"> 
