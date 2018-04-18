@@ -78,12 +78,13 @@ public class QuizRoom {
 	public synchronized double HandleAnswer(Session session, int qID, int choice, int time) {
 		//Store answer info in answerSet
 		double newMulti = 0.0;
-		playerAnswerSet.get(session).StoreAnswer(qID, choice, time);
+		System.out.println(qID + " " + choice + " " + time);
 		
 		//Check if answer is correct
 		if (qID > quiz.GetQuizSize() || qID < 1) {
 			return -1;
 		}
+		playerAnswerSet.get(session).StoreAnswer(qID, choice, time);
 		List<Session> currentQueue = answerQueue.get(qID); 
 		if (choice == GetQuestionByID(qID).getAnswer()) {
 			//If correct put in queue

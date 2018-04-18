@@ -186,7 +186,11 @@
 		
 		localStorage.setItem("num", num);
 		localStorage.setItem("roomName", roomName);
+		localStorage.setItem("classTitle", classTitle);
 		localStorage.setItem("command", "start");
+		console.log(num);
+		console.log(roomName);
+		console.log(classTitle);
 	}
 </script>
 </html>
