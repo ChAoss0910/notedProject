@@ -144,7 +144,7 @@
 		    </div>
 		         
 		    <p class="lead">
-		    	<ul class="list-group">
+		    	<ul id="listDisplay" class="list-group">
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
 				    <a id="anchor1" href="#">No Current Sessions</a>
 				    <span id="span1" class="badge badge-primary badge-pill"></span>
@@ -303,6 +303,7 @@
 		if (rooms.length == 0) {
 			document.getElementById('messages').innerHTML = 'No room available';
 		} else {
+			var inner = '';
 			for (i = 0; i < rooms.length; i++) {
 				document.getElementById('messages').innerHTML
 			    += '<br /> ClassName: ' + rooms[i][0]
@@ -310,9 +311,19 @@
 			    + ' Slots: ' + rooms[i][2];
 				
 				//update DOM
-				$('#anchor1').text(rooms[i][0]);
-				$("#span1").text('slots: ' + rooms[i][2]);
+				inner += 
+				'<li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">'
+			    + '<a href="#">'
+			    + rooms[i][0] + '  '
+			    + rooms[i][1]
+			    + '</a>'
+			    + '<span class="badge badge-primary badge-pill">slots:'
+			    + rooms[i][2]
+			    + '</span></li>';
+				
+				
 			}
+			document.getElementById('listDisplay').innerHTML = inner;
 		}
 		
 	}

@@ -187,12 +187,12 @@
 		var classTitle = e.options[e.selectedIndex].text;
 		var c = document.getElementById("numPlayers");
 		var num = c.options[c.selectedIndex].text;
-		var roomName = document.getElementById("gameName");
+		var roomName = document.getElementById("gameName").value;
 		
-		localStorage.setItem("num", num);
-		localStorage.setItem("roomName", roomName);
-		localStorage.setItem("classTitle", classTitle);
-		localStorage.setItem("command", "start");
+		sessionStorage.setItem("num", num);
+		sessionStorage.setItem("roomName", roomName);
+		sessionStorage.setItem("classTitle", classTitle);
+		sessionStorage.setItem("command", "start");
 		console.log(num);
 		console.log(roomName);
 		console.log(classTitle);
