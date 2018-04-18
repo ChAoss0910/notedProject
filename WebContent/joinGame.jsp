@@ -21,7 +21,7 @@
 	  	String profilePic = ""; 
 	  			
 	  	try {
-			LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
+			LoadDatabase database = new LoadDatabase();
 			User u = database.getUser(username);
 			profilePic = u.getPicURL();
 			guest = false;
