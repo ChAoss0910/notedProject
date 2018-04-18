@@ -282,6 +282,7 @@
         case ('AnswerResponse') :
         	HandleAnswerResponse(json);
         	break;
+        }
         
         /*  
         	Testing purpose display
@@ -408,6 +409,5 @@
 			
 		}
 	}
-}
 	</script>
 </html>
