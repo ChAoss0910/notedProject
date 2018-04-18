@@ -146,10 +146,12 @@
 		    <p class="lead">
 		    	<ul class="list-group">
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
-				    <a id="anchor1" href="#">CSCI-201 Midterm</a>
-				    <span id="span1" class="badge badge-primary badge-pill">slots: 4</span>
+				    <a id="anchor1" href="#">No Current Sessions</a>
+				    <span id="span1" class="badge badge-primary badge-pill"></span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				  
+				  
+				  <!-- <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
 				    <a href="#">CSCI-104 Quiz 2</a>
 				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
@@ -172,7 +174,7 @@
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
 				   	<a href="#">PYSC-442 Quiz 5</a>
 				    <span class="badge badge-primary badge-pill">slots: 1</span>
-				  </li>
+				  </li> -->
 				</ul>
 			</p>
 			
