@@ -2,10 +2,20 @@
  * 
  */
 
+
+/*
+ *Global Variable
+ */
+
 var classTitle = 'CSCI 201';
 var roomName = 'New Game1';
 var currQ = 1;
 
+
+/*
+ * webSocket server connection
+ *
+ */
 var webSocket = 
     new WebSocket('ws://localhost:8080/notedProject/actions');
 
@@ -78,13 +88,14 @@ function onMessage(event) {
    
 }
 
-
-
 function Message(type) {
 	this.type = type;
 	this.content = '';
 }
 
+/*
+ * Start Game messages
+ **/
 
 function sendInitialMessage() {
 	var numPlayer = 4;
@@ -97,6 +108,10 @@ function sendInitialMessage() {
 	
 	webSocket.send(JSON.stringify(message));
 }
+
+/*
+ * Join Game message
+ **/
 
 function sendJoinMessage() {
 	
