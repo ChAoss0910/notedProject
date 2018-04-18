@@ -17,6 +17,7 @@ public class Message {
 	  private List<String> options = new ArrayList<>(); 
 	  private List<List<String> > availableRooms = new ArrayList<>();
 	  private double currentScore;
+	  private double currentMulti;
 	  
 	  public boolean HasRoom() {
 		  return (availableRooms.size() > 0);
@@ -32,6 +33,14 @@ public class Message {
 		  temp.add(rName);
 		  temp.add(""+slots);
 		  availableRooms.add(temp);
+	  }
+	  
+	  public double GetMulti() {
+		  return currentMulti;
+	  }
+	  
+	  public void SetMulti(double multi) {
+		  this.currentMulti = multi;
 	  }
 	  
 	  public double GetScore() {

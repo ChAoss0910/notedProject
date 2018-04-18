@@ -20,7 +20,8 @@ public class MessageEncoder implements Encoder.Text<Message> {
     JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder()
         .add("type", message.GetType())
         .add("content", message.GetContent())
-        .add("score", message.GetScore());
+        .add("score", message.GetScore())
+        .add("multi", message.GetMulti());
     
     if (message.HasOptions()) {
     	List<String> options = message.GetOptions(); 

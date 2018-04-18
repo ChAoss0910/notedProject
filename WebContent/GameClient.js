@@ -66,10 +66,11 @@ function onMessage(event) {
     case ('AvailableRoom') :
     	HandleAvailableRoom(json);
     	break;
-    
     case ('Full') :
     	HandleRoomFull(json);
     	break;
+    case ('AnswerResponse') :
+    	HandleAnswerResponse(json);
     }
     /*  
     	Testing purpose display
@@ -193,6 +194,16 @@ function HandleNextQues(json) {
 	document.getElementById('choice3').innerText = options[2];
 	document.getElementById('choice4').innerText = options[3];
 	
+}
+
+function HandleAnswerResponse(json) {
+	var multi = json.multi;
+	var response = json.content;
+	
+	
+	if (multi == 0.0) {
+		
+	}
 }
 
 

@@ -368,7 +368,7 @@ public class GameWebSocketServer {
 			
 			Message response = new Message();
 			response.SetType("AnswerResponse");
-			
+			response.SetMulti(multi);
 			
 			if (multi == 0.0) {
 				response.SetContent("WRONG!");
