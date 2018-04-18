@@ -105,12 +105,12 @@ public class GameWebSocketServer {
 			
 		case "Answer":
 			HandleAnswer(message, session);
-			//TODO: Handle nothing for now
 			break;
 			
 		case "RoomRequest":
 			HandleRoomRequest(message, session);
-
+			break;
+			
 		default:
 			break;
 		}
