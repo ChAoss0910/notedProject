@@ -199,7 +199,7 @@
     	alert("Answered: " + choice + " in " + timeleft + " seconds.");
     	
     	//sends answer to Game Server
-    	/* sendAnswerMessage(choice, 15 - timeleft); //CHECK THIS */
+    	sendAnswerMessage(choice, 15 - timeleft);
     	
     	currQ++;
     	console.log("CurrentQuestion ID is: "  +currQ);
