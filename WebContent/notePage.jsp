@@ -12,6 +12,7 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	  <%
   		String username = request.getParameter("username");
@@ -115,6 +116,7 @@
 		  </div>
 		  
 		  <br>
+		   
 		  <div class="row">
 		    <div class="col-sm-3">
 		      <p>Note #1</p>
@@ -154,7 +156,9 @@
 		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		  </div>
-		</div><br><br>
+		</div>
+		<br><br>
+
 		
 		<footer class="container-fluid text-center">
 		  <p>&#0169; 2018 Noted All Rights Reserved.</p>

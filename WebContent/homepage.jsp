@@ -24,7 +24,7 @@
 	
 	if (username == null){
 	} else {
-		if (!username.equalsIgnoreCase("")){
+		if (!username.equalsIgnoreCase("") && !username.equalsIgnoreCase("null")){
 			guest = false;
 		}
 	}
@@ -184,8 +184,76 @@
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Featured Notes</h3><br>
 		  <a class="btn btn-primary btn-lg"  id="submit-button" href="notePage.jsp" role="button">Explore</a>
-		  <div class="row">
-		    <div class="col-sm-3">
+		  <div class="row" style="padding-top:20px;">
+			  <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Statistical Learning</p>
+			      	<a href="images/note1.png">
+			        	<img src="images/note1.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- EM Algorithm</p>
+			      	<a href="images/note2.png">
+			        	<img src="images/note2.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Making Simple Decisions</p>
+			      	<a href="images/note4.png">
+			        	<img src="images/note4.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Perception</p>
+			      	<a href="images/note3.png">
+			        	<img src="images/note3.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+	      </div>
+	      <div class="row">
+	      	<div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Inheritance</p>
+			      	<a href="images/note5.png">
+			        	<img src="images/note5.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Exception Handling</p>
+			      	<a href="images/note6.png">
+			        	<img src="images/note6.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Threading</p>
+			      	<a href="images/note7.png">
+			        	<img src="images/note7.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Java Servlets</p>
+			      	<a href="images/note8.png">
+			        	<img src="images/note8.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+	      </div>
+		  
+		    <!-- <div class="col-sm-3">
 		      <p>CSCI 360- Statistical Learning</p>
 		      <img src="images/note1.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
@@ -223,8 +291,9 @@
 		      <img src="images/note8.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		  </div>
-		</div><br><br>
-		
+		</div>
+		 -->
+		<br><br>
 		<footer class="container-fluid text-center">
 		  <p>&#0169; 2018 Noted All Rights Reserved.</p>
 		</footer>
