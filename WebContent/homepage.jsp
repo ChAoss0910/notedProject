@@ -73,46 +73,8 @@
 			font-weight: bold;
 			color: orange;
 		}
-		
-		* { box-sizing: border-box; }
-			.video-background {
-			  background: #000;
-			  position: fixed;
-			  top: 0; right: 0; bottom: 0; left: 0;
-			  z-index: -99;
-			}
-			.video-foreground,
-			.video-background iframe {
-			  position: absolute;
-			  top: 0;
-			  left: 0;
-			  width: 100%;
-			  height: 100%;
-			  pointer-events: none;
-			}
-			#vidtop-content {
-				top: 0;
-				color: #fff;
-			}
-			.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
-			.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
-			.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
-			@media (min-aspect-ratio: 16/9) {
-			  .video-foreground { height: 300%; top: -100%; }
-			}
-			@media (max-aspect-ratio: 16/9) {
-			  .video-foreground { width: 300%; left: -100%; }
-			}
-			@media all and (max-width: 600px) {
-			.vid-info { width: 50%; padding: .5rem; }
-			.vid-info h1 { margin-bottom: .2rem; }
-			}
-			@media all and (max-width: 500px) {
-			.vid-info .acronym { display: none; }
-			} 
 		.space {
 			height: 500px;
-		
 		}
 		#top {
 			background-image: url("images/notebook.jpg");
@@ -174,7 +136,8 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Featured Notes</h3><br>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href="notePage.jsp" role="button">Explore</a>
+		  <% String toNoteExplore = "notePage.jsp?username="+username+"&url="+profilePic; %>
+		  <a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toNoteExplore%> role="button">Explore</a>
 		  <div class="row" style="padding-top:20px;">
 			  <div class="col-sm-3"> 
 				  <div class="thumbnail">
@@ -243,47 +206,6 @@
 			      </div>
 		      </div>
 	      </div>
-		  
-		    <!-- <div class="col-sm-3">
-		      <p>CSCI 360- Statistical Learning</p>
-		      <img src="images/note1.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>CSCI 360- EM Algorithm</p>
-		      <img src="images/note2.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>CSCI 360- Making Simple Decisions</p>
-		      <img src="images/note4.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3">
-		      <p>CSCI 360- Perception</p>
-		      <img src="images/note3.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		  </div>
-		</div><br>
-		
-		<div class="container-fluid bg-3 text-center">    
-		  <div class="row">
-		    <div class="col-sm-3">
-		      <p>CSCI 201- Inheritance</p>
-		      <img src="images/note5.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>CSCI 201- Exception Handling</p>
-		      <img src="images/note6.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>CSCI 201- Threading</p>
-		      <img src="images/note7.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3">
-		      <p>CSCI 201- Java Servlets</p>
-		      <img src="images/note8.png" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		  </div>
-		</div>
-		 -->
 		<br><br>
 		<footer class="container-fluid text-center">
 		  <p>&#0169; 2018 Noted All Rights Reserved.</p>

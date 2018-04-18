@@ -28,41 +28,47 @@
 	String username = request.getParameter("username");
 	String profilePic = request.getParameter("url");
 
-	LoadDatabase db = (LoadDatabase) session.getAttribute("database");
+	LoadDatabase db = new LoadDatabase();
 	User u = db.getUser(username);
 	String fName = u.getFirstName();
 	String lName = u.getLastName();
 	ArrayList<Note> savedNotes = u.getNotes();
 	ArrayList<Question> savedQues = u.getQuestions();
 	ArrayList<Course> savedCourses = u.getCourses();
+	int numNotes = 0;
+	int numQuestions = 0;
+	int numClasses = 0;
+	if (savedNotes != null){
+		numNotes = savedNotes.size();
+	}
+	if (savedQues != null){
+		numQuestions = savedQues.size();
+	}
+	if (savedCourses != null){
+		numClasses = savedCourses.size();
+	}
 	
-	String[] notesLinks = {};
-	String[] notesTitles = {};
-	String[] notesClasses = {};
-	String[] notesDates = {};
-	int numNotes = savedNotes.size();
+	String[] notesLinks = new String[numNotes];
+	String[] notesTitles = new String[numNotes];
+	String[] notesClasses = new String[numNotes];
+	String[] notesDates = new String[numNotes];
 	for (int i = 0; i < numNotes; i++){
 		Note n = savedNotes.get(i);
 		notesLinks[i] = "#";
 		notesTitles[i] = n.getTitle();
 		notesClasses[i] = n.getClassTitle();
 	}
-	/* String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
-	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
-	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"}; */
-	String[] questions = {};
-	String[] classes = {};
-	String[] answers = {};
-	int numQuestions = savedQues.size();
+	String[] questions = new String[numQuestions];
+	String[] classes = new String[numQuestions];
+	String[] answers = new String[numQuestions];
 	for (int i = 0; i < numQuestions; i++){
 		Question q = savedQues.get(i);
 		questions[i] = q.getTitle();
 		classes[i] = q.getClass().getName();
 		answers[i] = q.getStringAnswer();
 	}
-	String[] classLinks = {};
-	String[] classTitles = {};
-	int numClasses = savedCourses.size();
+	String[] classLinks = new String[numClasses];
+	String[] classTitles = new String[numClasses];
 	for (int i = 0; i < numClasses; i++){
 		Course c = savedCourses.get(i);
 		classLinks[i] = "#";

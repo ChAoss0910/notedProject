@@ -12,8 +12,11 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	  
+	  <link rel="stylesheet" href="skippr/skippr.css">
 
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  <title>noted | notes</title>
 	  <%
   		String username = request.getParameter("username");
 		String profilePic = request.getParameter("url");
@@ -61,6 +64,12 @@
 			font-weight: bold;
 			color: orange;
 		}
+		#container {
+			margin-left: auto;
+			margin-right: auto;
+			width: 800px;
+			height: 400px;
+		}
 	  </style>
 	</head>
 	<body>
@@ -104,7 +113,8 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Note Bank</h3><br>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href="uploadNotes.jsp" role="button">Upload Notes</a>
+		  <% String toUploadNotes = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
+		  <a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toUploadNotes%> role="button">Upload Notes</a>
 		  <div class="container-fluid" style="text-align: left;">
 		  	<h4>Filter Notes:</h4>
 		  	<form class="navbar-form navbar-left" role="search">
@@ -115,50 +125,95 @@
 		  </form>
 		  </div>
 		  
+		  
 		  <br>
+		  
+		<div id="container">
+            <div id="notes">
+                <div style="background-image: url(images/note3.png)"></div>
+                <div style="background-image: url(images/note4.png)"></div>
+                <div style="background-image: url(images/note2.png)"></div>
+                <div style="background-image: url(images/note1.png)"></div>
+            </div>    
+        </div>
+		  
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+       	<script src="skippr/skippr.js"></script>
+       	<script>
+       	$(document).ready(function(){
+            $("#notes").skippr();
+        });    
+       	</script>
 		   
-		  <div class="row">
-		    <div class="col-sm-3">
-		      <p>Note #1</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #2</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #3</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3">
-		      <p>Note #4</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		  </div>
-		</div><br>
-		
-		<div class="container-fluid bg-3 text-center">    
-		  <div class="row">
-		    <div class="col-sm-3">
-		      <p>Note #5</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #6</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3"> 
-		      <p>Note #7</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		    <div class="col-sm-3">
-		      <p>Note #8</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-		    </div>
-		  </div>
-		</div>
-		<br><br>
-
+		  <div class="row" style="padding-top:20px;">
+			  <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Statistical Learning</p>
+			      	<a href="images/note1.png">
+			        	<img src="images/note1.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- EM Algorithm</p>
+			      	<a href="images/note2.png">
+			        	<img src="images/note2.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Making Simple Decisions</p>
+			      	<a href="images/note4.png">
+			        	<img src="images/note4.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 360- Perception</p>
+			      	<a href="images/note3.png">
+			        	<img src="images/note3.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+	      </div>
+	      <div class="row">
+	      	<div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Inheritance</p>
+			      	<a href="images/note5.png">
+			        	<img src="images/note5.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Exception Handling</p>
+			      	<a href="images/note6.png">
+			        	<img src="images/note6.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Threading</p>
+			      	<a href="images/note7.png">
+			        	<img src="images/note7.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+		      <div class="col-sm-3"> 
+				  <div class="thumbnail">
+				  	<p>CSCI 201- Java Servlets</p>
+			      	<a href="images/note8.png">
+			        	<img src="images/note8.png"style="width:100%">
+		      		</a>
+			      </div>
+		      </div>
+	      </div>
+	      <br><br>
 		
 		<footer class="container-fluid text-center">
 		  <p>&#0169; 2018 Noted All Rights Reserved.</p>
