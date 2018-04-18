@@ -16,6 +16,7 @@ public class QuizRoom {
 	private List<Session> players;
 	HashMap<Integer , List<Session> > answerQueue;
 	HashMap<Session, AnswerSet> playerAnswerSet;
+	private boolean started;
 	
 	public QuizRoom(String roomName, Quiz quiz, int size) {
 		
@@ -27,6 +28,7 @@ public class QuizRoom {
 		players = new ArrayList<>();
 		answerQueue = new HashMap<>();
 		playerAnswerSet = new HashMap<>();
+		started = false;
 		
 		for (int i = 1 ; i <= quiz.GetQuizSize(); i++) {
 			answerQueue.put(i, new ArrayList<Session>());
@@ -144,6 +146,21 @@ public class QuizRoom {
 	
 	public int GetRoomLimit() {
 		return roomSize;
+	}
+	
+	public int GetSlots() {
+		return GetRoomLimit() - GetPlayerNum();
+	}
+	
+	public boolean HasStarted() {
+		return started;
+	}
+	
+	public boolean StartGame() {
+		if (CheckRoomFull()) {
+			started = true;
+		}
+		return started;
 	}
 	
 	public double GetCurrentScore(Session session, int qID) {

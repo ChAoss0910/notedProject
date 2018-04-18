@@ -138,14 +138,22 @@ public class GameWebSocketServer {
 		int time = message.GetTime();
 		
 		QuizRoom room = roomQuiz.get(message.GetRoomName());
-		double multi = room.HandleAnswer(session, current, choice, time);
 		
-		MessageAnswerResponse(multi, message, session);
-		if (multi == 0.0) {
-			//Return answer is wrong
+		if (room.HasStarted()) {
+			double multi = room.HandleAnswer(session, current, choice, time);
+			
+			MessageAnswerResponse(multi, message, session);
+			if (multi == 0.0) {
+				//Return answer is wrong
+			} else {
+				//Broadcast
+				MessageOtherPlayer(multi, message, session);
+				
+			}
 		} else {
-			//Broadcast
+			MessageWaiting(room.GetSlots(), session);
 		}
+		
 	}
 
 	
@@ -185,6 +193,7 @@ public class GameWebSocketServer {
 			MessageInitializeRoom(session);
 			
 			if (rSize == 1) {
+				roomQuiz.get(rName).StartGame();
 				MessageStart(rName, session);
 			} else {
 				MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), session);
@@ -203,14 +212,28 @@ public class GameWebSocketServer {
 	 */
 	private void HandlNext(Message message, Session session) {
 		int current = message.GetCurrent();
-		if (roomQuiz.get(message.GetRoomName()).HasNextQues(current)) {
-			MessageNext(message, session);
+		
+		if (roomQuiz.containsKey(message.GetRoomName())) {
+			QuizRoom room = roomQuiz.get(message.GetRoomName());
+			
+			if (room.HasStarted()) {
+				if (room.HasNextQues(current)) {
+					MessageNext(message, session);
+				} else {
+					MessageEndGame(message, session);
+				}
+			} else {
+				MessageWaiting(room.GetSlots(), session);
+			}
 		} else {
-			MessageEndGame(message, session);
+			MessageRoomNotExist(message, session);
 		}
+		
 		
 	}
 	 
+
+	
 
 	/**
 	 * Handle Join message from the front end
@@ -227,6 +250,7 @@ public class GameWebSocketServer {
 			sessionRoomNameMap.put(session, rName);	
 			MessageJoinSuccess(message, session);
 			if (room.CheckRoomFull()) {
+				room.StartGame();
 				for (Session s : room.GetPlayers()) {
 					MessageStart(rName, s);
 				}
@@ -274,6 +298,21 @@ public class GameWebSocketServer {
 			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
 		}
 	}
+	
+private void MessageRoomNotExist(Message message, Session session) {
+		
+		try {
+			Message response = new Message();
+			response.SetType("RoomNotExist");
+			response.SetContent("Room doesn't exist");
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageInitializeRoom: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageInitializeRoom: " + e.getMessage());
+		}
+	}
+	
 	
 	
 	/**
@@ -378,8 +417,36 @@ public class GameWebSocketServer {
 	 * @param message The message should contain other players information
 	 * @param session
 	 */
-	private void MessageOtherPlayer(Message message, Session session) {
+	private void MessageOtherPlayer(double multi, Message message, Session session) {
+		String content = "Session " + session.getId();
+		switch ((int)multi) {
+		case 1:
+			//content += " got it.";
+			break;
+		case 2:
+			//content += " got ";
+			break;
+		default:
+			break;
+		}
 		
+		content += " got " + multi + " points.";
+		QuizRoom room = roomQuiz.get(message.GetRoomName());
+		
+		Message response = new Message();
+		response.SetType("OtherPlayer");
+		response.SetContent(content);
+		try {
+			for (Session s : room.GetPlayers()) {
+				if (session != s) {
+					s.getBasicRemote().sendObject(response);
+				}
+			}
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageStart: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageStart: " + e.getMessage());
+		}
 	}
 	
 	private void MessageAnswerResponse(double multi, Message message, Session session) {
@@ -446,7 +513,6 @@ public class GameWebSocketServer {
 		}
 	}
 	
-
 	/**Only for testing purpose 
 	 * @return Dummy Quiz
 	 */
