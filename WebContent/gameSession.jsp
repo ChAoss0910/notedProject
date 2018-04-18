@@ -340,6 +340,8 @@
     	var currentQ = currQ;
     	
     	var message = new Message('Answer');
+    	message.roomName = roomName;
+    	message.classTitle = classTitle;
     	message.current = currentQ;
     	message.choice = answer;
     	message.time = time;
@@ -359,6 +361,10 @@
     	
     	webSocket.send(JSON.stringify(message));
     }
+    
+    /*
+    	Handle Functions
+    */
     
 	function HandleInitialize(json) {
 		
