@@ -21,7 +21,7 @@
 	  	String profilePic = ""; 
 	  			
 	  	try {
-			LoadDatabase database = (LoadDatabase) request.getSession(false).getAttribute("database");
+			LoadDatabase database = new LoadDatabase();
 			User u = database.getUser(username);
 			profilePic = u.getPicURL();
 			guest = false;
@@ -188,20 +188,20 @@
 		  <h3>Featured Notes</h3><br>
 		  <div class="row">
 		    <div class="col-sm-3">
-		      <p>Note #1</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 109- Programming</p>
+		      <img src="images/note9.jpg" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #2</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>DES 323- Linguistic Sign</p>
+		      <img src="images/note10.jpg" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #3</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 360- Agents</p>
+		      <img src="images/note11.jpg" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3">
-		      <p>Note #4</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>DES 323- Typography</p>
+		      <img src="images/note12.jpg" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		  </div>
 		</div><br>

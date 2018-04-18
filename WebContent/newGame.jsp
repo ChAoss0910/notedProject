@@ -131,49 +131,54 @@
 	<!-- NAVBAR -->
 	<!-- START GAME -->
 	<div class="new-game">
-		<div class="container"> 
-			<div id="title">
-				<h1>Start a Game</h1>
+		<% if (guest) { %>
+			<div id="guest" style="text-align:center;">
+				<h1>You must be logged in to start a game.</h1>
+				<a class="btn btn-primary btn-lg"  id="submit-button" href="login.jsp" role="button">Log In</a>
 			</div>
-			<form name="newGame" id = "newGame" method="GET" action = "gameSession.jsp" onSubmit = "return validate();">
-				<div class="form-row">
-				    	<div class="form-group col-md-6">
-				    		<label for="gameName">Game Name</label>
-				      	<input type="text" class="form-control" id="gameName" name="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
-				    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
-				    </div>
-				    <div class="form-group col-md-3">
-				    		<label for="numPlayers">Num Players</label>			    			
-					  	<select id="numPlayers" name="numPlayers">
-						    <option val="">Players</option>
-						    <option val="1">1</option>
-						    <option val="2">2</option>
-						    <option val="3">3</option>
-						    <option val="4">4</option>
-						</select>
-						
+		<% } else { %>
+		<div id="user">
+			<div class="container"> 
+				<div id="title">
+					<h1>Start a Game</h1>
+				</div>
+				<form name="newGame" id = "newGame" method="GET" action = "gameSession.jsp" onSubmit = "return validate();">
+					<div class="form-row">
+					    	<div class="form-group col-md-6">
+					    		<label for="gameName">Game Name</label>
+					      	<input type="text" class="form-control" id="gameName" name="gameName" aria-describedby="gameNameHelp" placeholder="ex: Best Quiz">
+					    		<small id="gameNameHelp" class="form-text text-muted">Please only use letters and numbers.</small>
+					    </div>
+					    <div class="form-group col-md-3">
+					    		<label for="numPlayers">Num Players</label>			    			
+						  	<select id="numPlayers" name="numPlayers">
+							    <option val="">Players</option>
+							    <option val="1">1</option>
+							    <option val="2">2</option>
+							    <option val="3">3</option>
+							    <option val="4">4</option>
+							</select>
+							
+				  		</div>
+				  		<div class="form-group col-md-3">
+				  			<label for="selectClass">Select Class</label>
+							<select id="selectClass" name="selectClass">
+							    <option val="">Class</option>
+							    <option val="csci109">CSCI 201</option>
+							    <option val="csci103">CSCI 360</option>
+							</select>
+				  		</div>
+				  	</div>
+				  	<div class="form-row"> 
+				  		<div class="form-group col-md-12">
+				  			<a  href = "newGame.jsp" id="submit-button"  role="button"><button class="btn btn-primary btn-lg"  id="submit-button" onclick=store()>Create Game</button></a>
+				  			
+			  			</div>
 			  		</div>
-			  		<div class="form-group col-md-3">
-			  			<label for="selectClass">Select Class</label>
-						<select id="selectClass" name="selectClass">
-						    <option val="">Class</option>
-						    <option val="csci109">CSCI 109</option>
-						    <option val="csci103">CSCI 103</option>
-						    <option val="csci104">CSCI 104</option>
-						    <option val="csci170">CSCI 170</option>
-						    <option val="csci201">CSCI 201</option>
-						    <option val="csci270">CSCI 270</option>
-						</select>
-			  		</div>
-			  	</div>
-			  	<div class="form-row"> 
-			  		<div class="form-group col-md-12">
-			  			<a  href = "newGame.jsp" id="submit-button"  role="button"><button class="btn btn-primary btn-lg"  id="submit-button" onclick=store()>Create Game</button></a>
-			  			
-		  			</div>
-		  		</div>
-		  	</form>
+			  	</form>
+			</div>
 		</div>
+		<% } %>
 	</div>
 </body>
 <script type="text/javascript">
@@ -191,6 +196,6 @@
 		console.log(num);
 		console.log(roomName);
 		console.log(classTitle);
-	}
+	} 
 </script>
 </html>

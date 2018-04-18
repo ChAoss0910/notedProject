@@ -187,7 +187,7 @@ public class GameWebSocketServer {
 			//TODO: Generate Quiz from DB
 			
 			//Quiz quiz = database.GetCourseByTitle(message.GetClassTitle()).GenerateQuiz("Test Quiz", 3);
-			Quiz quiz = dummyQuiz(classTitle);
+			Quiz quiz = dummyQuiz();
 			
 			QuizRoom room = new QuizRoom(classTitle, quiz, rSize);
 			if (!room.CheckRoomFull()) {
@@ -533,7 +533,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 	/**Only for testing purpose 
 	 * @return Dummy Quiz
 	 */
-	private Quiz dummyQuiz(String classTitle) {
+	private Quiz dummyQuiz() {
 		List<Question> qPool = new ArrayList<>();
 		
 		Question q1 = new Question("DummyQuestion1");
@@ -577,7 +577,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 		qPool.add(q4);
 		qPool.add(q5);
 		
-		Quiz quiz = new Quiz(classTitle, qPool, 5);
+		Quiz quiz = new Quiz("DummyClass", qPool, 5);
 		return quiz;
 	}
 	
