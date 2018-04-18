@@ -146,6 +146,7 @@
 				    		<label for="numPlayers">Num Players</label>			    			
 					  	<select id="numPlayers" name="numPlayers">
 						    <option val="">Players</option>
+						    <option val="1">1</option>
 						    <option val="2">2</option>
 						    <option val="3">3</option>
 						    <option val="4">4</option>
@@ -167,7 +168,7 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a  href = "newGame.jsp" id="submit-button"  role="button"><button class="btn btn-primary btn-lg"  id="submit-button">Create Game</button></a>
+			  			<a  href = "newGame.jsp" id="submit-button"  role="button"><button class="btn btn-primary btn-lg"  id="submit-button" onclick=store()>Create Game</button></a>
 			  			
 		  			</div>
 		  		</div>
@@ -175,4 +176,17 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	function store() {
+		var e = document.getElementById("selectClass");
+		var classTitle = e.options[e.selectedIndex].text;
+		var c = document.getElementById("numPlayers");
+		var num = c.options[c.selectedIndex].text;
+		var roomName = document.getElementById("gameName");
+		
+		localStorage.setItem("num", num);
+		localStorage.setItem("roomName", roomName);
+		localStorage.setItem("command", "start");
+	}
+</script>
 </html>

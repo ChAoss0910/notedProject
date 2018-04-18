@@ -250,25 +250,32 @@ public class GameWebSocketServer {
 	private synchronized void HandleJoin(Message message, Session session) {
 		
 		String rName = message.GetRoomName();
-		QuizRoom room = roomQuiz.get(rName);
 		
-		if (!room.CheckRoomFull()) {
-			room.AddSession(session);
-			sessionRoomNameMap.put(session, rName);	
-			MessageJoinSuccess(message, session);
-			if (room.CheckRoomFull()) {
-				room.StartGame();
-				for (Session s : room.GetPlayers()) {
-					MessageStart(rName, s);
+		if (roomQuiz.containsKey(rName)) {
+			
+			QuizRoom room = roomQuiz.get(rName);
+			
+			if (!room.CheckRoomFull()) {
+				room.AddSession(session);
+				sessionRoomNameMap.put(session, rName);	
+				MessageJoinSuccess(message, session);
+				if (room.CheckRoomFull()) {
+					room.StartGame();
+					for (Session s : room.GetPlayers()) {
+						MessageStart(rName, s);
+					}
+				} else {
+					for (Session s : room.GetPlayers()) {
+						MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), s);
+					}
 				}
 			} else {
-				for (Session s : room.GetPlayers()) {
-					MessageWaiting(room.GetRoomLimit() - room.GetPlayerNum(), s);
-				}
+				MessageRoomFull(session);
 			}
 		} else {
-			MessageRoomFull(session);
+			MessageRoomNotExist(message, session);
 		}
+		
 	} 
 	
 	
