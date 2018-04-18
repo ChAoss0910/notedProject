@@ -114,7 +114,10 @@
 			height: 500px;
 		
 		}
-  	</style> 
+		#top {
+			background-image: url("images/notebook.jpg");
+		}
+  	</style>  
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -156,8 +159,7 @@
 		</nav>
 		
 		
-		  
-		<div class="jumbotron" >
+		<div class="jumbotron" id="top">
 		  <div class="container text-center">
 		    <h1>noted</h1>      
 		    <p>Learn through friendly competition</p>
@@ -169,17 +171,6 @@
 		  	<% } %>		  	
 		  </div>
 		</div>
-		
-		<!-- <div class="video-background">
-			    <div class="video-foreground">
-			      <iframe src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe> 
-			   	  <iframe src="https://www.youtube.com/embed/amVHBIhWwCo?controls=0&start=64&showinfo=0&rel=0&autoplay=1&loop=1&playlist=amVHBIhWwCo" frameborder="0" allowfullscreen></iframe>
-				 
-				  <iframe src="https://www.youtube.com/embed/GfRf43JTqY4?controls=0&start=64&end=98&showinfo=0&rel=0&autoplay=1&loop=1&playlist=GfRf43JTqY4" frameborder="0" allowfullscreen></iframe>
-				     
-			    </div>
-		  </div> 
-		<div class="space"></div> -->
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Featured Notes</h3><br>
