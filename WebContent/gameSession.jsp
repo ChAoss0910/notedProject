@@ -113,7 +113,7 @@
 		<div class="container">
 			<h1>Sample Quiz Game 1:</h1>
 			
-			<button id="startButton" onclick="sendInitialMessage(); gameStartFunc();" class="btn">Start Game</button>
+			<button id="startButton" onclick="gameStartFunc();" class="btn">Start Game</button>
 			
 			<table class="table">
 			<thead>
@@ -170,10 +170,10 @@
 	//After losing 3 hours
 	
 	//Global Variables
-	var gameRoom = "Game Room 1";
 	var roomName = "Sample Quiz 1";
 	var classTitle = "CS-201";
 	var currQ = 1;
+	var numPlayer = 1;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
 	var option1 = "Choice A";
@@ -223,7 +223,32 @@
 	//-----------------------Helper Functions (Networking) --------------------------//
 	
 	function gameStartFunc(){
+		
 		document.getElementById('startButton').disabled = true;
+		var theCommand = sessionStorage.getItem("command");
+		var num = sessionStorage.getItem("num");
+		var rName = sessionStorage.getItem("roomName");
+		var title = sessionStorage.getItem("classTitle");
+		
+		if (theCommand == null) {
+			sendInitialMessage();
+		} else {
+			console.log("Read from local storage: " + theCommand);
+			console.log("num is " + num);
+			console.log("room is " + rName);
+			console.log("title is " + title);
+			if (theCommand == 'start') {
+				
+				roomName = rName;
+				classTitle = title;
+				numPlayer = num;
+				sendInitialMessage();
+				
+			} else if (theCommand == 'join') {
+				
+			}
+		}
+		
 		
 	}
 
@@ -311,7 +336,6 @@
     
     
     function sendInitialMessage() {
-    	var numPlayer = 1;
     	
     	var message = new Message('Start');
     	message.classTitle = classTitle;
