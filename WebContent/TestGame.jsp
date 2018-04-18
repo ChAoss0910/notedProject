@@ -61,7 +61,6 @@ function onMessage(event) {
     case ('AvailableRoom') :
     	HandleAvailableRoom(json);
     	break;
-    case ()
     }
     
     /*  
