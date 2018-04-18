@@ -138,7 +138,7 @@
 		  <div class="container text-center">
 		    <h1>Select a Game</h1> 
 		    
-		    <button onclick="sendGetRoomsMessage();" class="btn">Load Available Games</button>
+		    <button onclick="sendGetRoomsMessage();" style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg">Load Available Games</button>
 		    
 		    <div id="messages">
 		    </div>
@@ -146,10 +146,12 @@
 		    <p class="lead">
 		    	<ul class="list-group">
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
-				    <a href="#">CSCI-201 Midterm</a>
-				    <span class="badge badge-primary badge-pill">slots: 1</span>
+				    <a id="anchor1" href="#">No Current Sessions</a>
+				    <span id="span1" class="badge badge-primary badge-pill"></span>
 				  </li>
-				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
+				  
+				  
+				  <!-- <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
 				    <a href="#">CSCI-104 Quiz 2</a>
 				    <span class="badge badge-primary badge-pill">slots: 3</span>
 				  </li>
@@ -172,7 +174,7 @@
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
 				   	<a href="#">PYSC-442 Quiz 5</a>
 				    <span class="badge badge-primary badge-pill">slots: 1</span>
-				  </li>
+				  </li> -->
 				</ul>
 			</p>
 			
@@ -306,8 +308,13 @@
 			    += '<br /> ClassName: ' + rooms[i][0]
 				+ ' RoomName: ' + rooms[i][1] 
 			    + ' Slots: ' + rooms[i][2];
+				
+				//update DOM
+				$('#anchor1').text(rooms[i][0]);
+				$("#span1").text('slots: ' + rooms[i][2]);
 			}
 		}
+		
 	}
 	</script>
 </html>
