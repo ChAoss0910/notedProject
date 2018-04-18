@@ -76,6 +76,7 @@
 			background-color: #ffa31a;
 			color: white; 
 			margin-bottom: 10px;
+			margin-top: 10px; 
 		}
 		#save-button:hover {
 			background-color: #ff9900;
@@ -129,10 +130,11 @@
 	<!-- NAVBAR -->
 	<div class="container-fluid bg-3 text-center">    
   		<h3><%=noteTitle %> <span style="font-size: 12pt"> by <%=author%></span></h3>
-  		<h5><%=classTitle%></h5>
+  		<h5><%=classTitle%></h5> 
   		<% for (int i = 0; i < numTags; i++){ %>
   			<%=tags[i]%>
   		<% } %>
+  		<br>
   		<button class="btn" onclick="add(<%=noteTitle%>,<%=classTitle%>);" id="save-button">Save</button><br> 
   		<% for (int i = 0; i < numPages; i++){ %>
   			<img src=<%=notePages[i]%> class="note-image">
