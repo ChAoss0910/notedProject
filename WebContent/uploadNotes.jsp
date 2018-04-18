@@ -26,7 +26,25 @@
 	}
   	%>
   	<script>
- 
+ 		function submit(){
+ 			var title =document.newNotes.notesTitle.value;
+ 			var course = document.newNotes.selectClass.value
+ 			var date = document.newNotes.date.value
+			var file = document.newNotes.uploadfile.value;
+			var tags = document.newNotes.tags.value;
+			if(title == ""||course ==""||date==""||file==""||tags==""){
+				alert("Please complete the form!")
+				/* return false; */
+			}
+			
+				
+			else{
+				document.getElementById("newNotes").submit();
+				/* return true; */
+			}
+				
+ 		}
+ 		
   		function validate(){
 			var xhttp =new XMLHttpRequest();
 			var file = document.newNotes.uploadfile.value;
@@ -143,7 +161,7 @@
 			<div id="title">
 				<h1>Upload Notes</h1>
 			</div>
-			<form name="newNotes" id ="newNotes"method="GET" action="homepage.jsp" onSubmit="return validate();">
+			<form name="newNotes" id ="newNotes"method="GET" action="ValidateNotes">
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
 				    		<label for="notesTitle">Title</label>
@@ -183,11 +201,18 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a role="button" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
+			  			<a role="button" onclick="submit()" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
 		  			</div>
 		  		</div>
+		  	</form>
+		  	<form action="ValidateUpNotes"enctype="multipart/form-data">
+		  		<input type="hidden" id="selectClass" name="selectClass">
+		  		<input type="hidden">
+		  		<input type="hidden">
+		  		<input type="hidden">
 		  	</form>
 		</div>
 	</div>
 </body>
 </html>
+

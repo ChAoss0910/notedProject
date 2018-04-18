@@ -97,18 +97,63 @@ public class User implements Serializable {
 		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedNotes.remove(i);
 		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.courseColl.update(preObj, newObj);
+		database.userColl.update(preObj, newObj);
 	}
 	public void removeQuestion(int i) {
 		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedQuestions.remove(i);
 		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.courseColl.update(preObj, newObj);
+		database.userColl.update(preObj, newObj);
 	}
 	public void removeCourse(int i) {
 		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedCourses.get(i);
 		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.courseColl.update(preObj, newObj);
+		database.userColl.update(preObj, newObj);
+	}
+	public void addNote(Note n) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+		boolean exist=false;
+		for(Note i:this.getNotes()) {
+			if(i.getTitle().equals(n.getTitle()))
+				exist=true;
+		}
+		if(exist) {
+			this.getNotes().add(n);
+			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+			database.courseColl.update(preObj, newObj);
+		}
+		
+	}
+	public void addQuestio(Question q) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+		boolean exist=false;
+		for(Question i:this.getQuestions()) {
+			if(i.getTitle().equals(q.getTitle()))
+				exist=true;
+		}
+		if(exist) {
+			this.getQuestions().add(q);
+			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+			database.userColl.update(preObj, newObj);
+		}
+			
+		
+	}
+	public void addCourse(Course c) {
+		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+		boolean exist=false;
+		for(Course i:this.getCourses()) {
+			if(i.GetTitle().equals(c.GetTitle()))
+				exist=true;
+		}
+		if(exist) {
+			this.getCourses().add(c);
+			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+			database.userColl.update(preObj, newObj);
+		}
+			
+		
 	}
 }
+
