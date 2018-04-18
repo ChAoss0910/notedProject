@@ -20,7 +20,7 @@
 	
 	if (username == null){
 	} else {
-		if (!username.equalsIgnoreCase("")){
+		if (!username.equalsIgnoreCase("") && !username.equalsIgnoreCase("null")){
 			guest = false;
 		}
 	}
