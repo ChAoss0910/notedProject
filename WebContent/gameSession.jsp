@@ -231,7 +231,7 @@
 
 	    webSocket.onerror = function(event) { 
 	      onError(event);
-	    }
+	    };
 
 	    webSocket.onopen = function(event) {
 	      onOpen(event);
@@ -273,7 +273,15 @@
         case ('EndGame') :
         	HandleEndGame(json);
         	break;
-        }
+        case ('AvailableRoom') :
+        	HandleAvailableRoom(json);
+        	break;
+        case ('Full') :
+        	HandleRoomFull(json);
+        	break;
+        case ('AnswerResponse') :
+        	HandleAnswerResponse(json);
+        	break;
         
         /*  
         	Testing purpose display
@@ -328,7 +336,7 @@
     	Called whenever the player hasn't got the correct choice and answered again
     */
     function sendAnswerMessage(answer, time) {
-    	var currentQ = 1;
+    	var currentQ = currQ;
     	
     	var message = new Message('Answer');
     	message.current = currentQ;
@@ -368,12 +376,18 @@
 		sendNextQuesMessage();
 	}
 	
+	function HandleRoomFull(json) {
+		
+	}
+
+	
 	function HandleNextQues(json) {
 		/*
 			question is String; options is String array
 		*/
 		var question = json.content;
 		var options = json.options;
+		var score = json.score;
 		
 		document.getElementById('questionDisplay').innerText = question;
 		
@@ -384,5 +398,16 @@
 		document.getElementById('choice4').innerText = options[3];
 		
 	}
+	
+	function HandleAnswerResponse(json) {
+		var multi = json.multi;
+		var response = json.content;
+		alert(response);
+		
+		if (multi == 0.0) {
+			
+		}
+	}
+
 	</script>
 </html>
