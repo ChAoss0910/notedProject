@@ -411,7 +411,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 			if (room.HasNextQues(current)) {
 				// Still has questions left in quiz
 				response.SetType("NextQues");
-				response.SetScore(room.GetCurrentScore(session, current));
+				
 				Question question = room.GetQuestionByID(current);
 				response.SetContent(question.getTitle());
 				List<String> options = question.getOptions();
@@ -465,10 +465,13 @@ private void MessageRoomNotExist(Message message, Session session) {
 	
 	private void MessageAnswerResponse(double multi, Message message, Session session) {
 		try {
-			
+			String rName = message.GetRoomName();
+			int current = message.GetCurrent();
+			QuizRoom room = roomQuiz.get(rName);
 			Message response = new Message();
 			response.SetType("AnswerResponse");
 			response.SetMulti(multi);
+			response.SetScore(room.GetCurrentScore(session, current));
 			
 			if (multi == 0.0) {
 				response.SetContent("WRONG!");

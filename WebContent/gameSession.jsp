@@ -13,6 +13,7 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  <link rel="stylesheet" type="text/css" href="topLayer.css" />
 	<title>noted | game session</title>
 	<%
 	String username = request.getParameter("username");
@@ -136,25 +137,65 @@
 		</div>
 	
 	<!-- Testing -->
-	<div id="messages">
-	</div>
+	<div id = "timer"></div>
+	<div id = "score"></div>
+	<div id = "right"></div>
+	<div id = "messages"></div>
 	</div>
 </body>
 	<script>
 	//-------------------------TIMER-----------------------------------//
+	var timerId;
+	
+	function startGameCountDown() {
+		var count = 3;
+		var timerDiv = document.getElementById('timer');
+		var font = 150;
+		
+		var fontCount = setInterval(function() {
+			font -= 0.2;
+			if (font <= 140) {
+				font = 150;
+			}
+			timerDiv.style.fontSize = font.toString() + "px";
+		}, 20);
+		
+		var timeCount = setInterval(function() {
+			if (count == 0) {
+				timerDiv.style.display = "none";
+				clearInterval(timeCount);
+				
+				clearInterval(fontCount);
+				
+				countdown();
+				sendNextQuesMessage();
+				
+			}
+			timerDiv.innerText = count;
+			count--;
+			
+		}, 1000);
+	}
+	
 	function countdown() {
-	    
+
+		document.getElementById('choice1').disabled = false;
+    	document.getElementById('choice2').disabled = false;
+    	document.getElementById('choice3').disabled = false;
+    	document.getElementById('choice4').disabled = false;
+    	
 	    var count = 10;
-	    var timerId = setInterval(function() {
+	    timerId = setInterval(function() {
 	        count--;
 	        document.getElementById("progressBar").value = 10 - count;
 
 	        if(count == 0) {
 	        	 //Enable buttons
 	    	    document.getElementById('choice1').disabled = false;
-	        	document.getElementById('choice2').disabled = false;
-	        	document.getElementById('choice3').disabled = false;
-	        	document.getElementById('choice4').disabled = false;
+    			document.getElementById('choice2').disabled = false;
+    			document.getElementById('choice3').disabled = false;
+    			document.getElementById('choice4').disabled = false;
+    	
 	        	
 	            currQ++;
 	            sendNextQuesMessage();
@@ -163,6 +204,11 @@
 	            document.getElementById("progressBar").value = 0;
 	        }
 	    }, 1000);
+	}
+	
+	function stopTimer() {
+		console.log('Stop timer called') ;
+		clearInterval(timerId);
 	}
 	
 	
@@ -174,6 +220,7 @@
 	var classTitle = "CS-201";
 	var currQ = 1;
 	var numPlayer = 1;
+	var answered = false;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
 	var option1 = "Choice A";
@@ -182,10 +229,7 @@
 	var option4 = "Choice D";
 	
 	//buttons start off as disabled
-	document.getElementById('choice1').disabled = true;
-	document.getElementById('choice2').disabled = true;
-	document.getElementById('choice3').disabled = true;
-	document.getElementById('choice4').disabled = true;
+	disableChoice();
 
 	
 	//-----------------------Helper Functions (Quiz UI) --------------------------//
@@ -197,19 +241,30 @@
 		var timeleft = document.getElementById("progressBar").value;
 		console.log("Time left: ");
     	console.log(timeleft);
-    	alert("Answered: " + choice + " in " + timeleft + " seconds.");
+    	//alert("Answered: " + choice + " in " + timeleft + " seconds.");
     	
     	//sends answer to Game Server
     	sendAnswerMessage(choice, 15 - timeleft);
     	
-    	currQ++;
+    	//currQ++;
     	console.log("CurrentQuestion ID is: "  +currQ);
     	
     	//Disable all buttons
-    	document.getElementById('choice1').disabled = true;
+    	disableChoice();
+	}
+	
+	function disableChoice() {
+		document.getElementById('choice1').disabled = true;
     	document.getElementById('choice2').disabled = true;
     	document.getElementById('choice3').disabled = true;
     	document.getElementById('choice4').disabled = true;
+	}
+	
+	function enableChoice() {
+		document.getElementById('choice1').disabled = false;
+    	document.getElementById('choice2').disabled = false;
+    	document.getElementById('choice3').disabled = false;
+    	document.getElementById('choice4').disabled = false;
 	}
 	
 	//Choices
@@ -400,12 +455,12 @@
 	}
 	
 	function HandleEndGame(json) {
-		
+		disableChoice();
+		stopTimer();
 	}
 	
 	function HandleStartGame(json) {
-		countdown();
-		sendNextQuesMessage();
+		startGameCountDown();
 	}
 	
 	function HandleRoomFull(json) {
@@ -419,7 +474,6 @@
 		*/
 		var question = json.content;
 		var options = json.options;
-		var score = json.score;
 		
 		document.getElementById('questionDisplay').innerText = question;
 		
@@ -434,7 +488,9 @@
 	function HandleAnswerResponse(json) {
 		var multi = json.multi;
 		var response = json.content;
-		alert(response);
+		var score = json.score;
+		document.getElementById('score').innerText = score;
+		document.getElementById('right').innerText = response;
 		
 		if (multi == 0.0) {
 			

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#timer {
+	z-index: 5;
+  	/* width: 500px;
+  	height: 500px;
+  	margin: -250px 0 0 -250px; */
+  	position:fixed;
+    top: 45%;
+    left: 45%;
+    
+	background:rgba(255,255,255,0);
+	font-size: 100px;
+	font-family: sans-serif;
+	text-align: center;
+}
