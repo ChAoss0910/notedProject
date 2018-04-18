@@ -186,20 +186,20 @@
 		  <a class="btn btn-primary btn-lg"  id="submit-button" href="notePage.jsp" role="button">Explore</a>
 		  <div class="row">
 		    <div class="col-sm-3">
-		      <p>Note #1</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 360- Statistical Learning</p>
+		      <img src="images/note1.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #2</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 360- EM Algorithm</p>
+		      <img src="images/note2.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #3</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 360- Making Simple Decisions</p>
+		      <img src="images/note4.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3">
-		      <p>Note #4</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 360- Perception</p>
+		      <img src="images/note3.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		  </div>
 		</div><br>
@@ -207,20 +207,20 @@
 		<div class="container-fluid bg-3 text-center">    
 		  <div class="row">
 		    <div class="col-sm-3">
-		      <p>Note #5</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 201- Inheritance</p>
+		      <img src="images/note5.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #6</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 201- Exception Handling</p>
+		      <img src="images/note6.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3"> 
-		      <p>Note #7</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 201- Threading</p>
+		      <img src="images/note7.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		    <div class="col-sm-3">
-		      <p>Note #8</p>
-		      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+		      <p>CSCI 201- Java Servlets</p>
+		      <img src="images/note8.png" class="img-responsive" style="width:100%" alt="Image">
 		    </div>
 		  </div>
 		</div><br><br>
