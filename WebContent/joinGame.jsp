@@ -298,6 +298,7 @@
 
 
 	function HandleAvailableRoom(json) {
+		sessionStorage.setItem("command", "join");
 		var rooms = json.availableRooms;
 		
 		if (rooms.length == 0) {
@@ -313,7 +314,8 @@
 				//update DOM
 				inner += 
 				'<li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">'
-			    + '<a href="#">'
+			    + '<a href="gameSession.jsp?rName='
+			    + rooms[i][1] + '">'
 			    + rooms[i][0] + '  '
 			    + rooms[i][1]
 			    + '</a>'
@@ -323,6 +325,7 @@
 				
 				
 			}
+			
 			document.getElementById('listDisplay').innerHTML = inner;
 		}
 		
