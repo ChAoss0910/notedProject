@@ -56,11 +56,17 @@ public class JsonToDatabase {
 				DBObject dbObject = (DBObject) JSON.parse(gson.toJson(each)); 
 				courseColl.insert(dbObject);
 			}
-			DBCursor findIterable = courseColl.find();  
+			DBCursor findIterable = userColl.find();  
 		       Iterator<DBObject> mongoCursor = findIterable.iterator();  
 		       while(mongoCursor.hasNext()){  
+		    	   
 		          System.out.println(mongoCursor.next());  
 		     }  
+//		       while(mongoCursor.hasNext()){  
+//		    	
+//		          System.out.println(mongoCursor.next());  
+//		     }  
+		      
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

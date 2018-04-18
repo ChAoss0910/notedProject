@@ -247,7 +247,7 @@
 	<script>
 	function remove(index, type){
 		var xhttp = new XMLHttpRequest(); 
-		xhttp.open("GET", "DeleteProfile?username=" + username + 
+		xhttp.open("GET", "DeleteProfileInfo?username=" + username + 
 				"&delete=" + index + 
 				"&type=" + type, false);
 		xhttp.send();
@@ -314,9 +314,8 @@
 								<span class="badge badge-primary badge-pill"><%=notesClasses[n]%></span>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
 									<a href="<%=notesLinks[n]%>" class="notes-action"><%=notesTitles[n]%></a>
-									<% type = 0; %>
 									<a href="#" class="badge light" style="margin-top:-5px;">
-										<button onclick="remove(<%=n%>,<%=type%>);" style="background-color:#f2f2f2; width:5px; height:5px;"> 
+										<button onclick="remove(<%=n%>,<%=0%>);" style="background-color:#f2f2f2; width:5px; height:5px;"> 
 										<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px" style="margin-left:-10px">
 										</button>
 									</a>
@@ -332,8 +331,7 @@
 										<div class="card-body"> 
 									    		<h5 class="card-title"><%=questions[q]%></h5>
 									    		<p class="card-text"><%=classes[q]%></p>
-									    		<% type = 1; %>
-									    		<button onclick="remove(<%=q%>,<%=type%>);">  
+									    		<button onclick="remove(<%=q%>,<%=1%>);">  
 									    			<div class="badge light" style="margin-bottom:10px;margin-left:auto;margin-right:auto;">
 									    			<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px"> 
 								    				</div>
@@ -349,9 +347,8 @@
 							<% for (int n = 0; n < numClasses; n++){ %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
 									<a href="<%=classLinks[n]%>" class="notes-action"><%=classTitles[n]%></a>
-									<% type = 2; %>
 									<a href="#" class="badge light" style="margin-top:-5px; height:30px">
-										<button onclick="remove(<%=n%>,<%=type%>);" style="background-color:#f2f2f2; width:5px; height:5px;"> 
+										<button onclick="remove(<%=n%>,<%=2%>);" style="background-color:#f2f2f2; width:5px; height:5px;"> 
 										<img src="https://cdn2.iconfinder.com/data/icons/web/512/Trash_Can-512.png" width="20px" style="margin-left:-10px">
 										</button>
 									</a>
