@@ -142,14 +142,21 @@ public class GameWebSocketServer {
 		if (room.HasStarted()) {
 			double multi = room.HandleAnswer(session, current, choice, time);
 			
-			MessageAnswerResponse(multi, message, session);
-			if (multi == 0.0) {
-				//Return answer is wrong
-			} else {
-				//Broadcast
-				MessageOtherPlayer(multi, message, session);
+			
+			if (multi == -1) {
 				
+			} else {
+				MessageAnswerResponse(multi, message, session);
+				if (multi == 0.0) {
+					
+					//Return answer is wrong
+				} else {
+					//Broadcast
+					MessageOtherPlayer(multi, message, session);
+					
+				}
 			}
+			
 		} else {
 			MessageWaiting(room.GetSlots(), session);
 		}

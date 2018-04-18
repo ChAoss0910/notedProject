@@ -81,6 +81,9 @@ public class QuizRoom {
 		playerAnswerSet.get(session).StoreAnswer(qID, choice, time);
 		
 		//Check if answer is correct
+		if (qID > quiz.GetQuizSize() || qID < 1) {
+			return -1;
+		}
 		List<Session> currentQueue = answerQueue.get(qID); 
 		if (choice == GetQuestionByID(qID).getAnswer()) {
 			//If correct put in queue
