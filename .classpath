@@ -10,10 +10,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="mongodb-driver-3.6.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="mongodb-driver-3.6.3.jar"/>
 	<classpathentry kind="lib" path="mongodb-driver-core-3.6.3.jar"/>
-	<classpathentry kind="lib" path="bson-3.6.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.json-1.0.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.json-api-1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.websocket-api-1.1.jar"/>
@@ -28,6 +26,5 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl-2.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mongodb-driver-3.6.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/PDFRenderer.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/SIMSUN.TTF"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

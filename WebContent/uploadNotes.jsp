@@ -32,18 +32,56 @@
  			var date = document.newNotes.date.value
 			var file = document.newNotes.uploadfile.value;
 			var tags = document.newNotes.tags.value;
+			/* $("notesTitle1").val=title;
+			$("selectClass1").val=course;
+			$("date1").val=date;
+			$("file1").val=file;
+			$("tags1").val=tags;
+			alert(title+course+date+file+tags) */
 			if(title == ""||course ==""||date==""||file==""||tags==""){
 				alert("Please complete the form!")
-				/* return false; */
+				return false;
 			}
 			
 				
 			else{
+				/* var xhttp =new XMLHttpRequest();
+				var file = document.newNotes.uploadfile.value;
+				
+				var tags = document.newNotes.tags.value;
+				
+				xhttp.open("GET", "UploadFile?notesTitle="+document.newNotes.notesTitle.value +
+						"&selectClass=" + document.newNotes.selectClass.value+"&date="+document.newNotes.date.value+
+						"&uploadfile="+ file+"&tags="+tags, false);
+				xhttp.send(); */
+				/* document.getElementById("other").submit(); */
+				/* alert("other sumbit") */
 				document.getElementById("newNotes").submit();
-				/* return true; */
+				
+				 return true; 
 			}
 				
  		}
+ 		function submit2(){
+ 			var title =document.newNotes.notesTitle.value;
+ 			var course = document.newNotes.selectClass.value
+ 			var date = document.newNotes.date.value
+			var file = document.newNotes.uploadfile.value;
+			var tags = document.newNotes.tags.value;
+			
+			if(title != ""&&course !=""&&date!=""&&file!=""&&tags!=""){
+				$("notesTitle1").val=title;
+				$("selectClass1").val=course;
+				$("date1").val=date;
+				$("file1").val=file;
+				$("tags1").val=tags;
+				alert(title+course+date+file+tags)
+				document.getElementById("other").submit();
+				alert("other sumbit") 
+			}
+			
+ 		}
+ 		
  		
   		function validate(){
 			var xhttp =new XMLHttpRequest();
@@ -161,7 +199,7 @@
 			<div id="title">
 				<h1>Upload Notes</h1>
 			</div>
-			<form name="newNotes" id ="newNotes"method="GET" action="ValidateNotes">
+			<form name="newNotes" id ="newNotes"method="POST" enctype="multipart/form-data" action="ValidateNotes">
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
 				    		<label for="notesTitle">Title</label>
@@ -201,15 +239,18 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a role="button" onclick="submit()" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
+			  			<a href="homepage.jsp" onclick="return submit();" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
 		  			</div>
 		  		</div>
 		  	</form>
-		  	<form action="ValidateUpNotes"enctype="multipart/form-data">
-		  		<input type="hidden" id="selectClass" name="selectClass">
-		  		<input type="hidden">
-		  		<input type="hidden">
-		  		<input type="hidden">
+		  	<form name ="other" id="other" method ="POST" action="UploadFile" >
+		  		<input type="hidden" id="notesTitle1" name ="notesTitle">
+		  		<input type="hidden" id="selectClass1" name="selectClass">
+		  		<input type="hidden" id="file1" name="file">
+		  		<input type="hidden" id="date1" name="date">
+		  		<input type="hidden"  id="tags1" name="tags">
+		  		
+		  		
 		  	</form>
 		</div>
 	</div>
