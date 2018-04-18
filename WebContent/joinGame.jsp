@@ -136,7 +136,13 @@
 		
 		<div class="jumbotron">
 		  <div class="container text-center">
-		    <h1>Select a Game</h1>      
+		    <h1>Select a Game</h1> 
+		    
+		    <button onclick="sendGetRoomsMessage();" class="btn">Load Available Games</button>
+		    
+		    <div id="messages">
+		    </div>
+		         
 		    <p class="lead">
 		    	<ul class="list-group">
 				  <li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">
@@ -203,4 +209,105 @@
 		  <p>Footer Text</p>
 		</footer>
 	</body>
+	<script>
+	
+	var webSocket = 
+	    new WebSocket('ws://localhost:8080/notedProject/actions');
+
+	    webSocket.onerror = function(event) { 
+	      onError(event);
+	    };
+
+	    webSocket.onopen = function(event) {
+	      onOpen(event);
+	    };
+
+	    webSocket.onmessage = function(event) {
+	      onMessage(event);
+	    };
+	    
+	    webSocket.onclose = function(event) {
+	    	alert('Closed connection');
+	    }
+
+	function onOpen(event) {
+	      alert('Connection established');
+	}
+
+	function onError(event) {
+	      alert('Error');
+	}
+
+	function onMessage(event) {
+	    var json = JSON.parse(event.data); 
+	    var type = json.type; 
+	    
+	    switch (type) {
+	    case ('Initialize') :
+	    	HandleInitialize(json);
+	    	break;
+	    case ('Waiting') :
+	    	HandleWaiting(json);
+	    	break;
+	    case ('StartGame') :
+	    	HandleStartGame(json);
+	    	break;
+	    case ('NextQues') :
+	    	HandleNextQues(json);
+	    	break;
+	    case ('EndGame') :
+	    	HandleEndGame(json);
+	    	break;
+	    case ('AvailableRoom') :
+	    	HandleAvailableRoom(json);
+	    	break;
+	    
+	    case ('Full') :
+	    	HandleRoomFull(json);
+	    	break;
+	    }
+	    /*  
+	    	Testing purpose display
+	    */
+	    document.getElementById('messages').innerHTML 
+	    += '<br />Received server response!'
+	    + '<br />Type: ' + json.type
+	    + '<br />Content: ' + json.content;
+	    
+	    if (type == 'StartResponse') {
+	    	document.getElementById('messages').innerHTML
+	    	+= '<br />Starting game';
+	    }
+	    document.getElementById('messages').innerHTML
+	    += '<br />';
+	   
+	}
+
+	function Message(type) {
+		this.type = type;
+		this.content = '';
+	}
+	
+	function sendGetRoomsMessage() {
+		var message = new Message('RoomRequest');
+		
+		webSocket.send(JSON.stringify(message));
+	}
+
+
+	function HandleAvailableRoom(json) {
+		var rooms = json.availableRooms;
+		
+		if (rooms.length == 0) {
+			document.getElementById('messages').innerHTML = 'No room available';
+		} else {
+			for (i = 0; i < rooms.length; i++) {
+				document.getElementById('messages').innerHTML
+			    += '<br /> ClassName: ' + rooms[i][0]
+				+ ' RoomName: ' + rooms[i][1] 
+			    + ' Slots: ' + rooms[i][2];
+			}
+		}
+	}
+	</script>
 </html>
