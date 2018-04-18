@@ -30,7 +30,8 @@ import javax.websocket.server.ServerEndpoint;
 public class GameWebSocketServer {
 	
 	private static HashMap<String , QuizRoom> roomQuiz = new HashMap<>();
-	private static Vector<Session> sessionVector = new Vector<>(); 
+	private static Vector<Session> sessionVector = new Vector<>();
+	private static HashMap<Session, String> sessionRoomNameMap = new HashMap<>();
 	private LoadDatabase database;
 	
 	
@@ -49,6 +50,14 @@ public class GameWebSocketServer {
 	public void onClose(Session session) {
 	    System.out.println("Connection closed");
 	    sessionVector.remove(session);
+	    if (sessionRoomNameMap.containsKey(session)) {
+			String rName = sessionRoomNameMap.get(session);
+			QuizRoom room = roomQuiz.get(rName);
+			if (room.RemoveSession(session)) {
+				roomQuiz.remove(rName);
+			}
+			sessionRoomNameMap.remove(session);
+		}
 	}
 	  
 	@OnError
@@ -171,6 +180,7 @@ public class GameWebSocketServer {
 			}
 			
 			roomQuiz.put(rName, room);
+			sessionRoomNameMap.put(session, rName);
 			
 			MessageInitializeRoom(session);
 			
@@ -214,6 +224,7 @@ public class GameWebSocketServer {
 		
 		if (!room.CheckRoomFull()) {
 			room.AddSession(session);
+			sessionRoomNameMap.put(session, rName);	
 			MessageJoinSuccess(message, session);
 			if (room.CheckRoomFull()) {
 				for (Session s : room.GetPlayers()) {

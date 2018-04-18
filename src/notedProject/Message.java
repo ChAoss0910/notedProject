@@ -16,8 +16,8 @@ public class Message {
 	  private int time;
 	  private List<String> options = new ArrayList<>(); 
 	  private List<List<String> > availableRooms = new ArrayList<>();
-	  private double currentScore;
-	  private double currentMulti;
+	  private double currentScore = -1;
+	  private double currentMulti = -1;
 	  
 	  public boolean HasRoom() {
 		  return (availableRooms.size() > 0);

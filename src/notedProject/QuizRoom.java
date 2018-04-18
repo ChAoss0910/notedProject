@@ -41,12 +41,29 @@ public class QuizRoom {
 	public synchronized boolean AddSession(Session session) {
 		//TODO: Can implement throw roomFull Exception
 		if (players.size() < roomSize) {
-			players.add(session);
-			playerAnswerSet.put(session, new AnswerSet(quiz.GetQuizSize()));
+			if (players.contains(session)) {
+				
+			} else {
+				players.add(session);
+				playerAnswerSet.put(session, new AnswerSet(quiz.GetQuizSize()));
+			}
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * @param session
+	 * @return if sessions container is empty
+	 */
+	public boolean HasSession(Session session) {
+		return players.contains(session);
+	}
+	
+	public synchronized boolean RemoveSession(Session session) {
+		players.remove(session);
+		return players.isEmpty();
 	}
 	
 	/**
