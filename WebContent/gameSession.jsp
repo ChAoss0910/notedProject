@@ -226,18 +226,19 @@
 		
 		document.getElementById('startButton').disabled = true;
 		var theCommand = sessionStorage.getItem("command");
-		var num = sessionStorage.getItem("num");
-		var rName = sessionStorage.getItem("roomName");
-		var title = sessionStorage.getItem("classTitle");
-		
 		if (theCommand == null) {
 			sendInitialMessage();
 		} else {
 			console.log("Read from local storage: " + theCommand);
-			console.log("num is " + num);
-			console.log("room is " + rName);
-			console.log("title is " + title);
+			
 			if (theCommand == 'start') {
+				
+				var num = sessionStorage.getItem("num");
+				var rName = sessionStorage.getItem("roomName");
+				var title = sessionStorage.getItem("classTitle");
+				console.log("num is " + num);
+				console.log("room is " + rName);
+				console.log("title is " + title);
 				
 				roomName = rName;
 				classTitle = title;
@@ -245,11 +246,13 @@
 				sendInitialMessage();
 				
 			} else if (theCommand == 'join') {
+				var rName = get('rName');
+				roomName = rName;
+				console.log("room is" + rName);
+				sendJoinMessage(roomName);
 				
 			}
 		}
-		
-		
 	}
 
 	var webSocket = 
@@ -346,13 +349,10 @@
     	webSocket.send(JSON.stringify(message));
     }
     
-    function sendJoinMessage() {
-    	var roomName = 'dummyRoom';
-    	var classTitle = 'dummytitle';
+    function sendJoinMessage(rName) {
     	
     	var message = new Message('Join');
-    	message.roomName = roomName;
-    	message.classTitle = classTitle;
+    	message.roomName = rName;
     	message.soj = 'Join';
     	
     	webSocket.send(JSON.stringify(message));
@@ -440,5 +440,11 @@
 			
 		}
 	}
+	
+	// Get function from url
+	function get(name){
+		   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+		      return decodeURIComponent(name[1]);
+		}
 	</script>
 </html>
