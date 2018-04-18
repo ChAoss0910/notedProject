@@ -30,7 +30,9 @@
 		String classTitle = "CSCI 360";
 		String author = "user1";
 		int numPages = 2;
+		int numTags = 2;
 		String[] notePages = {"images/note-perception1.png","images/note-perception2.png"};
+		String[] tags = {"#computer vision","#vision"};
   	  %>
 	  <style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -127,12 +129,25 @@
 	<!-- NAVBAR -->
 	<div class="container-fluid bg-3 text-center">    
   		<h3><%=noteTitle %> <span style="font-size: 12pt"> by <%=author%></span></h3>
-  		<h5><%=classTitle%></h5> 
-  		<button class="btn" id="save-button">Save</button><br> 
+  		<h5><%=classTitle%></h5>
+  		<% for (int i = 0; i < numTags; i++){ %>
+  			<%=tags[i]%>
+  		<% } %>
+  		<button class="btn" onclick="add(<%=noteTitle%>,<%=classTitle%>);" id="save-button">Save</button><br> 
   		<% for (int i = 0; i < numPages; i++){ %>
   			<img src=<%=notePages[i]%> class="note-image">
   		<% } %>
   		<br><br><br>
   	</div>
+  	<script>
+	function add(title, type){
+		var xhttp = new XMLHttpRequest(); 
+		xhttp.open("GET", "AddProfileInfo?username=" + username + 
+				"&title=" + title + 
+				"&type=" + type, false);
+		xhttp.send();
+		window.location.reload(true);
+	}
+	</script>
 </body>
 </html>
