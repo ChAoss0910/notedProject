@@ -80,7 +80,7 @@ public class GameWebSocketServer {
 	
 	private void HandleMessage(Message message, Session session) {
 		String type = message.GetType();
-		System.out.println("Received message of type: " + type);
+		System.out.println("Received message of type: " + type + " from " + session.getId());
 		switch (type) {
 		case "Start":
 			HandleStart(message, session);
@@ -131,12 +131,15 @@ public class GameWebSocketServer {
 		QuizRoom room = roomQuiz.get(message.GetRoomName());
 		double multi = room.HandleAnswer(session, current, choice, time);
 		
+		MessageAnswerResponse(multi, message, session);
 		if (multi == 0.0) {
 			//Return answer is wrong
 		} else {
 			//Broadcast
 		}
 	}
+
+	
 
 	/**
 	 * Handle Start message from front end
@@ -336,14 +339,15 @@ public class GameWebSocketServer {
 	 */
 	public void MessageNext(Message message, Session session) {
 		int current = message.GetCurrent();
-		System.out.println("Trying to get room");
+		//System.out.println("Trying to get room");
 		QuizRoom room = roomQuiz.get(message.GetRoomName());
-		System.out.println("Current player num is: " + room.GetPlayerNum());
+		//System.out.println("Current player num is: " + room.GetPlayerNum());
 		try {
 			Message response = new Message();
 			if (room.HasNextQues(current)) {
 				// Still has questions left in quiz
 				response.SetType("NextQues");
+				response.SetScore(room.GetCurrentScore(session, current));
 				Question question = room.GetQuestionByID(current);
 				response.SetContent(question.getTitle());
 				List<String> options = question.getOptions();
@@ -351,6 +355,27 @@ public class GameWebSocketServer {
 					response.AddOption(option);
 				}
 			}
+			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageStart: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageStart: " + e.getMessage());
+		}
+	}
+	
+	private void MessageAnswerResponse(double multi, Message message, Session session) {
+		try {
+			
+			Message response = new Message();
+			response.SetType("AnswerResponse");
+			
+			
+			if (multi == 0.0) {
+				response.SetContent("WRONG!");
+			} else {
+				response.SetContent("Corrent!");
+			}
+			
 			session.getBasicRemote().sendObject(response);
 		} catch (EncodeException  e) {
 			System.err.println("ee in messageStart: " + e.getMessage());
@@ -414,30 +439,35 @@ public class GameWebSocketServer {
 		q1.addOption("Option2");
 		q1.addOption("Option3");
 		q1.addOption("Option4");
+		q1.SetAnswer(1);
 		
 		Question q2 = new Question("DummyQuestion2");
 		q2.addOption("Option5");
 		q2.addOption("Option6");
 		q2.addOption("Option7");
 		q2.addOption("Option8");
+		q2.SetAnswer(1);
 		
 		Question q3 = new Question("DummyQuestion3");
 		q3.addOption("Option9");
 		q3.addOption("Option10");
 		q3.addOption("Option11");
 		q3.addOption("Option12");
+		q3.SetAnswer(1);
 		
 		Question q4 = new Question("DummyQuestion4");
 		q4.addOption("Option13");
 		q4.addOption("Option14");
 		q4.addOption("Option15");
 		q4.addOption("Option16");
+		q4.SetAnswer(1);
 		
 		Question q5 = new Question("DummyQuestion5");
 		q5.addOption("Option17");
 		q5.addOption("Option18");
 		q5.addOption("Option19");
 		q5.addOption("Option20");
+		q5.SetAnswer(1);
 		
 		qPool.add(q1);
 		qPool.add(q2);

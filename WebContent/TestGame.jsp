@@ -113,10 +113,11 @@ function sendJoinMessage() {
 	Called whenever the player made a choice
 */
 function sendAnswerMessage(answer, time) {
-	var currentQ = 1;
 	
 	var message = new Message('Answer');
-	message.current = currentQ;
+	message.roomName = roomName;
+	message.classTitle = classTitle;
+	message.current = currQ;
 	message.choice = answer;
 	message.time = time;
 	
@@ -160,6 +161,7 @@ function HandleNextQues(json) {
 	*/
 	var question = json.content;
 	var options = json.options;
+	var score = json.score;
 	
 	document.getElementById('questionDisplay').innerText = question;
 	
@@ -224,6 +226,12 @@ function HandleAvailableRoom(json) {
   	</div>
   	<div>
     	<input type="submit" value="Join" onclick="sendJoinMessage()" />
+  	</div>
+  	<div>
+    	<input type="submit" value="Answer" onclick="sendAnswerMessage(1, 5)" />
+  	</div>
+  	<div>
+    	<input type="submit" value="GetNext" onclick="sendNextQuesMessage()" />
   	</div>
   	<div id="messages"></div>
   	<div id="rooms"></div>

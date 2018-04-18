@@ -128,4 +128,8 @@ public class QuizRoom {
 	public int GetRoomLimit() {
 		return roomSize;
 	}
+	
+	public double GetCurrentScore(Session session, int qID) {
+		return playerAnswerSet.get(session).GetCurrentScore(qID);
+	}
 }

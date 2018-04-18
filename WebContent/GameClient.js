@@ -94,6 +94,10 @@ function Message(type) {
 }
 
 /*
+ * End Server connection code
+ */
+
+/*
  * Start Game messages
  **/
 
@@ -127,10 +131,11 @@ function sendJoinMessage() {
 	Called whenever the player made a choice
 */
 function sendAnswerMessage(answer, time) {
-	var currentQ = 1;
 	
 	var message = new Message('Answer');
-	message.current = currentQ;
+	message.roomName = roomName;
+	message.classTitle = classTitle;
+	message.current = currQ;
 	message.choice = answer;
 	message.time = time;
 	
@@ -178,6 +183,7 @@ function HandleNextQues(json) {
 	*/
 	var question = json.content;
 	var options = json.options;
+	var score = json.score;
 	
 	document.getElementById('questionDisplay').innerText = question;
 	

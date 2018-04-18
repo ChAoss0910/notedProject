@@ -16,6 +16,7 @@ public class Message {
 	  private int time;
 	  private List<String> options = new ArrayList<>(); 
 	  private List<List<String> > availableRooms = new ArrayList<>();
+	  private double currentScore;
 	  
 	  public boolean HasRoom() {
 		  return (availableRooms.size() > 0);
@@ -31,6 +32,14 @@ public class Message {
 		  temp.add(rName);
 		  temp.add(""+slots);
 		  availableRooms.add(temp);
+	  }
+	  
+	  public double GetScore() {
+		  return currentScore;
+	  }
+	  
+	  public void SetScore(double score) {
+		  this.currentScore = score;
 	  }
 	  
 	  public boolean HasOptions() {
