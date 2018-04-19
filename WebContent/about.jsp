@@ -61,6 +61,11 @@
 			font-weight: bold;
 			color: orange;
 		}
+		
+		.UList {
+			font-family: "Raleway";
+			font-size: 22px;
+		}
 	</style>
 </head>
 <body>
@@ -105,8 +110,15 @@
 	<!-- NAVBAR -->
 	<div class="outer-user">
 		<div class="container">
-			<h1>About Us:</h1>
+			<h1>Quiz Instructions:</h1>
+			
+			 <ul class="UList">
+			  <li>If a player answers correctly, they get 1 point.</li><br>
+			  <li>If a player answers incorrectly, they get 0 points.</li><br>
+			  <li>If all other players have answered the question, the player gets locked out of answering and gets 0 points. </li>
+			</ul> 
 		</div>
 	</div>
+	
 </body>
 </html>
