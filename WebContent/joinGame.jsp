@@ -229,15 +229,15 @@
 	    };
 	    
 	    webSocket.onclose = function(event) {
-	    	alert('Closed connection');
+	    	console.log('Closed connection');
 	    }
 
 	function onOpen(event) {
-	      alert('Connection established');
+	      console.log('Connection established');
 	}
 
 	function onError(event) {
-	      alert('Error');
+	      console.log('Error');
 	}
 
 	function onMessage(event) {
