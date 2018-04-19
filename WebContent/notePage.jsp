@@ -151,9 +151,10 @@
 		  </form>
 	  	</div>
 		   
+		   <% String toCoursePage = "coursePage.jsp?username="+username+"&url="+profilePic+"&courseTitle="; %>
 		  <div class="list-group" id="courses">
 		  	<% for (int n = 0; n < numCourses; n++){ %>
-				<a href="<%=courseLinks[n]%>" class="list-group-item list-group-item-action"><%=courseTitles[n]%></a>
+				<a href="<%=toCoursePage+courseTitles[n].replaceAll("\\s+","")%>" class="list-group-item list-group-item-action"><%=courseTitles[n]%></a>
 			<% } %>
 		  </div>
 	      <br><br>
