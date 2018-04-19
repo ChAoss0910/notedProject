@@ -13,11 +13,15 @@ public class Note {
 	private String time;
 	private String classTitle;
 	private String tags;
-	private ArrayList<Image> images = new ArrayList<Image>();
+	private ArrayList<String> images = new ArrayList<String>();
 	
 	
-	public Note(String title) {
+	public Note(String title,String time,String classTitle,String tags) {
 		this.title = title;
+		this.time = time;
+		this.classTitle = classTitle;
+		this.tags=tags;
+		
 //		time = new Date();
 	}
 	public String getTitle() {
@@ -33,7 +37,10 @@ public class Note {
 		return this.tags;
 		
 	}
-	public ArrayList<Image> getImages() {
+	public ArrayList<String> getImages() {
 		return images;
+	}
+	public void addPath(String path) {
+		this.getImages().add(path);
 	}
 }

@@ -18,9 +18,9 @@ public class Course {
 	private String title;
 	private List<Question> questions;
 	private List<Note> notes;
-	LoadDatabase database = new LoadDatabase();
+//	LoadDatabase database = new LoadDatabase();
 	
-	Gson gson = new Gson();
+//	Gson gson = new Gson();
 	public Course(String title) {
 		this.title = title;
 	}
@@ -38,18 +38,18 @@ public class Course {
 	}
 	
 	public void AddNote(Note newNote) {
-		 DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		
 		notes.add(newNote);
-		 DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.courseColl.update(preObj, newObj);
+//		 DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//		database.courseColl.update(preObj, newObj);
 	}
 	
 	public void RemoveNote(Note dNote) {
 		if (notes.contains(dNote)) {
-			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 			notes.remove(dNote);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.courseColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.courseColl.update(preObj, newObj);
 		}
 	}
 	
@@ -59,10 +59,10 @@ public class Course {
 			return false;
 		}
 		else {
-			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 			questions.add(q);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.courseColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.courseColl.update(preObj, newObj);
 			return true;
 		}
 	}
@@ -77,10 +77,10 @@ public class Course {
 	
 	public boolean RemoveQuestion(Question q) {
 		if (questions.contains(q)) {
-			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//			DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 			questions.remove(q);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.courseColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.courseColl.update(preObj, newObj);
 			return true;
 		} else {
 			return false;

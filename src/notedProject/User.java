@@ -21,8 +21,8 @@ public class User implements Serializable {
 	private ArrayList<Note> savedNotes;
 	private ArrayList<Question> savedQuestions;
 	private ArrayList<Course> savedCourses;
-	LoadDatabase database = new LoadDatabase();
-	Gson gson = new Gson();
+//	LoadDatabase database = new LoadDatabase();
+//	Gson gson = new Gson();
 	public User(String username, String lName, String fName, String password, String email, String url) {
 		this.username = username;
 		this.email = email;
@@ -94,25 +94,27 @@ public class User implements Serializable {
 	
 	/* REMOVE */
 	public void removeNote(int i) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedNotes.remove(i);
-		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.userColl.update(preObj, newObj);
+//		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//		database.userColl.update(preObj, newObj);
 	}
 	public void removeQuestion(int i) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedQuestions.remove(i);
-		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.userColl.update(preObj, newObj);
+//		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//		database.userColl.update(preObj, newObj);
 	}
 	public void removeCourse(int i) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		if (i != -1) savedCourses.get(i);
-		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-		database.userColl.update(preObj, newObj);
+//		DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//		database.userColl.update(preObj, newObj);
 	}
+	@SuppressWarnings("deprecation")
 	public void addNote(Note n) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+		
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		boolean exist=false;
 		for(Note i:this.getNotes()) {
 			if(i.getTitle().equals(n.getTitle()))
@@ -120,13 +122,13 @@ public class User implements Serializable {
 		}
 		if(exist) {
 			this.getNotes().add(n);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.courseColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.courseColl.update(preObj, newObj);
 		}
 		
 	}
 	public void addQuestio(Question q) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		boolean exist=false;
 		for(Question i:this.getQuestions()) {
 			if(i.getTitle().equals(q.getTitle()))
@@ -134,14 +136,14 @@ public class User implements Serializable {
 		}
 		if(exist) {
 			this.getQuestions().add(q);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.userColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.userColl.update(preObj, newObj);
 		}
 			
 		
 	}
 	public void addCourse(Course c) {
-		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
+//		DBObject preObj = (DBObject) JSON.parse(gson.toJson(this));
 		boolean exist=false;
 		for(Course i:this.getCourses()) {
 			if(i.GetTitle().equals(c.GetTitle()))
@@ -149,8 +151,8 @@ public class User implements Serializable {
 		}
 		if(exist) {
 			this.getCourses().add(c);
-			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
-			database.userColl.update(preObj, newObj);
+//			DBObject newObj = (DBObject) JSON.parse(gson.toJson(this));
+//			database.userColl.update(preObj, newObj);
 		}
 			
 		
