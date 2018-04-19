@@ -45,3 +45,11 @@
 	color: rgba(132, 108, 103, 0.2);
 	margin: 0 0 0 -220px;
 }
+
+#waiting {
+	top: 33%;
+    left: 45%;
+	font-size: 60px;
+	color: rgba(132, 108, 103, 0.2);
+	margin: 0 0 0 -300px;
+}

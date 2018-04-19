@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.websocket.Session;
 
-import org.apache.catalina.Store;
-
 public class QuizRoom {
 	private Quiz quiz;
 	private String roomName;

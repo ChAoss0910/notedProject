@@ -263,7 +263,6 @@
 	    case ('AvailableRoom') :
 	    	HandleAvailableRoom(json);
 	    	break;
-	    
 	    case ('Full') :
 	    	HandleRoomFull(json);
 	    	break;
@@ -271,6 +270,7 @@
 	    /*  
 	    	Testing purpose display
 	    */
+	    document.getElementById('messages').style.display = "none";
 	    document.getElementById('messages').innerHTML 
 	    += '<br />Received server response!'
 	    + '<br />Type: ' + json.type
@@ -315,7 +315,9 @@
 				inner += 
 				'<li class="list-group-item d-flex justify-content-between align-items-center quiz-listitem">'
 			    + '<a href="gameSession.jsp?rName='
-			    + rooms[i][1] + '">'
+			    + rooms[i][1] 
+				+ '&classTitle=' 
+				+ rooms[i][0] + '">'
 			    + rooms[i][0] + '  '
 			    + rooms[i][1]
 			    + '</a>'

@@ -114,7 +114,7 @@
 	<!-- Quiz UX -->
 	<div class="quiz-frame">
 		<div class="container">
-			<h1>Sample Quiz Game 1:</h1>
+			<h1 id="gameTitle">Sample Quiz Game 1:</h1>
 			
 			<button id="startButton" onclick="gameStartFunc();" class="btn">Start Game</button>
 			
@@ -153,35 +153,45 @@
 	<div id = "right" class="topLayer response">CORRECT!</div>
 	<div id = "wrong" class="topLayer response">WRONG!</div>
 	<div id = "late" class="topLayer response">YOU'RE LAST</div>
-	<!-- <div id = "messages"></div> -->
+	<div id = "waiting" class="topLayer response"></div>
+	<div id = "messages"></div>
 	</div>
 </body>
 	<script>
 	//-------------------------TIMER-----------------------------------//
 	var timerId;
+	var answered = false;
+	var correct = false;
 	
 	function showRightOrWrong(response) {
 		var part;
 		if (response == "WRONG!") {
 			part = document.getElementById('wrong');
 		} else if (response == "CORRECT!"){
+			correct = true;
 			part = document.getElementById('right');
 		} else if (response == "LATE") {
 			part = document.getElementById('late');
 			disableChoice();
 		}
+		
+		if (answered == true) {
+			if (response == "LATE") {
+				console.log('answered');
+				return;
+			}
+		}
 		part.style.display = "block";
-		
-		
-		
 		var timeCount = setInterval(function() {
 			part.style.display = "none";
 			clearInterval(timeCount);
 		}, 5000);
 		
+		
 	}
 
 	function startGameCountDown() {
+		document.getElementById('waiting').style.display = "none";
 		var count = 3;
 		var timerDiv = document.getElementById('timer');
 		var font = 150;
@@ -225,6 +235,8 @@
 
 	        if(count == 0) {
 	        	 //Enable buttons
+	        	correct = false;
+	        	answered = false;
 	    	    document.getElementById('choice1').disabled = false;
     			document.getElementById('choice2').disabled = false;
     			document.getElementById('choice3').disabled = false;
@@ -256,7 +268,7 @@
 	var classTitle = "CS-201";
 	var currQ = 1;
 	var numPlayer = 1;
-	var answered = false;
+	
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
 	var option1 = "Choice A";
@@ -277,6 +289,7 @@
 		var timeleft = document.getElementById("progressBar").value;
 		console.log("Time left: ");
     	console.log(timeleft);
+    	answered = true;
     	//alert("Answered: " + choice + " in " + timeleft + " seconds.");
     	
     	//sends answer to Game Server
@@ -314,7 +327,7 @@
 	//-----------------------Helper Functions (Networking) --------------------------//
 	
 	function gameStartFunc(){
-		
+		document.getElementById('messages').style.display = 'none';
 		document.getElementById('startButton').disabled = true;
 		var theCommand = sessionStorage.getItem("command");
 		if (theCommand == null) {
@@ -338,11 +351,15 @@
 				
 			} else if (theCommand == 'join') {
 				var rName = get('rName');
+				var cTitle = get('classTitle');
+				classTitle = cTitle;
 				roomName = rName;
 				console.log("room is" + rName);
 				sendJoinMessage(roomName);
 				
 			}
+			document.getElementById('gameTitle').innerHTML = classTitle + ' ' + roomName;
+			
 		}
 	}
 
@@ -490,7 +507,10 @@
 	}
 	
 	function HandleWaiting(json) {
-		
+		var content = json.content;
+		console.log('Waiting message: ' + content);
+		document.getElementById('waiting').innerText = content;
+		document.getElementById('waiting').style.display = "block";
 	}
 	
 	function HandleEndGame(json) {
