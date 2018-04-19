@@ -36,6 +36,8 @@
 	int numQuestions = questions.length;
 	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
 	String[] answers = {"Professor Goodney","Professor Cote","Professor Schindler"};
+	
+	String toNote = "note.jsp?username="+username+"&url="+profilePic+"&noteTitle=";
  	%>
   	<style>
 	    /* Remove the navbar's default margin-bottom and rounded borders */ 

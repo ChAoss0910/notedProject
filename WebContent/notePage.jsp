@@ -28,6 +28,10 @@
 				guest = false;
 			}
 		}
+		
+		String [] courseTitles = {"CSCI 201", "CSCI 360"};
+		String [] courseLinks = {"coursePage.jsp?=username"+username+"&url="+profilePic,"coursePage.jsp?=username"+username+"&url="+profilePic};
+		int numCourses = courseTitles.length;
   	  	%>
 	  	<style>
 		    /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -71,6 +75,9 @@
 				height: 400px;
 				padding: 20px 0px;
 			}
+			#courses {
+				padding: 20px 50px;
+			}
 		  </style>
 	</head>
 	<body>
@@ -113,7 +120,7 @@
 		</nav>
 		  
 		<div class="container-fluid bg-3 text-center">    
-		  <h3>Note Bank</h3><br>
+		  <h3>Courses</h3><br>
 		  
 		<div id="container">
             <div id="notes">
@@ -144,74 +151,11 @@
 		  </form>
 	  	</div>
 		   
-		  <div class="row" style="padding-top:20px;">
-			  <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Statistical Learning</p>
-			      	<a href="images/note1.png">
-			        	<img src="images/note1.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- EM Algorithm</p>
-			      	<a href="images/note2.png">
-			        	<img src="images/note2.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Making Simple Decisions</p>
-			      	<a href="images/note4.png">
-			        	<img src="images/note4.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Perception</p>
-			      	<a href="images/note3.png">
-			        	<img src="images/note3.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-	      </div>
-	      <div class="row">
-	      	<div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 201- Inheritance</p>
-			      	<a href="images/note5.png">
-			        	<img src="images/note5.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 201- Exception Handling</p>
-			      	<a href="images/note6.png">
-			        	<img src="images/note6.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 201- Threading</p>
-			      	<a href="images/note7.png">
-			        	<img src="images/note7.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 201- Java Servlets</p>
-			      	<a href="images/note8.png">
-			        	<img src="images/note8.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-	      </div>
+		  <div class="list-group" id="courses">
+		  	<% for (int n = 0; n < numCourses; n++){ %>
+				<a href="<%=courseLinks[n]%>" class="list-group-item list-group-item-action"><%=courseTitles[n]%></a>
+			<% } %>
+		  </div>
 	      <br><br>
 		
 		<footer class="container-fluid text-center">
