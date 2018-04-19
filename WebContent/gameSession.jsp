@@ -13,6 +13,7 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 	  <link rel="stylesheet" type="text/css" href="topLayer.css" />
 	<title>noted | game session</title>
 	<%
@@ -147,16 +148,39 @@
 	
 	<!-- Testing -->
 	<div id = "unanswered"></div>
-	<div id = "timer"></div>
+	<div id = "timer" class="topLayer"></div>
 	
-	<div id = "right"></div>
-	<div id = "messages"></div>
+	<div id = "right" class="topLayer response">CORRECT!</div>
+	<div id = "wrong" class="topLayer response">WRONG!</div>
+	<div id = "late" class="topLayer response">YOU'RE LAST</div>
+	<!-- <div id = "messages"></div> -->
 	</div>
 </body>
 	<script>
 	//-------------------------TIMER-----------------------------------//
 	var timerId;
 	
+	function showRightOrWrong(response) {
+		var part;
+		if (response == "WRONG!") {
+			part = document.getElementById('wrong');
+		} else if (response == "CORRECT!"){
+			part = document.getElementById('right');
+		} else if (response == "LATE") {
+			part = document.getElementById('late');
+			disableChoice();
+		}
+		part.style.display = "block";
+		
+		
+		
+		var timeCount = setInterval(function() {
+			part.style.display = "none";
+			clearInterval(timeCount);
+		}, 5000);
+		
+	}
+
 	function startGameCountDown() {
 		var count = 3;
 		var timerDiv = document.getElementById('timer');
@@ -205,7 +229,9 @@
     			document.getElementById('choice2').disabled = false;
     			document.getElementById('choice3').disabled = false;
     			document.getElementById('choice4').disabled = false;
-    	
+    			document.getElementById('wrong').style.display = "none";
+    			document.getElementById('right').style.display = "none";
+    			document.getElementById('late').style.display = "none";
 	        	
 	            currQ++;
 	            sendNextQuesMessage();
@@ -484,7 +510,9 @@
 	
 	function HandleUnanswered(json) {
 		var unanswered = json.unanswered;
-		document.getElementById('unanswered').innerText = unanswered + " other players still haven't got it";
+		if (unanswered == 1) {
+			showRightOrWrong("LATE");
+		}
 	}
 
 	
@@ -510,7 +538,7 @@
 		var response = json.content;
 		var score = json.score;
 		document.getElementById('score').innerText = score;
-		document.getElementById('right').innerText = response;
+		showRightOrWrong(response);
 		
 		if (multi == 0.0) {
 			

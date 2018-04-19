@@ -1,16 +1,47 @@
 @charset "UTF-8";
 
-#timer {
+#timer {    
+    top: 30%;
+    left: 45%;
+	background:rgba(255,255,255,0);
+	font-size: 100px;
+	text-align: center;
+}
+
+.topLayer {
 	z-index: 5;
   	/* width: 500px;
   	height: 500px;
   	margin: -250px 0 0 -250px; */
   	position:fixed;
-    top: 45%;
+}
+
+.response {
+	
+    display : none;
+    background:rgba(255,255,255,0);
+    font-size: 100px;
+    text-align: center;
+   
+}
+
+#right {
+	top: 55%;
     left: 45%;
-    
-	background:rgba(255,255,255,0);
-	font-size: 100px;
-	font-family: sans-serif;
-	text-align: center;
+	color: rgba(128, 242, 118, 0.2); 
+	 margin: 0 0 0 -150px;
+}
+
+#wrong {
+	top: 55%;
+    left: 45%;
+	color: rgba(249, 127, 145, 0.2);
+	margin: 0 0 0 -130px;
+}
+
+#late {
+	top: 33%;
+    left: 45%;
+	color: rgba(132, 108, 103, 0.2);
+	margin: 0 0 0 -220px;
 }

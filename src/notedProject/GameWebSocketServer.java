@@ -499,7 +499,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 			if (multi == 0.0) {
 				response.SetContent("WRONG!");
 			} else {
-				response.SetContent("Corrent!");
+				response.SetContent("CORRECT!");
 			}
 			
 			session.getBasicRemote().sendObject(response);
@@ -573,40 +573,40 @@ private void MessageRoomNotExist(Message message, Session session) {
 	private Quiz dummyQuiz() {
 		List<Question> qPool = new ArrayList<>();
 		
-		Question q1 = new Question("DummyQuestion1");
-		q1.addOption("Option1");
-		q1.addOption("Option2");
-		q1.addOption("Option3");
-		q1.addOption("Option4");
-		q1.SetAnswer(1);
+		Question q1 = new Question("What is the most important rule of Computer Science?");
+		q1.addOption("When in doubt, Stack Overflow");
+		q1.addOption("Never forget to flush();");
+		q1.addOption("Avoid the business side");
+		q1.addOption("Equity is a trap");
+		q1.SetAnswer(2);
 		
-		Question q2 = new Question("DummyQuestion2");
-		q2.addOption("Option5");
-		q2.addOption("Option6");
-		q2.addOption("Option7");
-		q2.addOption("Option8");
-		q2.SetAnswer(1);
+		Question q2 = new Question("What makes a CS student smile?");
+		q2.addOption("Segmentation Fault (Core Dumped)");
+		q2.addOption("Merge Conflict --Aborted");
+		q2.addOption("¡°Grade updated on Blackboard¡­¡±");
+		q2.addOption("9 points on a final presentation");
+		q2.SetAnswer(4);
 		
-		Question q3 = new Question("DummyQuestion3");
-		q3.addOption("Option9");
-		q3.addOption("Option10");
-		q3.addOption("Option11");
-		q3.addOption("Option12");
-		q3.SetAnswer(1);
+		Question q3 = new Question("Which data structure is most memory efficient?");
+		q3.addOption("AVL Trees");
+		q3.addOption("Red/Black Trees");
+		q3.addOption("Stacks");
+		q3.addOption("Is that even a thing?");
+		q3.SetAnswer(4);
 		
-		Question q4 = new Question("DummyQuestion4");
-		q4.addOption("Option13");
-		q4.addOption("Option14");
-		q4.addOption("Option15");
-		q4.addOption("Option16");
-		q4.SetAnswer(1);
+		Question q4 = new Question("What is the Big-O of Facebook¡¯s delete function?");
+		q4.addOption("O(n^2)");
+		q4.addOption("O(n)");
+		q4.addOption("O(Logn)");
+		q4.addOption("Facebook never forgets");
+		q4.SetAnswer(4);
 		
-		Question q5 = new Question("DummyQuestion5");
-		q5.addOption("Option17");
-		q5.addOption("Option18");
-		q5.addOption("Option19");
-		q5.addOption("Option20");
-		q5.SetAnswer(1);
+		Question q5 = new Question("What is a Semaphore?");
+		q5.addOption("A Pokemon");
+		q5.addOption("An extinct Crustacean");
+		q5.addOption("A Shepherd for resources");
+		q5.addOption("A French delicacy");
+		q5.SetAnswer(3);
 		
 		qPool.add(q1);
 		qPool.add(q2);
