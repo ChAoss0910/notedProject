@@ -31,7 +31,8 @@
 	String courseName = "Introduction to Artificial Intelligence";
 	int numNotes = 5;
 	String[] noteTitles = {"Making Simple Decisions","Making Complex Decisions","Decision Trees","Learning Probabilistic Models","Perception"};
- 	
+ 	String[] noteSrcs = {"images/notes/simple-decisions1.png","images/notes/complex-decisions1.png","images/notes/decision-trees.png","images/notes/probabilistic-models1.png","images/notes/perception1.png"};
+	
 	String[] questions = {"Who is the professor for CSCI 103?","Who is the professor for CSCI 104?","Who is the professor for CSCI 170?"};
 	int numQuestions = questions.length;
 	String[] classes = {"CSCI-103","CSCI-104","CSCI-170"};
@@ -82,9 +83,12 @@
 			margin-bottom: 0px;
 		}
 		#notes, #questions { 
-			padding: 20px 0px;
-			position: relative;
-			z-index: -1;
+			padding: 20px 40px;
+			/* position: relative; 
+			z-index: -1; */
+		}
+		.thumbnail {
+			margin-top: 10px;
 		}
 		#questions button {
 			width: 100%;
@@ -125,7 +129,7 @@
 		#to-top {
 			position: fixed;
 			bottom: 0px;
-			right: 10px; 
+			right: 20px; 
 			width: 120px; 
 			height: 40px;
 			background-color: white;
@@ -178,79 +182,33 @@
 		<h1><%=courseTitle%></h1>
 		<h4><%=courseName%></h4>
 		
-		<a href="#notes" class="nav-link">Notes</a> / <a href="#questions" class="nav-link">Questions</a>
 		<hr>
 		<h2>Notes</h2>
 		<div id="notes">
-			<div class="row" style="padding-top:20px;">
-			  <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Statistical Learning</p>
-			      	<a href="images/note1.png">
-			        	<img src="images/note1.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- EM Algorithm</p>
-			      	<a href="images/note2.png">
-			        	<img src="images/note2.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Making Simple Decisions</p>
-			      	<a href="images/note4.png">
-			        	<img src="images/note4.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Perception</p>
-			      	<a href="images/note3.png">
-			        	<img src="images/note3.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
+			<%
+			int c = 0;
+			boolean done = false;
+			while (c < numNotes) { %>
+				<div class="row" style="padding-top:20px;">
+					<% for (int j = 0; j <= 3; j++) { %>
+						<% if (c < numNotes) { %>
+							<div class="col-sm-3"> 
+								<div class="thumbnail">
+								  	<p><%=courseTitle+"- "+noteTitles[c].trim()%></p>
+								  	<a href="<%=toNote+"&noteTitle="+noteTitles[c].trim()%>">
+							        	<img src="<%=noteSrcs[c]%>"style="width:100%">
+							        </a>
+							     </div>
+			      			</div>
+			      			<% c++; %>
+			      		<% } else {
+			      			done = true;
+			      			break;
+			      		} %>
+					<% } %>
+			<% } %>
 	      	</div>
-	      	<div class="row" style="padding-top:20px;">
-			  <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Statistical Learning</p>
-			      	<a href="images/note1.png">
-			        	<img src="images/note1.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- EM Algorithm</p>
-			      	<a href="images/note2.png">
-			        	<img src="images/note2.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Making Simple Decisions</p>
-			      	<a href="images/note4.png">
-			        	<img src="images/note4.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-		      <div class="col-sm-3"> 
-				  <div class="thumbnail">
-				  	<p>CSCI 360- Perception</p>
-			      	<a href="images/note3.png">
-			        	<img src="images/note3.png"style="width:100%">
-		      		</a>
-			      </div>
-		      </div>
-	      	</div>
-		</div>
+		</div> 
 		<hr>
 		<h2>Questions</h2>
 		<div id="questions">
@@ -258,13 +216,12 @@
 				<%for (int q = 0; q < numQuestions; q++){%>
 					<div class="q-item">
 						<h5 class="card-title"><%=questions[q]%></h5>
-						<button onclick="saveQues();">Show Answer</button><br>
-						<button onclick="saveQues();">Save</button>
-						<h5 class="answer" style="display:none;"><%=answers[q]%></h5>
+						<button onclick="showAns();">Show Answer</button><br>
+						<button id="saveQues" onclick="saveQues();">Save</button>
+						<h5 id="answer" style="display:none;"><%=answers[q]%></h5>
 					</div>
 				<%}%>
 			</div> 
-							
 			<br><br><br><br>
 		</div>
   	</div>
