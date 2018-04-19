@@ -137,6 +137,7 @@
 		</div>
 	
 	<!-- Testing -->
+	<div id = "unanswered"></div>
 	<div id = "timer"></div>
 	<div id = "score"></div>
 	<div id = "right"></div>
@@ -219,7 +220,7 @@
 	var roomName = "Sample Quiz 1";
 	var classTitle = "CS-201";
 	var currQ = 1;
-	var numPlayer = 1;
+	var numPlayer = 2;
 	var answered = false;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
@@ -366,6 +367,9 @@
         case ('AnswerResponse') :
         	HandleAnswerResponse(json);
         	break;
+        case ('Unanswered') :
+        	HandleUnanswered(json);
+        	break;
         }
         
         /*  
@@ -465,6 +469,11 @@
 	
 	function HandleRoomFull(json) {
 		
+	}
+	
+	function HandleUnanswered(json) {
+		var unanswered = json.unanswered;
+		document.getElementById('unanswered').innerText = unanswered + " other players still haven't got it";
 	}
 
 	

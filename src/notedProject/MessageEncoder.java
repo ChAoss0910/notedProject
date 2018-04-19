@@ -29,6 +29,9 @@ public class MessageEncoder implements Encoder.Text<Message> {
     if (message.GetMulti() != -1) {
     	jsonObjectBuilder.add("multi", message.GetMulti());
     }
+    if (message.GetUnanswered() != -1) {
+    	jsonObjectBuilder.add("unanswered", message.GetUnanswered());
+    }
     
     if (message.HasOptions()) {
     	List<String> options = message.GetOptions(); 

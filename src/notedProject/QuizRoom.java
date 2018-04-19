@@ -1,6 +1,7 @@
 package notedProject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +15,8 @@ public class QuizRoom {
 	private String classTitle;
 	private int roomSize;
 	private List<Session> players;
-	HashMap<Integer , List<Session> > answerQueue;
+	HashMap<Integer , List<Session> > bingoQueue;
+	HashMap<Integer , List<Session> > answeredQueue;
 	HashMap<Session, AnswerSet> playerAnswerSet;
 	private boolean started;
 	
@@ -26,12 +28,14 @@ public class QuizRoom {
 		this.quiz = quiz;
 		this.roomSize = size;
 		players = new ArrayList<>();
-		answerQueue = new HashMap<>();
+		bingoQueue = new HashMap<>();
+		answeredQueue = new HashMap<>();
 		playerAnswerSet = new HashMap<>();
 		started = false;
 		
 		for (int i = 1 ; i <= quiz.GetQuizSize(); i++) {
-			answerQueue.put(i, new ArrayList<Session>());
+			bingoQueue.put(i, new ArrayList<Session>());
+			answeredQueue.put(i, new ArrayList<Session>());
 		}
 	}
 	
@@ -85,7 +89,8 @@ public class QuizRoom {
 			return -1;
 		}
 		playerAnswerSet.get(session).StoreAnswer(qID, choice, time);
-		List<Session> currentQueue = answerQueue.get(qID); 
+		answeredQueue.get(qID).add(session);
+		List<Session> currentQueue = bingoQueue.get(qID); 
 		if (choice == GetQuestionByID(qID).getAnswer()) {
 			//If correct put in queue
 			newMulti = 1.0;
@@ -106,14 +111,17 @@ public class QuizRoom {
 			//SetMultipier
 			playerAnswerSet.get(session).SetQuestionMultiplier(qID, newMulti);
 		}
-		
-		
-		
-		
 		// return if correct choice
 		return newMulti;
 	}
 	
+	public int GetRemainingUnanswered(int qID) {
+		return this.GetRoomLimit() - answeredQueue.get(qID).size();
+	}
+	
+	public int GetRemainingIncorrent(int qID) {
+		return this.GetRoomLimit() - bingoQueue.get(qID).size();
+	}
 	
 	public String GetClassTitle() {
 		return classTitle;
@@ -121,6 +129,10 @@ public class QuizRoom {
 	
 	public boolean HasNextQues(int qID) {
 		return (qID <= quiz.GetQuizSize());
+	}
+	
+	public int GetQuizSize() {
+		return quiz.GetQuizSize();
 	}
 	
 	
@@ -170,4 +182,27 @@ public class QuizRoom {
 	public double GetCurrentScore(Session session, int qID) {
 		return playerAnswerSet.get(session).GetCurrentScore(qID);
 	}
+	
+	public int GetRanking(Session session, int qID) {
+		int current = qID;
+		double myScore = GetCurrentScore(session, qID);
+		int ranking = 1;
+		if (qID > quiz.GetQuizSize()) {
+			current = quiz.GetQuizSize();
+		}
+		
+		List<Double> scores = new ArrayList<>(); 
+		for (Session s : GetPlayers()) {
+			scores.add(GetCurrentScore(s, qID));
+		}
+		Collections.sort(scores, Collections.reverseOrder());
+		
+		for (Double score : scores) {
+			if (score > myScore) {
+				ranking ++;
+			}
+		}
+		return ranking;	
+	}
+	
 }

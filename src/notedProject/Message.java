@@ -16,6 +16,7 @@ public class Message {
 	  private int time;
 	  private List<String> options = new ArrayList<>(); 
 	  private List<List<String> > availableRooms = new ArrayList<>();
+	  private int currentUnanswered = -1;
 	  private double currentScore = -1;
 	  private double currentMulti = -1;
 	  
@@ -41,6 +42,14 @@ public class Message {
 	  
 	  public void SetMulti(double multi) {
 		  this.currentMulti = multi;
+	  }
+	  
+	  public int GetUnanswered() {
+		  return currentUnanswered;
+	  }
+	  
+	  public void SetUnanswered(int unanswered) {
+		  this.currentUnanswered = unanswered;
 	  }
 	  
 	  public double GetScore() {

@@ -152,6 +152,16 @@ public class GameWebSocketServer {
 					//Return answer is wrong
 				} else {
 					//Broadcast
+					int unanswered = room.GetRemainingIncorrent(current);
+					Message response = new Message();
+					response.SetType("Unanswered");
+					response.SetContent(unanswered + " hasn't answered");
+					response.SetUnanswered(unanswered);
+					
+					for (Session s : room.GetPlayers()) {
+						MessageRemainingUnanswered(response, s);
+					}
+					
 					MessageOtherPlayer(multi, message, session);
 					
 				}
@@ -226,6 +236,15 @@ public class GameWebSocketServer {
 			if (room.HasStarted()) {
 				if (room.HasNextQues(current)) {
 					MessageNext(message, session);
+					int unanswered = room.GetRemainingIncorrent(current);
+					System.out.println("unanswered: " + unanswered );
+					// Send unanswered message
+					Message response = new Message();
+					response.SetType("Unanswered");
+					response.SetContent(unanswered + " hasn't answered"); 
+					response.SetUnanswered(unanswered);
+					
+					MessageRemainingUnanswered(response, session);
 				} else {
 					MessageEndGame(message, session);
 				}
@@ -389,6 +408,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 			Message response = new Message();
 			response.SetType("StartGame");
 			response.SetContent("Game starts...");
+			
 			session.getBasicRemote().sendObject(response);
 		} catch (EncodeException  e) {
 			System.err.println("ee in messageStart: " + e.getMessage());
@@ -405,12 +425,15 @@ private void MessageRoomNotExist(Message message, Session session) {
 		int current = message.GetCurrent();
 		//System.out.println("Trying to get room");
 		QuizRoom room = roomQuiz.get(message.GetRoomName());
+		int unanswered = room.GetPlayerNum();
 		//System.out.println("Current player num is: " + room.GetPlayerNum());
 		try {
 			Message response = new Message();
 			if (room.HasNextQues(current)) {
 				// Still has questions left in quiz
+				
 				response.SetType("NextQues");
+				
 				
 				Question question = room.GetQuestionByID(current);
 				response.SetContent(question.getTitle());
@@ -493,6 +516,17 @@ private void MessageRoomNotExist(Message message, Session session) {
 			response.SetType("EndGame");
 			response.SetContent("Game ends...");
 			session.getBasicRemote().sendObject(response);
+		} catch (EncodeException  e) {
+			System.err.println("ee in messageStart: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("ioe in messageStart: " + e.getMessage());
+		}
+		
+	}
+	
+	public void MessageRemainingUnanswered(Message message, Session session) {
+		try {
+			session.getBasicRemote().sendObject(message);
 		} catch (EncodeException  e) {
 			System.err.println("ee in messageStart: " + e.getMessage());
 		} catch (IOException e) {
