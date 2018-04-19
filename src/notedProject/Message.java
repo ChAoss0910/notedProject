@@ -19,6 +19,7 @@ public class Message {
 	  private int currentUnanswered = -1;
 	  private double currentScore = -1;
 	  private double currentMulti = -1;
+	  private int ranking = -1;
 	  
 	  public boolean HasRoom() {
 		  return (availableRooms.size() > 0);
@@ -34,6 +35,14 @@ public class Message {
 		  temp.add(rName);
 		  temp.add(""+slots);
 		  availableRooms.add(temp);
+	  }
+	  
+	  public int GetRanking() {
+		  return ranking;
+	  }
+	  
+	  public void SetRanking(int ranking) {
+		  this.ranking = ranking;
 	  }
 	  
 	  public double GetMulti() {

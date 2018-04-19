@@ -21,7 +21,9 @@ public class MessageEncoder implements Encoder.Text<Message> {
         .add("type", message.GetType())
         .add("content", message.GetContent());
         
-        
+    if (message.GetRanking() != -1) {
+    	jsonObjectBuilder.add("ranking", message.GetRanking());
+    }
     
     if (message.GetScore() != -1) {
     	jsonObjectBuilder.add("score", message.GetScore());

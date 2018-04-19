@@ -513,8 +513,11 @@ private void MessageRoomNotExist(Message message, Session session) {
 	public void MessageEndGame(Message message, Session session) {
 		try {
 			Message response = new Message();
+			QuizRoom room = roomQuiz.get(message.GetRoomName());
+			int ranking = room.GetRanking(session, room.GetQuizSize());
 			response.SetType("EndGame");
 			response.SetContent("Game ends...");
+			response.SetRanking(ranking);
 			session.getBasicRemote().sendObject(response);
 		} catch (EncodeException  e) {
 			System.err.println("ee in messageStart: " + e.getMessage());

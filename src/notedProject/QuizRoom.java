@@ -185,15 +185,16 @@ public class QuizRoom {
 	
 	public int GetRanking(Session session, int qID) {
 		int current = qID;
-		double myScore = GetCurrentScore(session, qID);
-		int ranking = 1;
 		if (qID > quiz.GetQuizSize()) {
 			current = quiz.GetQuizSize();
 		}
 		
+		int ranking = 1;
+		double myScore = GetCurrentScore(session, qID);
+		
 		List<Double> scores = new ArrayList<>(); 
 		for (Session s : GetPlayers()) {
-			scores.add(GetCurrentScore(s, qID));
+			scores.add(GetCurrentScore(s, current));
 		}
 		Collections.sort(scores, Collections.reverseOrder());
 		
