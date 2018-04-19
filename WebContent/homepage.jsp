@@ -22,7 +22,7 @@
 	String profilePic = request.getParameter("url");
 	boolean guest = true;
 	
-	if (username == null){
+	if (username == null){ 
 	} else {
 		if (!username.equalsIgnoreCase("") && !username.equalsIgnoreCase("null")){
 			guest = false;
