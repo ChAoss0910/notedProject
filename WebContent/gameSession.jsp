@@ -130,7 +130,7 @@
 			
 			<button id="startButton" onclick="gameStartFunc();" class="btn">Start Game</button>
 			
-			<table class="table">
+			<table class="table" style="padding: 30px 10px;">
 			<thead>
 				<tr>
           			<th><div id="questionDisplay">Initializing Quiz...</div>
