@@ -220,7 +220,7 @@
 	var roomName = "Sample Quiz 1";
 	var classTitle = "CS-201";
 	var currQ = 1;
-	var numPlayer = 2;
+	var numPlayer = 1;
 	var answered = false;
 	
 	var choice = 0; //always initialized to 0; changes based on the user's answer
@@ -459,8 +459,10 @@
 	}
 	
 	function HandleEndGame(json) {
+		var ranking = json.ranking;
 		disableChoice();
 		stopTimer();
+		alert("You finishd in the " + ranking + " place");
 	}
 	
 	function HandleStartGame(json) {
