@@ -48,7 +48,7 @@
 			else{
 				/* submit2(); */
 				document.getElementById("newNotes").submit();
-				alert("all submit!")
+				/* alert("all submit!") */
 				return true;
 			}
  		}
@@ -70,7 +70,7 @@
 					"&uploadfile="+fileName+"&tags="+tags+"&username="+username+"&url="+url, false);
 			xhttp.send(); 
 			/* document.getElementById("other").submit(); */
-			alert("other sumbit")
+			/* alert("other sumbit") */
 			return true;
 			
 			
