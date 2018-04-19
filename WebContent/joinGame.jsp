@@ -138,7 +138,7 @@
 		  <div class="container text-center">
 		    <h1>Select a Game</h1> 
 		    
-		    <button onclick="sendGetRoomsMessage();" style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg">Load Available Games</button>
+		    <button onclick="sendGetRoomsMessage();" style="margin: 10px 10px 10px -40px;" class="btn btn-primary btn-lg submit-button">Load Available Games</button>
 		    
 		    <div id="messages">
 		    </div>
