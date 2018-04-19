@@ -583,7 +583,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 		Question q2 = new Question("What makes a CS student smile?");
 		q2.addOption("Segmentation Fault (Core Dumped)");
 		q2.addOption("Merge Conflict --Aborted");
-		q2.addOption("¡°Grade updated on Blackboard¡­¡±");
+		q2.addOption("\"Grade updated on Blackboard...\"");
 		q2.addOption("9 points on a final presentation");
 		q2.SetAnswer(4);
 		
