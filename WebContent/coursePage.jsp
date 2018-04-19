@@ -163,7 +163,7 @@
 	     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
 				<div class="dropdown show">
 				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    <img src=<%= profilePic %> width="100%"/>
+				    <img src=<%= profilePic %> width="100%" style="border-radius: 10%;"/>
 				  </a>
 				  <div class="dropdown-menu" aria-labelledby="profileButton">
 				    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
@@ -182,9 +182,11 @@
 		<h1><%=courseTitle%></h1>
 		<h4><%=courseName%></h4>
 		
+		<a href="#notes" class="nav-link">Notes</a> / <a href="#questions" class="nav-link">Questions</a>
+		
 		<hr>
-		<h2>Notes</h2>
 		<div id="notes">
+		<h2>Notes</h2>
 			<%
 			int c = 0;
 			boolean done = false;

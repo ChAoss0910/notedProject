@@ -106,7 +106,7 @@
 		     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
 					<div class="dropdown show">
 					  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    <img src=<%= profilePic %> width="100%"/>
+					    <img src=<%= profilePic %> width="100%" style="border-radius: 10%;"/>
 					  </a>
 					  <div class="dropdown-menu" aria-labelledby="profileButton">
 					    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
@@ -120,10 +120,12 @@
 		</nav>
 		  
 		<div class="container-fluid bg-3 text-center">    
-		  <h3>Courses</h3><br>
-		  
+		  <h3>Notes</h3><br>
+		  <% String toUploadNotes = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
+	  	<a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toUploadNotes%> role="button">Upload Notes</a>
+       	
 		<div id="container">
-            <div id="notes">
+            <div id="notes"> 
                 <div style="background-image: url(images/note3.png)"></div>
                 <div style="background-image: url(images/note4.png)"></div>
                 <div style="background-image: url(images/note2.png)"></div>
@@ -138,19 +140,9 @@
         });    
        	</script>
        	
-       	<% String toUploadNotes = "uploadNotes.jsp?username="+username+"&url="+profilePic; %>
-	  	<a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toUploadNotes%> role="button">Upload Notes</a>
        	
-       	<div class="container-fluid" style="text-align: left;">
-		  	<h4>Filter Notes:</h4>
-		  	<form class="navbar-form navbar-left" role="search">
-			 <div class="form-group">
-			   <input type="text" class="form-control" placeholder="Search">
-			 </div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		  </form>
-	  	</div>
-		   
+		<br><br>
+		<h3>Courses</h3>
 		   <% String toCoursePage = "coursePage.jsp?username="+username+"&url="+profilePic+"&courseTitle="; %>
 		  <div class="list-group" id="courses">
 		  	<% for (int n = 0; n < numCourses; n++){ %>
