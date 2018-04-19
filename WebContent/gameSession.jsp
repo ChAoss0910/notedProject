@@ -30,21 +30,18 @@
 	%>
 	
 	<style>
-		/* Remove the navbar's default margin-bottom and rounded borders */ 
+	    /* Remove the navbar's default margin-bottom and rounded borders */ 
 	    .navbar {
 	      margin-bottom: 0;
 	      border-radius: 0;
 	    }
-		table {
-		   	border: 5px solid gold;
-		   	
-		   	.border-radius(@radius){
-		    .border-top-radius(@radius);
-		    .border-right-radius(@radius);
-		    .border-bottom-radius(@radius);
-		    .border-left-radius(@radius);
-		}
-		#profileButton {
+	    
+	    /* Add a gray background color and some padding to the footer */
+	    footer {
+	      background-color: #f2f2f2;
+	      padding: 25px;
+	    }
+	    #profileButton {
 			background-color: #262626;
 			height: 50px;
 			width: 50px;
@@ -67,7 +64,6 @@
 			font-weight: bold;
 			color: orange;
 		}
-		
 	</style>
 </head>
 <body>
@@ -95,15 +91,15 @@
 	        		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 	     	<% } else { %>
 	     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
-				<div class="dropdown show">
-				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    <img src=<%= profilePic %> width="100%"/>
-				  </a>
-				  <div class="dropdown-menu" aria-labelledby="profileButton">
-				    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
-				    <a class="dropdown-item" href="homepage.jsp">Log Out</a>
-				  </div>
-				</div>
+					<div class="dropdown show">
+					  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <img src=<%= profilePic %> width="100%" style="border-radius: 10%;"/>
+					  </a>
+					  <div class="dropdown-menu" aria-labelledby="profileButton">
+					    <a class="dropdown-item" href=<%=pass%>>My Profile</a><br>
+					    <a class="dropdown-item" href="homepage.jsp">Log Out</a>
+					  </div>
+					</div>
 	     	<% } %>
 	      </ul>
 	    </div>
