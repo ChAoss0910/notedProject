@@ -30,7 +30,7 @@
 		}
 		
 		String [] courseTitles = {"CSCI 201", "CSCI 360"};
-		String [] courseLinks = {"#","#"};
+		String [] courseLinks = {"coursePage.jsp?=username"+username+"&url="+profilePic,"coursePage.jsp?=username"+username+"&url="+profilePic};
 		int numCourses = courseTitles.length;
   	  	%>
 	  	<style>
