@@ -529,6 +529,9 @@
 	}
 	
 	function HandleUnanswered(json) {
+		if (numPlayer == 1) {
+			return;
+		}
 		var unanswered = json.unanswered;
 		if (unanswered == 1) {
 			showRightOrWrong("LATE");
