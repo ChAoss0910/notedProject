@@ -28,6 +28,7 @@
 		}
 	}
 	%>
+	
 	<style>
 		/* Remove the navbar's default margin-bottom and rounded borders */ 
 	    .navbar {
@@ -354,6 +355,7 @@
 				var cTitle = get('classTitle');
 				classTitle = cTitle;
 				roomName = rName;
+				numPlayer = 2;
 				console.log("room is" + rName);
 				sendJoinMessage(roomName);
 				
