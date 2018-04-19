@@ -216,9 +216,9 @@
 				<%for (int q = 0; q < numQuestions; q++){%>
 					<div class="q-item">
 						<h5 class="card-title"><%=questions[q]%></h5>
-						<button onclick="saveQues();">Show Answer</button><br>
-						<button onclick="saveQues();">Save</button>
-						<h5 class="answer" style="display:none;"><%=answers[q]%></h5>
+						<button onclick="showAns();">Show Answer</button><br>
+						<button id="saveQues" onclick="saveQues();">Save</button>
+						<h5 id="answer" style="display:none;"><%=answers[q]%></h5>
 					</div>
 				<%}%>
 			</div> 
