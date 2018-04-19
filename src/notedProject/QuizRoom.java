@@ -94,18 +94,8 @@ public class QuizRoom {
 			newMulti = 1.0;
 			currentQueue.add(session);
 			int size = currentQueue.size();
-			switch (size) {
-			case 1:
-				newMulti = 3.0;
-				break;
-				
-			case 2:
-				newMulti = 2.0;
-				break;
-
-			default:
-				break;
-			}
+			newMulti = GetPlayerNum() - size;
+			
 			//SetMultipier
 			playerAnswerSet.get(session).SetQuestionMultiplier(qID, newMulti);
 		}
