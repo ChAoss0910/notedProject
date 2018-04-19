@@ -65,6 +65,7 @@
 			font-weight: bold;
 			color: orange;
 		}
+		
 	</style>
 </head>
 <body>
@@ -128,18 +129,26 @@
 				<tr><td><button onclick="updateChoice(4);" id="choice4" class="btn btn-block btn-default editbtn">Choice #4</button></td></tr>
 			</tbody>
 			</table>
+			<div id = "endContainer" style = "display : inline-block;" class="container">
+				<div class="container">
+					<h3>Time Left:</h3>
+  						<progress value="0" max="10" id="progressBar"></progress>
+  					<div class="container">
+						<h3>Score:</h3>
+						<div id="score"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	<!-- Quiz UX -->
 	<!-- 		COUNTDOWN TIMER -->
-		<div class="container">
-			<h3>Time Left:</h3>
-  			<progress value="0" max="10" id="progressBar"></progress>
-		</div>
+		
+		
 	
 	<!-- Testing -->
 	<div id = "unanswered"></div>
 	<div id = "timer"></div>
-	<div id = "score"></div>
+	
 	<div id = "right"></div>
 	<div id = "messages"></div>
 	</div>
