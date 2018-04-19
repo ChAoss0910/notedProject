@@ -143,6 +143,8 @@
 					<h1>Start a Game</h1>
 				</div>
 				<form name="newGame" id = "newGame" method="GET" action = "gameSession.jsp" onSubmit = "return validate();">
+					<input type="hidden" name="username" id="username" value="<%=username%>">
+					<input type="hidden" name="url" id="url" value="<%=profilePic%>">
 					<div class="form-row">
 					    	<div class="form-group col-md-6">
 					    		<label for="gameName">Game Name</label>
@@ -183,12 +185,16 @@
 </body>
 <script type="text/javascript">
 	function store() {
+		var user = document.getElementById("username");
+		var pic = document.getElementById("url");
 		var e = document.getElementById("selectClass");
 		var classTitle = e.options[e.selectedIndex].text;
 		var c = document.getElementById("numPlayers");
 		var num = c.options[c.selectedIndex].text;
 		var roomName = document.getElementById("gameName").value;
 		
+		sessionStorage.setItem("username", user);
+		sessionStorage.setItem("url", pic);
 		sessionStorage.setItem("num", num);
 		sessionStorage.setItem("roomName", roomName);
 		sessionStorage.setItem("classTitle", classTitle);

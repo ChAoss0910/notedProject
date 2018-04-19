@@ -51,7 +51,7 @@ public class ValidateNotes extends HttpServlet {
 	        
 	        factory.setSizeThreshold(maxMemSize);
 	        // Location to save data that is larger than maxMemSize.
-	        String path = "/Users/chenchaoyang/Desktop/file/";
+	        String path = "/Users/emilymeschke/Desktop/file/";
 	        factory.setRepository(new File(path));
 	       
 	        ServletFileUpload upload = new ServletFileUpload(factory);
