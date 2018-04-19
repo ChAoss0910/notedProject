@@ -35,12 +35,27 @@
 	      margin-bottom: 0;
 	      border-radius: 0;
 	    }
+	   table {
+		   	border: 5px solid gold;
+		   	
+		   	.border-radius(@radius){
+		    .border-top-radius(@radius);
+		    .border-right-radius(@radius);
+		    .border-bottom-radius(@radius);
+		    .border-left-radius(@radius);
+		}
 	    
 	    /* Add a gray background color and some padding to the footer */
 	    footer {
 	      background-color: #f2f2f2;
 	      padding: 25px;
 	    }
+	    .navbar-right img {
+			margin-top: 5px;
+			width: 40px; 
+			height: 40px;
+			border-radius: 20%; 
+		}
 	    #profileButton {
 			background-color: #262626;
 			height: 50px;
