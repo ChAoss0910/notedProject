@@ -25,7 +25,7 @@ public class validateNewGame extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+
 		String coursename = request.getParameter("selectClass");
 		String title = request.getParameter("gameName");
 		String numPlayers = request.getParameter("numPlayers");
