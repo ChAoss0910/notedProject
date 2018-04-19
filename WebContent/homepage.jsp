@@ -136,8 +136,10 @@
 		  
 		<div class="container-fluid bg-3 text-center">    
 		  <h3>Featured Notes</h3><br>
-		  <% String toNoteExplore = "notePage.jsp?username="+username+"&url="+profilePic; %>
-		  <a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toNoteExplore%> role="button">Explore</a>
+		  <% if (!guest) { %>
+			  <% String toNoteExplore = "notePage.jsp?username="+username+"&url="+profilePic; %>
+			  <a class="btn btn-primary btn-lg"  id="submit-button" href=<%=toNoteExplore%> role="button">Explore</a>
+		  <% } %>
 		  <div class="row" style="padding-top:20px;">
 			  <div class="col-sm-3"> 
 				  <div class="thumbnail">
