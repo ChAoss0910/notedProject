@@ -584,7 +584,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 		q2.addOption("Segmentation Fault (Core Dumped)");
 		q2.addOption("Merge Conflict --Aborted");
 		q2.addOption("\"Grade updated on Blackboard...\"");
-		q2.addOption("9 points on a final presentation");
+		q2.addOption("10 points on a final presentation");
 		q2.SetAnswer(4);
 		
 		Question q3 = new Question("Which data structure is most memory efficient?");
