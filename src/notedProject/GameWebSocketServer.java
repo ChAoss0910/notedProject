@@ -594,7 +594,7 @@ private void MessageRoomNotExist(Message message, Session session) {
 		q3.addOption("Is that even a thing?");
 		q3.SetAnswer(4);
 		
-		Question q4 = new Question("What is the Big-O of Facebook¡¯s delete function?");
+		Question q4 = new Question("What is the Big-O of Facebook's delete function?");
 		q4.addOption("O(n^2)");
 		q4.addOption("O(n)");
 		q4.addOption("O(Logn)");
