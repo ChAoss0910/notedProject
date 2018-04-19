@@ -2,9 +2,11 @@ package notedProject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,90 +35,97 @@ public class ValidateNotes extends HttpServlet {
 		 try {
 	        request.setCharacterEncoding("utf-8");  
 	        response.setCharacterEncoding("utf-8");  
-	        response.setContentType("text/html;charset=utf-8");//更改响应字符流使用的编码，还能告知浏览器用什么编码进行显示  
-
-//	        String title = request.getParameter("notesTitle");
-//			String course= request.getParameter("selectClass");
-//			String date=request.getParameter("date");
-////			String file=request.getParameter("uploadfile");
-//			String tag=request.getParameter("tags");
-//			PrintWriter out =  response.getWriter();
-//			System.out.println(title);
-//			System.out.println(course);
-//			System.out.println(date);
-////			System.out.println(file);
-//			System.out.println(tag);
-	         //ystem.out.println("Success!!!");
-	        // 检查是否有一个文件上传请求
+	        response.setContentType("text/html;charset=utf-8");  
+	        LoadDatabase database=new LoadDatabase();
+	        // check if there is a file request
 	        isMultipart = ServletFileUpload.isMultipartContent(request);
 	        String result = "";
+	        String newpath="";
 	        response.setContentType("text/html;charset=utf-8");
 	        if (!isMultipart) {
-	            result = "未获取到文件";
+	            result = "don't get the file";
 	            response.getWriter().println(result);
 	            return;
 	        }
 	        DiskFileItemFactory factory = new DiskFileItemFactory();
-	        // 文件大小的最大值将被存储在内存中
+	        
 	        factory.setSizeThreshold(maxMemSize);
 	        // Location to save data that is larger than maxMemSize.
-	        String path = "/Users/chenchaoyang/Desktop/file/result";
+	        String path = "/Users/chenchaoyang/Desktop/file/";
 	        factory.setRepository(new File(path));
-	        // System.out.println(path);
-	        // 创建一个新的文件上传处理程序
+	       
 	        ServletFileUpload upload = new ServletFileUpload(factory);
-	        // 允许上传的文件大小的最大值
+	       
 	        upload.setSizeMax(maxFileSize);
 //	        System.out.println("wtf?");
 	        try {
-	            // 解析请求，获取文件项
+	            // parse request
+	        	 	List<String> pList = new ArrayList<String>();  
 	            List fileItems = upload.parseRequest(request);
 	            System.out.println(fileItems.size());
-	            // 处理上传的文件项
+	            // process iterator
 	            Iterator i = fileItems.iterator();
 	            if(!i.hasNext())
 	            		System.out.println("bieba");
 	            while (i.hasNext()) {
 	            		System.out.println("in loop");
 	                FileItem fi = (FileItem) i.next();
+	                if(fi.isFormField()) {
+	                		String value = fi.getString("UTF-8");  
+	                		pList.add(value);
+	                }
 	                if (!fi.isFormField()) {
-	                    // 获取上传文件的参数
+	                    // get para
 	                		System.out.println("get Para");
 	                    String fieldName = fi.getFieldName();
 	                    String fileName = fi.getName();
 	                    String contentType = fi.getContentType();
 	                    boolean isInMemory = fi.isInMemory();
 	                    long sizeInBytes = fi.getSize();
-	                    // 写入文件
-	                    File file = new File(path + System.currentTimeMillis() / 1000 + ".txt");
+	                    // write file
+	                    System.out.println(pList.get(3));
+	                    
+	                    File file = new File(path + pList.get(4)+"_"+pList.get(0) + ".txt");
 	                    fi.write(file);
 	                }
 	            }
-	            result = "上传成功";
+	            String title = pList.get(0);
+				String course= pList.get(1);
+				String date=pList.get(2);
+				String filename=pList.get(3);
+				String username=pList.get(4);
+				String tag=pList.get(5);
+				course = course.replaceAll(" +","");
+				String url=pList.get(6);
+				
+				System.out.println(title);
+				System.out.println(course);
+				System.out.println(date);
+	            
 	            System.out.println("Success");
+	            
+	            Note n=new Note(title, date, course, tag);
+	            newpath = path+username+"_"+title+".txt";
+	            n.addPath(newpath);
+	            database.getUser(username).addNote(n);
+//	            RequestDispatcher dispatcher = request.getRequestDispatcher("/coursePage.jsp?username="+username+"&url="+url+"&courseTitle="+course);  
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/homepage.jsp?username="+username+"&url="+url);  
+
+	            dispatcher.forward(request, response);  
 	        } catch (Exception ex) {
-	            System.out.println("ex:" + ex.getMessage());
+	        	ex.printStackTrace();
 	            System.out.println("No");
 	        }
 	 
-	        response.getWriter().println(result);
-	        
-//	        String title = request.getParameter("notesTitle");
-//			String course= request.getParameter("selectClass");
-//			String date=request.getParameter("date");
-//			String file=request.getParameter("uploadfile");
-//			String tag=request.getParameter("tags");
-//			PrintWriter out =  response.getWriter();
-//			System.out.println(title);
-//			System.out.println(course);
-//			System.out.println(date);
-//			System.out.println(file);
-//			System.out.println(tag);
+
 	         System.out.println("Success!!!");
-//	        request.setAttribute("result", "文件上传成功");  
+     
+	        
 		 }catch(Exception e) {
-			 System.out.println("????");
+			 System.out.println(e.getMessage());
 		 }
+		 
+		  
 		   }  
 }
 

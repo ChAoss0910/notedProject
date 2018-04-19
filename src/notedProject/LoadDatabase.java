@@ -2,11 +2,12 @@ package notedProject;
 
 import java.io.Reader;
 
+
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.logging.Logger;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -24,18 +25,22 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+
 import com.mongodb.util.JSON;
 
+
+
 public class LoadDatabase {
-	private List<Course> courses;
-	private List<User> users;
+//	private List<Course> courses;
+//	private List<User> users;
 	
 	private String path;
 	private DummyDatabase database;
-	public Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	 public DBCollection userColl;
 	 public DBCollection courseColl;
-	 
+	 Logger logger = Logger.getLogger( this.getClass().getName() );
+
 	public LoadDatabase() {
 		
 		MongoClient mongoClient = new MongoClient( "localhost" , 27017 ); 
@@ -85,8 +90,10 @@ public class LoadDatabase {
 		return check;
 	}
 	
+	
 	public boolean AddUser(String username, String fname, String lname, String password, String email, String url) {
 		User temp = new User(username, lname, fname, password, email, url);
+		
 		 DBObject dbObject = (DBObject) JSON.parse(gson.toJson(temp));
 		 userColl.insert(dbObject);
 

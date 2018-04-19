@@ -16,6 +16,7 @@
   	<%
   	String username = request.getParameter("username");
 	String profilePic = request.getParameter("url");
+	String path = "homepage.jsp?username="+username+"&url="+ profilePic;
 	boolean guest = true;
 	
 	if (username == null){
@@ -30,14 +31,14 @@
  			var title =document.newNotes.notesTitle.value;
  			var course = document.newNotes.selectClass.value
  			var date = document.newNotes.date.value
-			var file = document.newNotes.uploadfile.value;
+			var file = document.getElementById("inputGroupFile02").value;
+ 			
+ 			
+ 			/* var fileName = file.substring(file.lastIndexOf("\\")+1,file.lastIndexOf('.')); */
+ 			
 			var tags = document.newNotes.tags.value;
-			/* $("notesTitle1").val=title;
-			$("selectClass1").val=course;
-			$("date1").val=date;
-			$("file1").val=file;
-			$("tags1").val=tags;
-			alert(title+course+date+file+tags) */
+			
+			
 			if(title == ""||course ==""||date==""||file==""||tags==""){
 				alert("Please complete the form!")
 				return false;
@@ -45,40 +46,33 @@
 			
 				
 			else{
-				/* var xhttp =new XMLHttpRequest();
-				var file = document.newNotes.uploadfile.value;
-				
-				var tags = document.newNotes.tags.value;
-				
-				xhttp.open("GET", "UploadFile?notesTitle="+document.newNotes.notesTitle.value +
-						"&selectClass=" + document.newNotes.selectClass.value+"&date="+document.newNotes.date.value+
-						"&uploadfile="+ file+"&tags="+tags, false);
-				xhttp.send(); */
-				/* document.getElementById("other").submit(); */
-				/* alert("other sumbit") */
+				/* submit2(); */
 				document.getElementById("newNotes").submit();
-				
-				 return true; 
+				alert("all submit!")
+				return true;
 			}
-				
  		}
  		function submit2(){
+ 			
  			var title =document.newNotes.notesTitle.value;
  			var course = document.newNotes.selectClass.value
  			var date = document.newNotes.date.value
-			var file = document.newNotes.uploadfile.value;
+			var path = document.newNotes.uploadfile.value;
+ 			var fileName = path.substring(path.lastIndexOf("\\")+1,path.lastIndexOf('.'));
+ 			var username = document.other.username.value;
+ 			var url = document.other.url.value;
+ 			alert(fileName)
 			var tags = document.newNotes.tags.value;
+			var xhttp =new XMLHttpRequest();
 			
-			if(title != ""&&course !=""&&date!=""&&file!=""&&tags!=""){
-				$("notesTitle1").val=title;
-				$("selectClass1").val=course;
-				$("date1").val=date;
-				$("file1").val=file;
-				$("tags1").val=tags;
-				alert(title+course+date+file+tags)
-				document.getElementById("other").submit();
-				alert("other sumbit") 
-			}
+			xhttp.open("GET", "UploadFile?notesTitle="+document.newNotes.notesTitle.value +
+					"&selectClass=" + document.newNotes.selectClass.value+"&date="+document.newNotes.date.value+
+					"&uploadfile="+fileName+"&tags="+tags+"&username="+username+"&url="+url, false);
+			xhttp.send(); 
+			/* document.getElementById("other").submit(); */
+			alert("other sumbit")
+			return true;
+			
 			
  		}
  		
@@ -177,7 +171,9 @@
    			<% if (guest) { %>
         		<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 	     	<% } else { %>
-	     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; %>
+	     		<% String pass = "userProfile.jsp?username=" + username + "&url=" + profilePic; 
+	     			
+	     		%>
 				<div class="dropdown show">
 				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <img src=<%= profilePic %> width="100%"/>
@@ -199,7 +195,7 @@
 			<div id="title">
 				<h1>Upload Notes</h1>
 			</div>
-			<form name="newNotes" id ="newNotes"method="POST" enctype="multipart/form-data" action="ValidateNotes">
+			<form name="newNotes" id ="newNotes"method="POST" enctype="multipart/form-data" action="ValidateNotes" >
 				<div class="form-row">
 				    	<div class="form-group col-md-6"">
 				    		<label for="notesTitle">Title</label>
@@ -226,7 +222,11 @@
 			  	<div class="form-row">
 			  		<div class="form-group col-md-12">
 					  	<div class="custom-file">
+					  	
+					  		<input type="hidden" id="filename" name ="filename">
+					  		<input type = "hidden" id ="username" name ="username" value="<%=username%>">
 						    <input type="file" class="custom-file-input" id="inputGroupFile02" name="uploadfile">
+						    
 					  	</div>
 					</div>
 			  	</div>
@@ -239,11 +239,14 @@
 			  	</div>
 			  	<div class="form-row"> 
 			  		<div class="form-group col-md-12">
-			  			<a href="homepage.jsp" onclick="return submit();" ><button class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
+			  			<a onclick="submit();" ><button type="button" class="btn btn-primary btn-lg"  id="submit-button">Upload Notes</button></a>
 		  			</div>
 		  		</div>
+		  		
+		  		<input type="hidden" id="url" name="url" value="<%=profilePic%>">
+		  		
 		  	</form>
-		  	<form name ="other" id="other" method ="POST" action="UploadFile" >
+		  	<form name ="other" id="other" method ="POST" action="<%=path%>" onSubmit="return submit();">
 		  		<input type="hidden" id="notesTitle1" name ="notesTitle">
 		  		<input type="hidden" id="selectClass1" name="selectClass">
 		  		<input type="hidden" id="file1" name="file">
